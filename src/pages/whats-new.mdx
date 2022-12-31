@@ -1,0 +1,45 @@
+# Attachments
+
+Attachments are how you share things in Protocol — they allow you to send all sorts of files to your contacts and groups. On this page, we'll dive into the different attachment endpoints you can use to manage attachments programmatically. We'll look at how to query, upload, update, and delete attachments. {{ className: 'lead' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to delete attachments. Note: This will permanently delete the file.
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="DELETE" label="/v1/attachments/Nc6yKKMpcxiiFxp6">
+
+    ```bash {{ title: 'cURL' }}
+    curl -X DELETE https://api.protocol.chat/v1/attachments/Nc6yKKMpcxiiFxp6 \
+      -H "Authorization: Bearer {token}"
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.attachments.delete('Nc6yKKMpcxiiFxp6')
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.attachments.delete("Nc6yKKMpcxiiFxp6")
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->attachments->delete('Nc6yKKMpcxiiFxp6');
+    ```
+
+    </CodeGroup>
+
+  </Col>
+</Row>

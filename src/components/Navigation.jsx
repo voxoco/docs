@@ -29,15 +29,22 @@ function TopLevelNavItem({ href, children }) {
 }
 
 function NavLink({ href, tag, active, isAnchorLink = false, children }) {
+  let isInsideMobileNavigation = useIsInsideMobileNavigation()
+  let [router, sections] = useInitialValue(
+    [useRouter(), useSectionStore((s) => s.sections)],
+    isInsideMobileNavigation
+  )
+
   return (
     <Link
       href={href}
       aria-current={active ? 'page' : undefined}
       className={clsx(
-        'flex justify-between gap-2 py-1 pr-3 text-sm transition',
-        isAnchorLink ? 'pl-7' : 'pl-4',
+        'flex justify-between gap-2 rounded-md py-1 px-3 text-sm transition',
+        isAnchorLink ? 'pl-5' : '',
+        isAnchorLink && href === router.pathname ? 'bg-gray-300' : '',
         active
-          ? 'text-zinc-900 dark:text-white'
+          ? 'bg-red-50 font-bold text-red-500 dark:bg-red-200 dark:text-red-500'
           : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
       )}
     >
@@ -96,7 +103,7 @@ function ActivePageMarker({ group, pathname }) {
   return (
     <motion.div
       layout
-      className="absolute left-2 h-6 w-px bg-emerald-500"
+      className="absolute left-2 h-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 0.2 } }}
       exit={{ opacity: 0 }}
@@ -122,26 +129,12 @@ function NavigationGroup({ group, className }) {
     <li className={clsx('relative mt-6', className)}>
       <motion.h2
         layout="position"
-        className="text-xs font-semibold text-zinc-900 dark:text-white"
+        className="text-xs px-3 font-semibold text-zinc-900 dark:text-white"
       >
         {group.title}
       </motion.h2>
-      <div className="relative mt-3 pl-2">
-        <AnimatePresence initial={!isInsideMobileNavigation}>
-          {isActiveGroup && (
-            <VisibleSectionHighlight group={group} pathname={router.pathname} />
-          )}
-        </AnimatePresence>
-        <motion.div
-          layout
-          className="absolute inset-y-0 left-2 w-px bg-zinc-900/10 dark:bg-white/5"
-        />
-        <AnimatePresence initial={false}>
-          {isActiveGroup && (
-            <ActivePageMarker group={group} pathname={router.pathname} />
-          )}
-        </AnimatePresence>
-        <ul role="list" className="border-l border-transparent">
+      <div className="relative mt-3">
+        <ul role="list">
           {group.links.map((link) => (
             <motion.li key={link.href} layout="position" className="relative">
               <NavLink href={link.href} active={link.href === router.pathname}>
@@ -150,6 +143,7 @@ function NavigationGroup({ group, className }) {
               <AnimatePresence mode="popLayout" initial={false}>
                 {link.href === router.pathname && sections.length > 0 && (
                   <motion.ul
+                    className="relative"
                     role="list"
                     initial={{ opacity: 0 }}
                     animate={{
@@ -162,7 +156,7 @@ function NavigationGroup({ group, className }) {
                     }}
                   >
                     {sections.map((section) => (
-                      <li key={section.id}>
+                      <li key={section.id} className="my-1">
                         <NavLink
                           href={`${link.href}#${section.id}`}
                           tag={section.tag}
@@ -170,6 +164,10 @@ function NavigationGroup({ group, className }) {
                         >
                           {section.title}
                         </NavLink>
+                        <motion.div
+                          layout
+                          className="absolute inset-y-0 left-2 w-px bg-gray-200 dark:bg-white/5"
+                        />
                       </li>
                     ))}
                   </motion.ul>
@@ -185,25 +183,83 @@ function NavigationGroup({ group, className }) {
 
 export const navigation = [
   {
-    title: 'Guides',
+    links: [{ title: 'API Docs', href: '/' }],
+  },
+  {
+    title: 'RELEASE NOTE',
+    links: [{ title: "🎉 What's New", href: '/whats-new' }],
+  },
+  {
+    title: 'OMNIA',
     links: [
-      { title: 'Introduction', href: '/' },
-      { title: 'Quickstart', href: '/quickstart' },
-      { title: 'SDKs', href: '/sdks' },
-      { title: 'Authentication', href: '/authentication' },
-      { title: 'Pagination', href: '/pagination' },
-      { title: 'Errors', href: '/errors' },
-      { title: 'Webhooks', href: '/webhooks' },
+      { title: 'Overview', href: '/overview' },
+      { title: 'Softphone Park Feature', href: '/softphone-park-feature' },
+      { title: 'Call Recordings', href: '/call-recordings' },
+      { title: 'Push Notifications', href: '/push-notifications' },
+      { title: 'Hot Keys', href: '/hot-keys' },
+      { title: 'Voicemail Management', href: '/voicemail-management' },
+      { title: 'Call Summary', href: '/call-summary' },
+      { title: 'Time Zone Settings', href: '/time-zone-settings' },
+      { title: 'Volume Controls', href: '/volume-controls' },
+      { title: 'Queue Statistics', href: '/queue-statistics' },
+      { title: 'Queue Manager Dashboard', href: '/queue-manager-dashboard' },
     ],
   },
   {
-    title: 'Resources',
+    title: 'GENERAL',
     links: [
-      { title: 'Contacts', href: '/contacts' },
-      { title: 'Conversations', href: '/conversations' },
-      { title: 'Messages', href: '/messages' },
-      { title: 'Groups', href: '/groups' },
-      { title: 'Attachments', href: '/attachments' },
+      {
+        title: 'How to Connect Yealink Phone to Wifi',
+        href: '/how-to-connect-yealink-phone-to-wifi',
+      },
+      {
+        title: 'How to Call Into a Conference Room',
+        href: '/how-to-call-into-a-conference-room',
+      },
+      {
+        title: 'Headset Issue: Cannot Hear / Be Heard',
+        href: '/headset-issue-cannot-hear-be-heard',
+      },
+      {
+        title: 'Updating Yealink Firmware',
+        href: '/updating-yealink-firmware',
+      },
+      { title: 'SMS 10DLC Update', href: '/sms-10dlc-update' },
+      {
+        title: 'How to Allow Notifications',
+        href: '/how-to-allow-notifications',
+      },
+      { title: 'Firewall IP whitelist', href: '/firewall-ip-whitelist' },
+      { title: 'Mobile App DoNotDisturb', href: '/mobile-app-donotdisturb' },
+      {
+        title: 'Downloading VOXO to Desktop',
+        href: '/downloading-voxo-to-desktop',
+      },
+      { title: 'Send a fax via email', href: '/send-a-fax-via-email' },
+      { title: 'How To: Set Up Voicemail', href: '/how-to-set-up-voicemail' },
+      {
+        title: 'Invite a user to VOXO Mobile',
+        href: '/invite-a-user-to-voxo-mobile',
+      },
+      {
+        title: 'How To: Conference Call (VOXO Meet)',
+        href: '/how-to-conference-call-voxo-meet',
+      },
+      { title: 'How To: Transfer a Call', href: '/how-to-transfer-a-call' },
+      { title: 'Add a Speed Dial Contact', href: '/add-a-speed-dial-contact' },
+      {
+        title: 'How To: Factory Reset (Polycom 400 series)',
+        href: '/how-to-factory-reset-polycom-400-series',
+      },
+      {
+        title: "How do Time of Day's work?",
+        href: '/how-do-time-of-days-work',
+      },
+      {
+        title: 'How to: Factory reset (Yealink series)',
+        href: '/how-to-factory-reset-yealink-series',
+      },
+      { title: 'Pause and DND in OMNIA', href: '/pause-and-dnd-in-omnia' },
     ],
   },
 ]
@@ -212,9 +268,6 @@ export function Navigation(props) {
   return (
     <nav {...props}>
       <ul role="list">
-        <TopLevelNavItem href="/">API</TopLevelNavItem>
-        <TopLevelNavItem href="#">Documentation</TopLevelNavItem>
-        <TopLevelNavItem href="#">Support</TopLevelNavItem>
         {navigation.map((group, groupIndex) => (
           <NavigationGroup
             key={group.title}
@@ -222,11 +275,6 @@ export function Navigation(props) {
             className={groupIndex === 0 && 'md:mt-0'}
           />
         ))}
-        <li className="sticky bottom-0 z-10 mt-6 min-[416px]:hidden">
-          <Button href="#" variant="filled" className="w-full">
-            Sign in
-          </Button>
-        </li>
       </ul>
     </nav>
   )
