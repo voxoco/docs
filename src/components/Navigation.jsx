@@ -10,7 +10,7 @@ import { useSectionStore } from '@/components/SectionProvider'
 import { Tag } from '@/components/Tag'
 import { remToPx } from '@/lib/remToPx'
 
-function useInitialValue(value, condition = true) {
+export function useInitialValue(value, condition = true) {
   let initialValue = useRef(value).current
   return condition ? initialValue : value
 }
@@ -76,11 +76,12 @@ function VisibleSectionHighlight({ group, pathname }) {
   )
   let itemHeight = remToPx(2)
   let height = isPresent
-    ? Math.max(1, visibleSections.length) * itemHeight
+    ? Math.max(1, visibleSections.length) * itemHeight + 4
     : itemHeight
   let top =
     group.links.findIndex((link) => link.href === pathname) * itemHeight +
-    firstVisibleSectionIndex * itemHeight
+    firstVisibleSectionIndex * itemHeight +
+    12
 
   return (
     <motion.div
@@ -129,11 +130,15 @@ function NavigationGroup({ group, className }) {
     <li className={clsx('relative mt-6', className)}>
       <motion.h2
         layout="position"
-        className="text-xs px-3 font-semibold text-zinc-900 dark:text-white"
+        className="px-3 text-xs font-semibold text-zinc-900 dark:text-white"
       >
         {group.title}
       </motion.h2>
+
       <div className="relative mt-3">
+        {isActiveGroup && sections.length > 0 && (
+          <VisibleSectionHighlight group={group} pathname={router.pathname} />
+        )}
         <ul role="list">
           {group.links.map((link) => (
             <motion.li key={link.href} layout="position" className="relative">
@@ -187,22 +192,28 @@ export const navigation = [
   },
   {
     title: 'RELEASE NOTE',
-    links: [{ title: "🎉 What's New", href: '/whats-new' }],
+    links: [{ title: "🎉 What's New", href: '/release-note/whats-new' }],
   },
   {
     title: 'OMNIA',
     links: [
-      { title: 'Overview', href: '/overview' },
-      { title: 'Softphone Park Feature', href: '/softphone-park-feature' },
-      { title: 'Call Recordings', href: '/call-recordings' },
-      { title: 'Push Notifications', href: '/push-notifications' },
-      { title: 'Hot Keys', href: '/hot-keys' },
-      { title: 'Voicemail Management', href: '/voicemail-management' },
-      { title: 'Call Summary', href: '/call-summary' },
-      { title: 'Time Zone Settings', href: '/time-zone-settings' },
-      { title: 'Volume Controls', href: '/volume-controls' },
-      { title: 'Queue Statistics', href: '/queue-statistics' },
-      { title: 'Queue Manager Dashboard', href: '/queue-manager-dashboard' },
+      { title: 'Overview', href: '/omnia/overview' },
+      {
+        title: 'Softphone Park Feature',
+        href: '/omnia/softphone-park-feature',
+      },
+      { title: 'Call Recordings', href: '/omnia/call-recordings' },
+      { title: 'Push Notifications', href: '/omnia/push-notifications' },
+      { title: 'Hot Keys', href: '/omnia/hot-keys' },
+      { title: 'Voicemail Management', href: '/omnia/voicemail-management' },
+      { title: 'Call Summary', href: '/omnia/call-summary' },
+      { title: 'Time Zone Settings', href: '/omnia/time-zone-settings' },
+      { title: 'Volume Controls', href: '/omnia/volume-controls' },
+      { title: 'Queue Statistics', href: '/omnia/queue-statistics' },
+      {
+        title: 'Queue Manager Dashboard',
+        href: '/omnia/queue-manager-dashboard',
+      },
     ],
   },
   {
@@ -270,7 +281,7 @@ export function Navigation(props) {
       <ul role="list">
         {navigation.map((group, groupIndex) => (
           <NavigationGroup
-            key={group.title}
+            key={groupIndex}
             group={group}
             className={groupIndex === 0 && 'md:mt-0'}
           />

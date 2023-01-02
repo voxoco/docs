@@ -70,7 +70,7 @@ export const Header = forwardRef(function Header({ className }, ref) {
             <div className="relative mr-4 h-6 w-6 md:h-10 md:w-10">
               <Image src="/images/icons/logo.png" fill />
             </div>
-            <span className="text-base font-bold text-black hover:text-red-500 dark:hover:text-red-500 dark:text-white md:text-xl">
+            <span className="text-base font-bold text-black hover:text-red-500 dark:text-white dark:hover:text-red-500 md:text-xl">
               VOXO Docs
             </span>
           </div>
@@ -104,8 +104,8 @@ export const Header = forwardRef(function Header({ className }, ref) {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items className="absolute right-0 mt-2 w-full origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    <div className="px-1 py-1 ">
+                  <Menu.Items className="absolute right-0 mt-2 w-max origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <div className="px-1 py-1">
                       <Menu.Item>
                         {({ active }) => (
                           <button
@@ -126,9 +126,12 @@ export const Header = forwardRef(function Header({ className }, ref) {
                               active
                                 ? 'bg-gray-100 text-gray-900'
                                 : 'text-gray-500'
-                            } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                            } group flex w-full items-center gap-x-2 rounded-md px-2 py-2 text-sm`}
                           >
-                            Support Docs
+                            Support Docs{' '}
+                            <span className="font-normal text-gray-400 tracking-wider">
+                              MAIN
+                            </span>
                           </button>
                         )}
                       </Menu.Item>
