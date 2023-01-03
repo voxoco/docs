@@ -41,6 +41,14 @@ export const Header = forwardRef(function Header({ className }, ref) {
 
   let [router] = useInitialValue([useRouter()], isInsideMobileNavigation)
 
+  const isAPIDocs =
+    router.pathname.split('/')[1] === 'voxo-public' &&
+    router.pathname.split('/')[2] === 'v'
+
+  const isSupportDocs =
+    router.pathname.split('/')[1] === 'voxo-public' &&
+    router.pathname.split('/')[2] !== 'v'
+
   return (
     <motion.div
       ref={ref}
@@ -89,7 +97,7 @@ export const Header = forwardRef(function Header({ className }, ref) {
                       open ? 'text-red-500' : ''
                     } inline-flex w-full items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-gray-900 hover:text-red-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 dark:text-white dark:hover:text-red-500`}
                   >
-                    Support...
+                    {isSupportDocs ? 'Support...' : 'API Docs'}
                     <ChevronDownIcon
                       className={`${
                         open ? 'rotate-180' : 'rotate-0'
@@ -112,11 +120,11 @@ export const Header = forwardRef(function Header({ className }, ref) {
                     <div className="px-1 py-1">
                       <Menu.Item>
                         {({ active }) => (
-                          <button
+                          <Link
+                            href="/voxo-public/v/api-docs-1/reference/api-reference/authentications"
                             className={clsx(
                               'group mb-1 flex w-full items-center rounded-md px-2 py-2 text-sm',
-                              router.pathname.split('/')[1] === 'voxo-public' &&
-                                router.pathname.split('/')[2] === 'v'
+                              isAPIDocs
                                 ? 'bg-red-200 font-bold text-red-500'
                                 : active
                                 ? 'bg-gray-100 text-gray-900'
@@ -124,16 +132,16 @@ export const Header = forwardRef(function Header({ className }, ref) {
                             )}
                           >
                             API Docs
-                          </button>
+                          </Link>
                         )}
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <button
+                          <Link
+                            href="/voxo-public"
                             className={clsx(
                               'group flex w-full items-center gap-x-4 rounded-md px-2 py-2 text-sm',
-                              router.pathname.split('/')[1] === 'voxo-public' &&
-                                router.pathname.split('/')[2] !== 'v'
+                              isSupportDocs
                                 ? 'bg-red-200 font-bold text-red-500'
                                 : active
                                 ? 'bg-gray-100 text-gray-900'
@@ -144,7 +152,7 @@ export const Header = forwardRef(function Header({ className }, ref) {
                             <span className="font-normal tracking-wider text-gray-400">
                               MAIN
                             </span>
-                          </button>
+                          </Link>
                         )}
                       </Menu.Item>
                     </div>
