@@ -136,16 +136,16 @@ function NavigationGroup({ group, className }) {
       </motion.h2>
 
       <div className="relative mt-3">
-        {isActiveGroup && sections.length > 0 && (
+        {/* {isActiveGroup && sections.length > 0 && (
           <VisibleSectionHighlight group={group} pathname={router.pathname} />
-        )}
+        )} */}
         <ul role="list">
           {group.links.map((link) => (
             <motion.li key={link.href} layout="position" className="relative">
               <NavLink href={link.href} active={link.href === router.pathname}>
                 {link.title}
               </NavLink>
-              <AnimatePresence mode="popLayout" initial={false}>
+              {/* <AnimatePresence mode="popLayout" initial={false}>
                 {link.href === router.pathname && sections.length > 0 && (
                   <motion.ul
                     className="relative"
@@ -177,7 +177,7 @@ function NavigationGroup({ group, className }) {
                     ))}
                   </motion.ul>
                 )}
-              </AnimatePresence>
+              </AnimatePresence> */}
             </motion.li>
           ))}
         </ul>
@@ -188,31 +188,31 @@ function NavigationGroup({ group, className }) {
 
 export const navigation = [
   {
-    links: [{ title: 'API Docs', href: '/' }],
+    links: [{ title: 'API Docs', href: '/voxo-public' }],
   },
   {
     title: 'RELEASE NOTE',
-    links: [{ title: "🎉 What's New", href: '/release-note/whats-new' }],
+    links: [{ title: "🎉 What's New", href: '/voxo-public/release-note/whats-new' }],
   },
   {
     title: 'OMNIA',
     links: [
-      { title: 'Overview', href: '/omnia/overview' },
+      { title: 'Overview', href: '/voxo-public/omnia/overview' },
       {
         title: 'Softphone Park Feature',
-        href: '/omnia/softphone-park-feature',
+        href: '/voxo-public/omnia/softphone-park-feature',
       },
-      { title: 'Call Recordings', href: '/omnia/call-recordings' },
-      { title: 'Push Notifications', href: '/omnia/push-notifications' },
-      { title: 'Hot Keys', href: '/omnia/hot-keys' },
-      { title: 'Voicemail Management', href: '/omnia/voicemail-management' },
-      { title: 'Call Summary', href: '/omnia/call-summary' },
-      { title: 'Time Zone Settings', href: '/omnia/time-zone-settings' },
-      { title: 'Volume Controls', href: '/omnia/volume-controls' },
-      { title: 'Queue Statistics', href: '/omnia/queue-statistics' },
+      { title: 'Call Recordings', href: '/voxo-public/omnia/call-recordings' },
+      { title: 'Push Notifications', href: '/voxo-public/omnia/push-notifications' },
+      { title: 'Hot Keys', href: '/voxo-public/omnia/hot-keys' },
+      { title: 'Voicemail Management', href: '/voxo-public/omnia/voicemail-management' },
+      { title: 'Call Summary', href: '/voxo-public/omnia/call-summary' },
+      { title: 'Time Zone Settings', href: '/voxo-public/omnia/time-zone-settings' },
+      { title: 'Volume Controls', href: '/voxo-public/omnia/volume-controls' },
+      { title: 'Queue Statistics', href: '/voxo-public/omnia/queue-statistics' },
       {
         title: 'Queue Manager Dashboard',
-        href: '/omnia/queue-manager-dashboard',
+        href: '/voxo-public/omnia/queue-manager-dashboard',
       },
     ],
   },

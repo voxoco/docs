@@ -20,10 +20,10 @@ const PageIndex = ({ title, section }) => {
     <Link
       href={`${router.pathname}#${section.id}`}
       className={clsx(
-        'block cursor-pointer mb-1 border-l-2 pl-6 text-sm text-gray-500 dark:text-white transition hover:text-red-500',
+        'block cursor-pointer mb-1 border-l-2 pl-6 text-sm  dark:text-white transition hover:text-red-500',
         section.id === visibleSections[0]
-          ? 'border-l-red-500 font-medium'
-          : 'border-l-transparent font-normal'
+          ? 'border-l-red-500 font-medium text-red-500 dark:text-red-500'
+          : 'border-l-transparent font-normal text-gray-500'
       )}
     >
       {title}

@@ -15,6 +15,8 @@ import { useMobileNavigationStore } from '@/components/MobileNavigation'
 import { ModeToggle } from '@/components/ModeToggle'
 import { MobileSearch, Search } from '@/components/Search'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useInitialValue } from './Navigation'
 
 function TopLevelNavItem({ href, children }) {
   return (
@@ -36,6 +38,8 @@ export const Header = forwardRef(function Header({ className }, ref) {
   let { scrollY } = useScroll()
   let bgOpacityLight = useTransform(scrollY, [0, 72], [0.5, 0.9])
   let bgOpacityDark = useTransform(scrollY, [0, 72], [0.2, 0.8])
+
+  let [router] = useInitialValue([useRouter()], isInsideMobileNavigation)
 
   return (
     <motion.div
@@ -109,11 +113,15 @@ export const Header = forwardRef(function Header({ className }, ref) {
                       <Menu.Item>
                         {({ active }) => (
                           <button
-                            className={`${
-                              active
+                            className={clsx(
+                              'group mb-1 flex w-full items-center rounded-md px-2 py-2 text-sm',
+                              router.pathname.split('/')[1] === 'voxo-public' &&
+                                router.pathname.split('/')[2] === 'v'
+                                ? 'bg-red-200 font-bold text-red-500'
+                                : active
                                 ? 'bg-gray-100 text-gray-900'
                                 : 'text-gray-500'
-                            } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                            )}
                           >
                             API Docs
                           </button>
@@ -122,14 +130,18 @@ export const Header = forwardRef(function Header({ className }, ref) {
                       <Menu.Item>
                         {({ active }) => (
                           <button
-                            className={`${
-                              active
+                            className={clsx(
+                              'group flex w-full items-center gap-x-4 rounded-md px-2 py-2 text-sm',
+                              router.pathname.split('/')[1] === 'voxo-public' &&
+                                router.pathname.split('/')[2] !== 'v'
+                                ? 'bg-red-200 font-bold text-red-500'
+                                : active
                                 ? 'bg-gray-100 text-gray-900'
                                 : 'text-gray-500'
-                            } group flex w-full items-center gap-x-2 rounded-md px-2 py-2 text-sm`}
+                            )}
                           >
-                            Support Docs{' '}
-                            <span className="font-normal text-gray-400 tracking-wider">
+                            Support Docs
+                            <span className="font-normal tracking-wider text-gray-400">
                               MAIN
                             </span>
                           </button>
