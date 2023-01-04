@@ -4,8 +4,9 @@ import { useRouter } from 'next/router'
 import { Transition } from '@headlessui/react'
 
 import { ArrowIcon, Button } from '@/components/Button'
-import { navigation } from '@/components/Navigation'
+import { apiDocsNav, supportDocsNav } from '@/components/Navigation'
 import clsx from 'clsx'
+import { useSectionStore } from './SectionProvider'
 
 function CheckIcon(props) {
   return (
@@ -109,7 +110,7 @@ function PageLink({ label, page, previous = false }) {
       tabIndex={-1}
       aria-hidden="true"
       className={clsx(
-        'flex w-full items-center justify-between p-4 hover:text-red-500 dark:text-white dark:hover:text-red-500 dark:hover:text-text-red-500 [&>span]:hover:text-red-500',
+        'dark:hover:text-text-red-500 flex w-full items-center justify-between p-4 hover:text-red-500 dark:text-white dark:hover:text-red-500 [&>span]:hover:text-red-500',
         !previous ? 'flex-row-reverse' : ''
       )}
     >
@@ -146,8 +147,10 @@ function PageLink({ label, page, previous = false }) {
 }
 
 function PageNavigation() {
+  const isAPIDocs = useSectionStore((s) => s.isAPIDocs)
   let router = useRouter()
-  let allPages = navigation.flatMap((group) => group.links)
+  const filteredNav = isAPIDocs ? apiDocsNav : supportDocsNav
+  let allPages = filteredNav.flatMap((group) => group.links)
   let currentPageIndex = allPages.findIndex(
     (page) => page.href === router.pathname
   )
@@ -164,14 +167,14 @@ function PageNavigation() {
   }
 
   return (
-    <div className="flex flex-col md:flex-row gap-y-4 md:gap-y-0 gap-x-4">
+    <div className="flex flex-col gap-y-4 gap-x-4 md:flex-row md:gap-y-0">
       {previousPage && (
         <div className="flex w-full basis-6/12 transform flex-col items-start gap-3 rounded-[4px] border border-gray-200 transition hover:-translate-y-[2px] hover:shadow-md">
           <PageLink label="Previous" page={previousPage} previous />
         </div>
       )}
       {nextPage && (
-        <div className="flex w-full basis-6/12 transform ml-auto flex-col items-end gap-3 rounded-[4px] border border-gray-200 transition hover:-translate-y-[2px] hover:shadow-md">
+        <div className="ml-auto flex w-full basis-6/12 transform flex-col items-end gap-3 rounded-[4px] border border-gray-200 transition hover:-translate-y-[2px] hover:shadow-md">
           <PageLink label="Next" page={nextPage} />
         </div>
       )}

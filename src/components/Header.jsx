@@ -1,4 +1,4 @@
-import { forwardRef, Fragment } from 'react'
+import { forwardRef, Fragment, useEffect } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { motion, useScroll, useTransform } from 'framer-motion'
@@ -15,8 +15,7 @@ import { useMobileNavigationStore } from '@/components/MobileNavigation'
 import { ModeToggle } from '@/components/ModeToggle'
 import { MobileSearch, Search } from '@/components/Search'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
-import { useInitialValue } from './Navigation'
+import { useSectionStore } from './SectionProvider'
 
 function TopLevelNavItem({ href, children }) {
   return (
@@ -39,15 +38,8 @@ export const Header = forwardRef(function Header({ className }, ref) {
   let bgOpacityLight = useTransform(scrollY, [0, 72], [0.5, 0.9])
   let bgOpacityDark = useTransform(scrollY, [0, 72], [0.2, 0.8])
 
-  let [router] = useInitialValue([useRouter()], isInsideMobileNavigation)
-
-  const isAPIDocs =
-    router.pathname.split('/')[1] === 'voxo-public' &&
-    router.pathname.split('/')[2] === 'v'
-
-  const isSupportDocs =
-    router.pathname.split('/')[1] === 'voxo-public' &&
-    router.pathname.split('/')[2] !== 'v'
+  const isAPIDocs = useSectionStore((s) => s.isAPIDocs)
+  const setIsAPIDocs = useSectionStore((s) => s.setIsAPIDocs)
 
   return (
     <motion.div
@@ -97,7 +89,7 @@ export const Header = forwardRef(function Header({ className }, ref) {
                       open ? 'text-red-500' : ''
                     } inline-flex w-full items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-gray-900 hover:text-red-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 dark:text-white dark:hover:text-red-500`}
                   >
-                    {isSupportDocs ? 'Support...' : 'API Docs'}
+                    {isAPIDocs ? 'API Docs' : 'Support...'}
                     <ChevronDownIcon
                       className={`${
                         open ? 'rotate-180' : 'rotate-0'
@@ -121,7 +113,8 @@ export const Header = forwardRef(function Header({ className }, ref) {
                       <Menu.Item>
                         {({ active }) => (
                           <Link
-                            href="/voxo-public/v/api-docs-1/reference/api-reference/authentications"
+                            onClick={() => setIsAPIDocs(true)}
+                            href="/voxo-public/v/api-docs-1"
                             className={clsx(
                               'group mb-1 flex w-full items-center rounded-md px-2 py-2 text-sm',
                               isAPIDocs
@@ -138,10 +131,11 @@ export const Header = forwardRef(function Header({ className }, ref) {
                       <Menu.Item>
                         {({ active }) => (
                           <Link
+                            onClick={() => setIsAPIDocs(false)}
                             href="/voxo-public"
                             className={clsx(
                               'group flex w-full items-center gap-x-4 rounded-md px-2 py-2 text-sm',
-                              isSupportDocs
+                              !isAPIDocs
                                 ? 'bg-red-200 font-bold text-red-500'
                                 : active
                                 ? 'bg-gray-100 text-gray-900'

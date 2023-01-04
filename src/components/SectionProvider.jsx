@@ -10,9 +10,16 @@ import { createStore, useStore } from 'zustand'
 import { remToPx } from '@/lib/remToPx'
 
 function createSectionStore(sections) {
-  return createStore((set) => ({
+  return createStore((set, get) => ({
     sections,
     visibleSections: [],
+    isAPIDocs: false,
+    setIsAPIDocs: (val) => {
+      // const isAPIDocs = get().isAPIDocs
+
+      // set({ isAPIDocs: !isAPIDocs })
+      set({ isAPIDocs: val })
+    },
     setVisibleSections: (visibleSections) =>
       set((state) =>
         state.visibleSections.join() === visibleSections.join()

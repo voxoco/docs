@@ -9,6 +9,7 @@ import { useIsInsideMobileNavigation } from '@/components/MobileNavigation'
 import { useSectionStore } from '@/components/SectionProvider'
 import { Tag } from '@/components/Tag'
 import { remToPx } from '@/lib/remToPx'
+import { useEffect } from 'react'
 
 export function useInitialValue(value, condition = true) {
   let initialValue = useRef(value).current
@@ -41,11 +42,12 @@ function NavLink({ href, tag, active, isAnchorLink = false, children }) {
       aria-current={active ? 'page' : undefined}
       className={clsx(
         'flex justify-between gap-2 rounded-md py-1 px-3 text-sm transition',
-        isAnchorLink ? 'pl-5' : '',
-        isAnchorLink && href === router.pathname ? 'bg-gray-300' : '',
-        active
+        isAnchorLink && href === router.pathname
+          ? 'bg-red-200 font-bold text-red-500'
+          : '',
+        active || href === router.pathname
           ? 'bg-red-50 font-bold text-red-500 dark:bg-red-200 dark:text-red-500'
-          : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
+          : 'text-zinc-600 hover:bg-gray-200 dark:text-zinc-400 dark:hover:text-white'
       )}
     >
       <span className="truncate">{children}</span>
@@ -122,6 +124,16 @@ function NavigationGroup({ group, className }) {
     [useRouter(), useSectionStore((s) => s.sections)],
     isInsideMobileNavigation
   )
+  const isAPIDocs = useSectionStore((s) => s.isAPIDocs)
+  const setIsAPIDocs = useSectionStore((s) => s.setIsAPIDocs)
+
+  const isAPIDocsPath =
+    router.pathname.split('/')[1] === 'voxo-public' &&
+    router.pathname.split('/')[2] === 'v'
+
+  useEffect(() => {
+    setIsAPIDocs(isAPIDocsPath)
+  })
 
   let isActiveGroup =
     group.links.findIndex((link) => link.href === router.pathname) !== -1
@@ -145,10 +157,11 @@ function NavigationGroup({ group, className }) {
               <NavLink href={link.href} active={link.href === router.pathname}>
                 {link.title}
               </NavLink>
-              {/* <AnimatePresence mode="popLayout" initial={false}>
-                {link.href === router.pathname && sections.length > 0 && (
+
+              {isAPIDocs ? (
+                <AnimatePresence mode="popLayout" initial={false}>
                   <motion.ul
-                    className="relative"
+                    className="relative pl-6"
                     role="list"
                     initial={{ opacity: 0 }}
                     animate={{
@@ -160,24 +173,22 @@ function NavigationGroup({ group, className }) {
                       transition: { duration: 0.15 },
                     }}
                   >
-                    {sections.map((section) => (
-                      <li key={section.id} className="my-1">
-                        <NavLink
-                          href={`${link.href}#${section.id}`}
-                          tag={section.tag}
-                          isAnchorLink
-                        >
-                          {section.title}
-                        </NavLink>
-                        <motion.div
-                          layout
-                          className="absolute inset-y-0 left-2 w-px bg-gray-200 dark:bg-white/5"
-                        />
-                      </li>
-                    ))}
+                    {link.children &&
+                      link.children.length > 0 &&
+                      link.children.map((item, idx) => (
+                        <li key={idx} className="my-1">
+                          <NavLink href={item.href} isAnchorLink>
+                            {item.title}
+                          </NavLink>
+                          <motion.div
+                            layout
+                            className="absolute inset-y-0 left-4 w-px bg-gray-200 dark:bg-white/5"
+                          />
+                        </li>
+                      ))}
                   </motion.ul>
-                )}
-              </AnimatePresence> */}
+                </AnimatePresence>
+              ) : null}
             </motion.li>
           ))}
         </ul>
@@ -186,13 +197,15 @@ function NavigationGroup({ group, className }) {
   )
 }
 
-export const navigation = [
+export const supportDocsNav = [
   {
     links: [{ title: 'API Docs', href: '/voxo-public' }],
   },
   {
     title: 'RELEASE NOTE',
-    links: [{ title: "🎉 What's New", href: '/voxo-public/release-note/whats-new' }],
+    links: [
+      { title: "🎉 What's New", href: '/voxo-public/release-note/whats-new' },
+    ],
   },
   {
     title: 'OMNIA',
@@ -203,13 +216,25 @@ export const navigation = [
         href: '/voxo-public/omnia/softphone-park-feature',
       },
       { title: 'Call Recordings', href: '/voxo-public/omnia/call-recordings' },
-      { title: 'Push Notifications', href: '/voxo-public/omnia/push-notifications' },
+      {
+        title: 'Push Notifications',
+        href: '/voxo-public/omnia/push-notifications',
+      },
       { title: 'Hot Keys', href: '/voxo-public/omnia/hot-keys' },
-      { title: 'Voicemail Management', href: '/voxo-public/omnia/voicemail-management' },
+      {
+        title: 'Voicemail Management',
+        href: '/voxo-public/omnia/voicemail-management',
+      },
       { title: 'Call Summary', href: '/voxo-public/omnia/call-summary' },
-      { title: 'Time Zone Settings', href: '/voxo-public/omnia/time-zone-settings' },
+      {
+        title: 'Time Zone Settings',
+        href: '/voxo-public/omnia/time-zone-settings',
+      },
       { title: 'Volume Controls', href: '/voxo-public/omnia/volume-controls' },
-      { title: 'Queue Statistics', href: '/voxo-public/omnia/queue-statistics' },
+      {
+        title: 'Queue Statistics',
+        href: '/voxo-public/omnia/queue-statistics',
+      },
       {
         title: 'Queue Manager Dashboard',
         href: '/voxo-public/omnia/queue-manager-dashboard',
@@ -275,11 +300,43 @@ export const navigation = [
   },
 ]
 
+export const apiDocsNav = [
+  {
+    links: [{ title: 'Introduction', href: '/voxo-public/v/api-docs-1' }],
+  },
+  {
+    title: 'REFERENCE',
+    links: [
+      {
+        title: 'API Endpoint',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        children: [
+          {
+            title: '🔑 Authentication',
+            href: '/voxo-public/v/api-docs-1/reference/api-reference/authentication',
+          },
+          {
+            title: 'Account',
+            href: '/voxo-public/v/api-docs-1/reference/api-reference/account',
+          },
+          {
+            title: 'Account Branches',
+            href: '/voxo-public/v/api-docs-1/reference/api-reference/branches',
+          },
+        ],
+      },
+    ],
+  },
+]
+
 export function Navigation(props) {
+  const isAPIDocs = useSectionStore((s) => s.isAPIDocs)
+
+  const navItems = isAPIDocs ? apiDocsNav : supportDocsNav
   return (
     <nav {...props}>
       <ul role="list">
-        {navigation.map((group, groupIndex) => (
+        {navItems.map((group, groupIndex) => (
           <NavigationGroup
             key={groupIndex}
             group={group}
