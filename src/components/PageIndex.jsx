@@ -15,7 +15,7 @@ const PageIndex = ({ title, section }) => {
     [useRouter(), useSectionStore((s) => s.sections)],
     useIsInsideMobileNavigation()
   )
-
+  console.log({section, visibleSections})
   return (
     <Link
       href={`${router.pathname}#${section.id}`}

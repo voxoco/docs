@@ -181,9 +181,9 @@ module.exports = ({ theme }) => ({
       h1: {
         color: 'var(--tw-prose-headings)',
         fontWeight: '700',
-        fontSize: theme('fontSize.2xl')[0],
+        fontSize: theme('fontSize.4xl')[0],
         ...theme('fontSize.2xl')[1],
-        marginBottom: theme('spacing.2'),
+        marginBottom: theme('spacing.8'),
       },
       h2: {
         color: 'var(--tw-prose-headings)',

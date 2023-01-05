@@ -1,45 +1,849 @@
-# Attachments
+# 🎉 What's New
 
-Attachments are how you share things in Protocol — they allow you to send all sorts of files to your contacts and groups. On this page, we'll dive into the different attachment endpoints you can use to manage attachments programmatically. We'll look at how to query, upload, update, and delete attachments. {{ className: 'lead' }}
+The VOXO Team is always working to bring you new and exciting features to Omnia. Below you will find all of the new changes and release dates. Check back often for the latest!
 
-<Row>
-  <Col>
+## Release 1.105
 
-    This endpoint allows you to delete attachments. Note: This will permanently delete the file.
+### 12-27-2022
 
-  </Col>
-  <Col sticky>
+<span className="font-bold">Added</span>
+<ul>
+  <li>
+    SSO options for Microsoft and Google
+  </li>
+</ul>
 
-    <CodeGroup title="Request" tag="DELETE" label="/v1/attachments/Nc6yKKMpcxiiFxp6">
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    Queue reporting now includes the ability to feature data sets by call tag. 
+  </li>
+</ul>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Addressed a bug related to virtual receptionist greetings being unintentionally removed
+  </li>
+  <li>
+    Fixed an issue related to SSO redirects for partner platforms
+  </li>
+  <li>
+    Fixed an issue with mac address formatting related to bulk adding of devices
+  </li>
+  <li>
+    Addressed an issue with improper order of data in the billing views
+  </li>
+  <li>
+    Addressed a performance issue for the queue agent dashboard
+  </li>
+</ul>
 
-    ```bash {{ title: 'cURL' }}
-    curl -X DELETE https://api.protocol.chat/v1/attachments/Nc6yKKMpcxiiFxp6 \
-      -H "Authorization: Bearer {token}"
-    ```
+## Release 1.97
 
-    ```js
-    import ApiClient from '@example/protocol-api'
+### 12-01-2022
 
-    const client = new ApiClient(token)
+<span className="font-bold">Added</span>
+<ul>
+  <li>
+    Omnia quick transfer
+  </li>
+  <li>
+    New button in the connected call widget to transfer from softphone to another device (mobile app / desk phone)
+  </li>
+</ul>
+<ul>
+  <li>
+    Bulk device setting is now possible along with bulk device reboot after modifying a particular setting.
+  </li>
+</ul>
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    New global account settings for enabling a global wrap up time for agents across all queues
+  </li>
+  <li>
+    Users are now required to verify account pricing before confirming a new account creation
+  </li>
+  <li>
+    Queue log reporting
+  </li>
+  <li>
+    Custom call tags are now available and reports can be filtered by them.
+  </li>
+  <li>
+    Phone Number Ordering
+  </li>
+  <li>
+    Users can now request numbers with any number of wildcard characters they wish instead of a fixed (npa)-nxx based on rate center.
+  </li>
+  <li>
+    Toll free numbers also allow wildcard characters to query a certain pattern of number options
+  </li>
+</ul>
 
-    await client.attachments.delete('Nc6yKKMpcxiiFxp6')
-    ```
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Addressed an issue affecting feature codes for queue login functionality
+  </li>
+<li>
+    Addressed an issue causing incorrect extension status to be shown intermittently in the extensions table
+</li>
+<li>
+    Addressed a bug causing partner admin role users to not be able to modify 911 locations
+</li>
+<li>
+    Fixed a bug that would cause billing partner inventory to not export correctly
+</li>
+<li>
+    Fixed a provisioning issue where phones would provision line assignment in incorrect order
+</li>
+<li>
+    Fixed a bug in virtual receptionists where the media file could unintentionally be removed.
+</li>
+<li>
+    Fixed bug on billing history plot where data was mismatched on the last 12 months.
+</li>
+</ul>
 
-    ```python
-    from protocol_api import ApiClient
+## Release 1.92
 
-    client = ApiClient(token)
+### 11-09-2022
 
-    client.attachments.delete("Nc6yKKMpcxiiFxp6")
-    ```
+<span className="font-bold">Added</span>
+<ul>
+  <li>
+      Queue manager dashboard (live stats) additions
+  </li>
+  <li>
+      New agent controls for logging in / out and pausing / unpausing agents
+  </li>
+  <li>
+      New widget to show agent totals across all queues selected in the dashboard
+  </li>
+</ul>
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    Ability to bulk update a device setting for a given phone model across all an account's devices
+  </li>
+</ul>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Fixed an issue related to media files and saving a previously created virtual receptionist
+  </li>
+</ul>
 
-    ```php
-    $client = new \Protocol\ApiClient($token);
+## Release 1.88
 
-    $client->attachments->delete('Nc6yKKMpcxiiFxp6');
-    ```
+### 10-27-2022
 
-    </CodeGroup>
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    Bulk extensions edit now includes bulk setting for outbound fax
+  </li>
+  <li>
+    Queue Manager Dashboard Improvements
+  </li>
+  <li>
+    New widget is available for listing the active call information for the queues.
+  </li>
+  <li>
+    Longest current duration metric has been added to the active calls widget.
+  </li>
+  <li>
+    Agent pause functionality has been simplified in the queue agent dashboard experience.
+  </li>
+</ul>
 
-  </Col>
-</Row>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Fixed a bug related to properly displaying the caller id name for phone numbers
+  </li>
+  <li>
+    Addressed an issue where users might experience missing UI elements such as the toolbar or navigation.
+  </li>
+  <li>
+    Addressed an issue for users receiving 'No Extension Assigned' error.
+  </li>
+  <li>
+    Addressed a provisioning issue for button layouts
+  </li>
+</ul>
+
+## Release 1.82
+
+### 10-13-2022
+
+<span className="font-bold">Added</span>
+<ul>
+  <li>
+    Exposes a new developer endpoint for a more robust experience when pulling call detail records via API
+  </li>
+  <li>
+    https://docs.voxo.co/voxo-public/v/api-docs-1/reference/api-reference/call-reports-1
+  </li>
+</ul>
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    Omnia application now leverages user current location when making calls to emergency services
+  </li>
+  <li>
+    UI Improvements to extensions create and edit modules
+  </li>
+  <li>
+    E911 Location services have been migrated to support nomadic location.
+  </li>
+  <li>
+    Voicemails are now downloadable in the user panel's my activity section.
+  </li>
+  <li>
+    Lat/Lng coordinates are now included in call detail records for the purposes of recording location sent for emergency purposes.
+  </li>
+  <li>
+    Extensions improvements
+  </li>
+  <li>
+    A new setting allowing users to choose whether to include an extension in the dial by name directory
+  </li>
+  <li>
+    A new setting allowing users to control whether or not an extension should appear in the default directory
+  </li>
+  <li>
+    Queue manager permissions enhancements
+  </li>
+  <li>
+    New setting to enable reporting admin features for queue manager roles on queue manager  create and edit.
+  </li>
+  <li>
+    Performance improvements for devices and extensions pages
+  </li>
+</ul>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Addressed an issue related user roles and account security when managed 911 locations for accounts
+  </li>
+  <li>
+    Addressed a bug where updating voicemails properly from the my activity section of the user panel was not working as expected
+  </li>
+  <li>
+    Fixed an issue related to incorrect timestamps for sms messages
+  </li>
+  <li>
+    Fixed an issue where caller ID name would not be displayed properly for toll free numbers
+  </li>
+  <li>
+    Fixed an issue for queue exit keys by removing invalid key options of # and *. 
+  </li>
+</ul>
+
+## Release 1.81
+
+### 10-01-2022
+
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    User call activity will now reflect missed calls to a user's direct dial number
+  </li>
+  <li>
+    When an extension is created, automatically generated voicemail boxes will adhere to account default timezone.
+  </li>
+  <li>
+    Device creation now supports a bulk method
+  </li>
+  <li>
+    Improvements for the 'more' tab on the mobile application.
+  </li>
+</ul>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Fixed sort method for longest current hold in the queue dashboard waiting calls metric
+  </li>
+  <li>
+    Addressed a bug in virtual receptionists where media files could sometime be unintentionally removed.
+  </li>
+</ul>
+
+## Release 1.80
+
+### 09-22-2022
+
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    Updates to the drag and drop queue manager dashboard
+  </li>
+  <li>
+    Waiting calls widget now includes longest wait time information for calls currently in queue
+  </li>
+  <li>
+    New waiting call list widget to view real time data of calls currently in queue
+  </li>
+  <li>
+    The agents table will now default to logged in agents
+  </li>
+  <li>
+    The agents table is now exportable
+  </li>
+  <li>
+    Historical reporting data is now capable of displaying date ranges for up to one year
+  </li>
+</ul>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Addressed an issue for partner admins managing other users of partner admin role
+  </li>
+</ul>
+<li>
+    Fixed a rendering bug for call flow designer where the canvas controls would not display
+</li>
+<li>
+    Resolved an issue where toll free number ordering would fail with invalid data error
+</li>
+
+## Release 1.73
+
+### 08-25-2022
+
+<span className="font-bold">Added</span>
+<ul>
+  <li>
+    Customizable drag and drop queue dashboard for live stats.
+  </li>
+  <li>
+    Feature documentation: <a href="https://docs.voxo.co/voxo-public/omnia/queue-manager-dashboard"><strong>Queue Manager Dashboard</strong></a>
+  
+  </li>
+</ul>
+
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    Account settings now include a setting to specify if an account is a residential account
+  </li>
+  <li>
+    Several updates to task generation handling in Salesforce Dialer integration
+  </li>
+  <li>
+    Queue summary reporting table now includes unique inbound counts
+  </li>
+  <li>
+    Manage payment methods for your account
+  </li>
+</ul>
+
+## Release 1.70
+
+### 08-03-2022
+
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    The call summary section of reporting now includes 6 month and 1 year heat maps for inbound and outbound calls.
+  </li>
+  <li>
+      The ability to create media files using text to speech is now available for media file creation.
+  </li>
+</ul>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Fixed some bugs related to validation when updating account settings
+  </li>
+  <li>
+    Addressed an issue for phone provisioning directory fetching
+  </li>
+</ul>
+
+## Release 1.66
+
+### 07-23-2022
+
+<span className="font-bold">Added</span>
+<ul>
+  <li>
+    Beta release of new visual call flow designer tool. Admins can now visually draw call flows and assign them as routing destinations.
+  </li>
+</ul>
+
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    Yealink devices now support multiple button layout assignments. 
+  </li>
+  <li>
+    Button layouts can now be assigned to the phone and sidecar modules.
+  </li>
+</ul>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Addressed an issue where extension status was not being presented properly.
+  </li>
+</ul>
+
+## Release 1.65
+
+### 07-15-2022
+
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    Extensions table now includes an online / offline indicator
+  </li>
+  <li>
+    Extensions table now includes a do not disturb (DND) indicator
+  </li>
+  <li>
+    Time of day enhancement
+  </li>
+  <li>
+    For Use Global type time of days, options will be presented not only from the platform globals, but also from the time of days in a partner parent account.
+  </li>
+  <li>
+    Porting views enhancements
+  </li>
+  <li>
+    Port in request views now have the capability to select an order date range and filter by order status
+  </li>
+  <li>
+    Call records now include extension or number that answered the call.
+  </li>
+  <li>
+    Bulk extension create changes
+  </li>
+  <li>
+    Device name and account number fields have been included. 
+  </li>
+  <li>
+    A new csv example has been provided for download when hovering the import button
+  </li>
+</ul>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Addressed an issue causing a SQL error when creating a new extension
+  </li>
+  <li>
+    Fixed an issue where queue managers would have access to nav items not intended for their role
+  </li>
+  <li>
+    Fixed an issue related to long loading time when loading an extension's setting form.
+  </li>
+  <li>
+    Fixed an issue where conference rooms were not displaying its destination relations.
+  </li>
+</ul>
+
+## Release 1.64
+
+### 07-08-2022
+
+<span className="font-bold">Added</span>
+<ul>
+  <li>
+    Omnia call outcomes feature
+  </li>
+  <li>
+    If enabled for the account, users can enable the new Omnia call outcomes feature.
+  </li>
+  <li>
+    This feature prompts the user on call end to select a call outcome to be applied to the call detail record
+  </li>
+  <li>
+    This feature also includes reporting tools for filtering call summary plots and records by a specified call outcome for outcomes listed in the account.
+  </li>
+  <li>
+    New call outcome data included in call record exports
+  </li>
+</ul>
+
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    Account -> Devices view has been updated to indicate online/offline status of a device and the registered device user agent
+  </li>
+  <li>
+    Time of days of type 'Week Time' can now observe global, partner, and account level calendar constraints
+  </li>
+  <li>
+    This allows admins to configure custom holiday or other calendar schedules for the time of day to reference while determining routing.
+  </li>
+</ul>
+
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Addressed an issue where extension creation could fail due to special characters in the name
+  </li>
+</ul>
+
+## Release 1.63
+
+### 07-01-2022
+
+<span className="font-bold">Added</span>
+<ul>
+  <li>
+    User event tracking for common user application interactions for admins and report admins.
+  </li>
+  <li>
+    Located at Reports -> User Logs 
+  </li>
+  <li>
+    10DLC automations
+  </li>
+  <li>
+    Brand registration
+  </li>
+  <li>
+    Automated campaign creation and number provisioning
+  </li>
+  <li>
+    Toll free port ordering
+  </li>
+  <li>
+    Toll free number ordering
+  </li>
+  <li>
+    Add order documents to port orders
+  </li>
+</ul>
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    Updated partner porting page to include 'Next Port' date column
+  </li>
+</ul>
+
+## Release 1.62
+
+### 06-25-2022
+
+<span className="font-bold">Added</span>
+<ul>
+  <li>
+    New SMS logs feature for admins and reports admins to view SMS history for account extensions. 
+  </li>
+  <li>
+    Located at Reports -> SMS Logs
+  </li>
+  <li>
+    New speech detection feature for virtual receptionist option selection
+  </li>
+</ul>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Addressed several bugs related to incorrect data in call flow diagrams
+  </li>
+  <li>
+    Fixed an issue with date selection for time of day override settings
+  </li>
+  <li>
+    Addressed a validation issue for extension bulk creation and recording settings
+  </li>
+</ul>
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    Added ability to view registered devices for 'paging' type extension
+  </li>
+  <li>
+    Extended the queue manager role to include control of agent list and some agent settings for a manager's assigned queues
+  </li>
+  <li>
+    Modified the user panel queues section to default to the agent activity tab
+  </li>
+  <li>
+    Added additional keys for yealink keys settings for a total of up to 27 key settings
+  </li>
+  <li>
+    Enhancements to white label partner billing view
+  </li>
+</ul>
+
+## Release 1.50
+
+### 05-19-2022
+
+<span className="font-bold">Added</span>
+<ul>
+  <li>
+    New option to pause / resume recording of a call from the connected call widget
+  </li>
+</ul>
+
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    Call summary activity plots updated to allow for plotting different distributions (daily, hourly, monthly)
+  </li>
+  <li>
+    Call summary plots are now exportable to csv
+  </li>
+  <li>
+    Queue agents in the queue agent activity dashboard are now listed by call order by default.
+  </li>
+  <li>
+    Added call recording email field to extensions and phone numbers modules for users to specify email destinations for recordings.
+  </li>
+</ul>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Fixed an issue where the draggable incoming call prompt could still cause some UI interaction blocking
+  </li>
+  <li>
+    Addressed an issue where listen/coach features could bridge unintended audio while trying to execute the feature on a call that is not yet connected.
+  </li>
+  <li>
+    Listen / Coach feature will only be available for a confirmed connected call
+  </li>
+</ul>
+
+## Release 1.48
+
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    incoming call prompt is no longer blocking and can be freely dragged around the screen
+  </li>
+  <li>
+    enhancements to voice campaigns
+  </li>
+  <li>
+    voice campaigns now support voicemail detection
+  </li>
+  <li>
+    calling hours for which a campaign is allowed to dial may now be configured
+  </li>
+  <li>
+    campaigns may be marked paused or be deleted while running, resulting in suspension of processing calls
+  </li>
+  <li>
+    campaign processing will now observe the start and end date, allowing the campaign to span multiple days within the defined calling hours settings
+  </li>
+</ul>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    fixed an issue where call flow would not load for some queue log calls
+  </li>
+</ul>
+
+## Release 1.40
+
+### 03-31-2022
+
+<span className="font-bold">Added</span>
+<ul>
+  <li>
+    New port out request notifications for partner accounts.
+  </li>
+  <li>
+    New port out request view in Omnia to view port out order details as well as approve and reject the order request
+  </li>
+  <li>
+    New options in devices view to request deletion of a device's local config (for yealink devices)
+  </li>
+  <li>
+    New option in devices view to send remote factory reset to device (for yealink devices)
+  </li>
+</ul>
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    Updated the 'In Use' notification to display the entity using the number or mac address when hovering over the notification
+  </li>
+  <li>
+    Enhanced address validation for e911 creation to include address candidate options when an exact match could not be found
+  </li>
+  <li>
+    Billing code added to account details table for white label partners in the Omnia billing section
+  </li>
+</ul>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Fixed an issue in my activity call history where caller id would not properly display for internal calls
+  </li>
+  <li>
+    Fixed an issue where audit logs for a specific record could be polluted with activity not related to the record being viewed.
+  </li>
+  <li>
+    Fixed an issue where filtering fax records by phone number would fail to return data properly
+  </li>
+  <li>
+    Fixed an issue with Wire Tap functionality that would result in improperly filtered traffic
+  </li>
+  <li>
+    Fixed a destination selector issue for Queue automation options where queue options would not be provided for selection
+  </li>
+</ul>
+
+## Release 1.35
+
+### 03-12-2022
+
+<span className="font-bold">Added</span>
+<ul>
+  <li>
+    New billing view for applicable account types for users to view billing history, account breakdowns, and download current and past invoices.
+  </li>
+</ul>
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    Performance improvements to destination selector 
+  </li>
+</ul>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Fixed issue with queue manager role where virtual receptionist menu item would render
+  </li>
+  <li>
+    Fixed an issue with phone number routing where destination selectors would not render properly
+  </li>
+  <li>
+    Fixed an issue where listen / coach functionality would fail to originate
+  </li>
+</ul>
+
+## Release 1.30
+
+<span className="font-bold">Added</span>
+<ul>
+  <li>
+    User Extension Forwarding: Users can now unconditionally forward their extension to a 10-digit number of their choice.
+  </li>
+  <li>
+    New call frequency configuration parameter for voice campaigns that allows user to configure the time between calls to campaign numbers.
+  </li>
+  <li>
+    Added handling of white label partner pricing.
+  </li>
+</ul>
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    Improved handling of larger call flow diagrams by limiting event nodes to maximum of 75. Larger flows will offer use export to CSV option.
+  </li>
+  <li>
+    Increase scrollbar size for more ease of scrolling in tables with overflow
+  </li>
+</ul>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Fixed an issue where unintended ring back could be triggered for outbound softphone calls
+  </li>
+  <li>
+    Softphone bug fixes and stability improvements
+  </li>
+  <li>
+    Fixed an issue where caller id information would not update properly after a completed attended transfer.
+  </li>
+</ul>
+
+## Release 1.25
+
+<span className="font-bold">Updated</span>
+<ul>
+  <li>
+    Filtering by call unique ID is now available for reporting logs in call summary, queues, and virtual receptionists.
+  </li>
+  <li>
+    The dashboard call report plot has been adjusted to show 'Presented' inbound calls only to help give a quicker overview of answer efficiency for calls that actually rang an endpoint capable of handling the call
+  </li>
+</ul>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Addressed an issue where users might not receive real time events pertaining to queue dashboard stats.
+  </li>
+  <li>
+    Fixed a bug where creating a new partner account could fail due to bill day error
+  </li>
+</ul>
+
+## Release 1.23
+
+### 02-01-2022
+
+<span className="font-bold">Added</span>
+<ul>
+  <li>
+    Plantronics headset integration - allows basic answer / hangup call controls from headset buttons
+  </li>
+<li>
+    User can enable setting from profile preferences
+</li>
+<li>
+    The Plantronics hub must be installed and running. You can download it here.
+</li>
+<li>
+    Headsets must be paired via USB adapter
+</li>
+</ul>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Improved csv export performance on paginated reporting modules
+  </li>
+<li>
+    Softphone bug fixes and stability improvements
+</li>
+</ul>
+
+## Release 1.2
+
+### 01-23-2022
+
+<span className="font-bold">Added</span>
+<ul>
+  <li>
+  Added new option for users to select their inbound ring tone
+  </li>
+  <li>
+  Add new 'What's New' link to account dropdown for easy linking to the Omnia change log.
+  </li>
+</ul>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Resolved an issue where the extension list would not render for bulk edit when selecting 'Unassigned' branch.
+  </li>
+  <li>
+    Fixed an issue where click to call events could cause unintended multiple dials to the same number.
+  </li>
+</ul>
+
+## Release 1.1.090
+
+### 01-17-2022
+
+<span className="font-bold">Added</span>
+<ul>
+  <li>
+    Call / SMS campaign creation and management is now available in Omnia
+  </li>
+  <li>
+    Ability to download local configuration files for applicable devices from the devices table
+  </li>
+</ul>
+<span className="font-bold">Fixed</span>
+<ul>
+  <li>
+    Resolved an issue where certain queue dashboards stats were not properly updating in real time
+  </li>
+</ul>
