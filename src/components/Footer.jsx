@@ -3,10 +3,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Transition } from '@headlessui/react'
 
-import { ArrowIcon, Button } from '@/components/Button'
-import { apiDocsNav, supportDocsNav } from '@/components/Navigation'
-import clsx from 'clsx'
-import { useSectionStore } from './SectionProvider'
+import { Button } from '@/components/Button'
+import { navigation } from '@/components/Navigation'
 
 function CheckIcon(props) {
   return (
@@ -103,54 +101,31 @@ function Feedback() {
 }
 
 function PageLink({ label, page, previous = false }) {
-  const parentLabel = page.href.split('/')[1]
   return (
-    <Link
-      href={page.href}
-      tabIndex={-1}
-      aria-hidden="true"
-      className={clsx(
-        'dark:hover:text-text-red-500 flex w-full items-center justify-between p-4 hover:text-red-500 dark:text-white dark:hover:text-red-500 [&>span]:hover:text-red-500',
-        !previous ? 'flex-row-reverse' : ''
-      )}
-    >
-      <div
-        className={clsx(
-          'h-8 w-8 transition',
-          previous ? '-ml-1 rotate-180' : '-mr-1'
-        )}
+    <>
+      <Button
+        href={page.href}
+        aria-label={`${label}: ${page.title}`}
+        variant="secondary"
+        arrow={previous ? 'left' : 'right'}
       >
-        <ArrowIcon />
-      </div>
-      <div className={clsx(!previous ? 'text-left' : 'text-right')}>
-        <div
-          className={clsx('flex gap-x-1', previous ? 'flex-row-reverse' : '')}
-        >
-          <span className="text-xs text-gray-400">
-            {previous ? 'Previous' : 'Next'}
-          </span>
-          {parentLabel ? (
-            <span className="text-xs capitalize text-gray-400">-</span>
-          ) : null}
-          {parentLabel ? (
-            <span className="text-xs capitalize text-gray-400">
-              {parentLabel}
-            </span>
-          ) : null}
-        </div>
-        <span className="block text-base font-semibold transition">
-          {page.title}
-        </span>
-      </div>
-    </Link>
+        {label}
+      </Button>
+      <Link
+        href={page.href}
+        tabIndex={-1}
+        aria-hidden="true"
+        className="text-base font-semibold text-zinc-900 transition hover:text-zinc-600 dark:text-white dark:hover:text-zinc-300"
+      >
+        {page.title}
+      </Link>
+    </>
   )
 }
 
 function PageNavigation() {
-  const isAPIDocs = useSectionStore((s) => s.isAPIDocs)
   let router = useRouter()
-  const filteredNav = isAPIDocs ? apiDocsNav : supportDocsNav
-  let allPages = filteredNav.flatMap((group) => group.links)
+  let allPages = navigation.flatMap((group) => group.links)
   let currentPageIndex = allPages.findIndex(
     (page) => page.href === router.pathname
   )
@@ -167,14 +142,14 @@ function PageNavigation() {
   }
 
   return (
-    <div className="flex flex-col gap-y-4 gap-x-4 md:flex-row md:gap-y-0">
+    <div className="flex">
       {previousPage && (
-        <div className="flex w-full basis-6/12 transform flex-col items-start gap-3 rounded-[4px] border border-gray-200 transition hover:-translate-y-[2px] hover:shadow-md">
+        <div className="flex flex-col items-start gap-3">
           <PageLink label="Previous" page={previousPage} previous />
         </div>
       )}
       {nextPage && (
-        <div className="ml-auto flex w-full basis-6/12 transform flex-col items-end gap-3 rounded-[4px] border border-gray-200 transition hover:-translate-y-[2px] hover:shadow-md">
+        <div className="ml-auto flex flex-col items-end gap-3">
           <PageLink label="Next" page={nextPage} />
         </div>
       )}

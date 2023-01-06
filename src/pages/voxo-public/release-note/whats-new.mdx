@@ -46,9 +46,11 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
 <ul>
   <li>
     Omnia quick transfer
-  </li>
-  <li>
-    New button in the connected call widget to transfer from softphone to another device (mobile app / desk phone)
+    <ul>
+      <li>
+        New button in the connected call widget to transfer from softphone to another device (mobile app / desk phone)
+      </li>
+    </ul>
   </li>
 </ul>
 <ul>
@@ -66,18 +68,22 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
   </li>
   <li>
     Queue log reporting
-  </li>
-  <li>
-    Custom call tags are now available and reports can be filtered by them.
+    <ul>
+      <li>
+        Custom call tags are now available and reports can be filtered by them.
+      </li>
+    </ul>
   </li>
   <li>
     Phone Number Ordering
-  </li>
-  <li>
-    Users can now request numbers with any number of wildcard characters they wish instead of a fixed (npa)-nxx based on rate center.
-  </li>
-  <li>
-    Toll free numbers also allow wildcard characters to query a certain pattern of number options
+    <ul>
+      <li>
+        Users can now request numbers with any number of wildcard characters they wish instead of a fixed (npa)-nxx based on rate center.
+      </li>
+      <li>
+        Toll free numbers also allow wildcard characters to query a certain pattern of number options
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -114,12 +120,14 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
 <ul>
   <li>
       Queue manager dashboard (live stats) additions
-  </li>
-  <li>
-      New agent controls for logging in / out and pausing / unpausing agents
-  </li>
-  <li>
-      New widget to show agent totals across all queues selected in the dashboard
+      <ul>
+        <li>
+            New agent controls for logging in / out and pausing / unpausing agents
+        </li>
+        <li>
+            New widget to show agent totals across all queues selected in the dashboard
+        </li>
+      </ul>
   </li>
 </ul>
 <span className="font-bold">Updated</span>
@@ -146,15 +154,21 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
   </li>
   <li>
     Queue Manager Dashboard Improvements
-  </li>
-  <li>
-    New widget is available for listing the active call information for the queues.
-  </li>
-  <li>
-    Longest current duration metric has been added to the active calls widget.
+    <ul>
+      <li>
+        New widget is available for listing the active call information for the queues.
+      </li>
+      <li>
+        Longest current duration metric has been added to the active calls widget.
+      </li>
+    </ul>
   </li>
   <li>
     Agent pause functionality has been simplified in the queue agent dashboard experience.
+    <div className="flex flex-col items-center">
+      <img src="/images/whats-new/agent-pause.webp" alt="agent pause" />
+      <p className="text-center">Quick Select For Agent Pause Reasons</p>
+    </div>
   </li>
 </ul>
 
@@ -182,9 +196,11 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
 <ul>
   <li>
     Exposes a new developer endpoint for a more robust experience when pulling call detail records via API
-  </li>
-  <li>
-    https://docs.voxo.co/voxo-public/v/api-docs-1/reference/api-reference/call-reports-1
+    <ul>
+      <li>
+        <a href="https://docs.voxo.co/voxo-public/v/api-docs-1/reference/api-reference/call-reports-1">https://docs.voxo.co/voxo-public/v/api-docs-1/reference/api-reference/call-reports-1</a>
+      </li>
+    </ul>
   </li>
 </ul>
 <span className="font-bold">Updated</span>
@@ -206,18 +222,22 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
   </li>
   <li>
     Extensions improvements
-  </li>
-  <li>
-    A new setting allowing users to choose whether to include an extension in the dial by name directory
-  </li>
-  <li>
-    A new setting allowing users to control whether or not an extension should appear in the default directory
+    <ul>
+      <li>
+        A new setting allowing users to choose whether to include an extension in the dial by name directory
+      </li>
+      <li>
+        A new setting allowing users to control whether or not an extension should appear in the default directory
+      </li>
+    </ul>
   </li>
   <li>
     Queue manager permissions enhancements
-  </li>
-  <li>
-    New setting to enable reporting admin features for queue manager roles on queue manager  create and edit.
+    <ul>
+      <li>
+        New setting to enable reporting admin features for queue manager roles on queue manager  create and edit.
+      </li>
+    </ul>
   </li>
   <li>
     Performance improvements for devices and extensions pages
@@ -279,18 +299,20 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
 <ul>
   <li>
     Updates to the drag and drop queue manager dashboard
-  </li>
-  <li>
-    Waiting calls widget now includes longest wait time information for calls currently in queue
-  </li>
-  <li>
-    New waiting call list widget to view real time data of calls currently in queue
-  </li>
-  <li>
-    The agents table will now default to logged in agents
-  </li>
-  <li>
-    The agents table is now exportable
+    <ul>
+      <li>
+        Waiting calls widget now includes longest wait time information for calls currently in queue
+      </li>
+      <li>
+        New waiting call list widget to view real time data of calls currently in queue
+      </li>
+      <li>
+        The agents table will now default to logged in agents
+      </li>
+      <li>
+        The agents table is now exportable
+      </li>
+    </ul>
   </li>
   <li>
     Historical reporting data is now capable of displaying date ranges for up to one year
@@ -301,13 +323,13 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
   <li>
     Addressed an issue for partner admins managing other users of partner admin role
   </li>
+  <li>
+      Fixed a rendering bug for call flow designer where the canvas controls would not display
+  </li>
+  <li>
+      Resolved an issue where toll free number ordering would fail with invalid data error
+  </li>
 </ul>
-<li>
-    Fixed a rendering bug for call flow designer where the canvas controls would not display
-</li>
-<li>
-    Resolved an issue where toll free number ordering would fail with invalid data error
-</li>
 
 ## Release 1.73
 
@@ -317,10 +339,12 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
 <ul>
   <li>
     Customizable drag and drop queue dashboard for live stats.
-  </li>
-  <li>
-    Feature documentation: <a href="https://docs.voxo.co/voxo-public/omnia/queue-manager-dashboard"><strong>Queue Manager Dashboard</strong></a>
-  
+    <ul>
+      <li>
+        Feature documentation: <a href="https://docs.voxo.co/voxo-public/omnia/queue-manager-dashboard"><strong>Queue Manager Dashboard</strong></a>
+        <img src="/images/whats-new/queue-manager-dashboard.png" alt="queue manager dashboard" /> 
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -371,6 +395,7 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
 <ul>
   <li>
     Beta release of new visual call flow designer tool. Admins can now visually draw call flows and assign them as routing destinations.
+    <img src="/images/whats-new/edit-call-flow.png" alt="edit call flow" />
   </li>
 </ul>
 
@@ -378,9 +403,11 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
 <ul>
   <li>
     Yealink devices now support multiple button layout assignments. 
-  </li>
-  <li>
-    Button layouts can now be assigned to the phone and sidecar modules.
+    <ul>
+    <li>
+      Button layouts can now be assigned to the phone and sidecar modules.
+    </li>
+    </ul>
   </li>
 </ul>
 <span className="font-bold">Fixed</span>
@@ -404,27 +431,33 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
   </li>
   <li>
     Time of day enhancement
-  </li>
-  <li>
-    For Use Global type time of days, options will be presented not only from the platform globals, but also from the time of days in a partner parent account.
+    <ul>
+      <li>
+        For Use Global type time of days, options will be presented not only from the platform globals, but also from the time of days in a partner parent account.
+      </li>
+    </ul>
   </li>
   <li>
     Porting views enhancements
-  </li>
-  <li>
-    Port in request views now have the capability to select an order date range and filter by order status
+    <ul>
+      <li>
+        Port in request views now have the capability to select an order date range and filter by order status
+      </li>
+    </ul>
   </li>
   <li>
     Call records now include extension or number that answered the call.
   </li>
   <li>
     Bulk extension create changes
-  </li>
-  <li>
-    Device name and account number fields have been included. 
-  </li>
-  <li>
-    A new csv example has been provided for download when hovering the import button
+    <ul>
+      <li>
+        Device name and account number fields have been included. 
+      </li>
+      <li>
+        A new csv example has been provided for download when hovering the import button
+      </li>
+    </ul>
   </li>
 </ul>
 <span className="font-bold">Fixed</span>
@@ -451,18 +484,64 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
 <ul>
   <li>
     Omnia call outcomes feature
-  </li>
-  <li>
-    If enabled for the account, users can enable the new Omnia call outcomes feature.
-  </li>
-  <li>
-    This feature prompts the user on call end to select a call outcome to be applied to the call detail record
-  </li>
-  <li>
-    This feature also includes reporting tools for filtering call summary plots and records by a specified call outcome for outcomes listed in the account.
-  </li>
-  <li>
-    New call outcome data included in call record exports
+    <ul>
+      <li>
+        If enabled for the account, users can enable the new Omnia call outcomes feature.
+      </li>
+      <li>
+        This feature prompts the user on call end to select a call outcome to be applied to the call detail record
+      </li>
+      <li>
+        This feature also includes reporting tools for filtering call summary plots and records by a specified call outcome for outcomes listed in the account.
+      </li>
+      <li>
+        New call outcome data included in call record exports
+        <div className="flex flex-wrap gap-x-4">
+          <div className="flex flex-col w-full max-md:basis-4/12 lg:basis-4/12">
+            <div className="flex-1">
+              <img src="/images/whats-new/edit-account.png" alt="edit account" className="object-contain w-full h-64" />
+            </div>
+            <div className="h-8">
+              <span className="block text-center">Account Settings</span>
+            </div>
+          </div>
+          <div className="flex flex-col w-full max-md:basis-4/12 lg:basis-4/12">
+            <div className="flex-1">
+              <img src="/images/whats-new/call-outcome-report.png" alt="call outcome report" className="object-contain w-full h-64" />
+            </div>
+            <div className="h-8">
+              <span className="block text-center">Call Outcome Report</span>
+            </div>
+          </div>
+          <div className="flex flex-col w-full max-md:basis-4/12 lg:basis-4/12">
+            <div className="flex-1">
+              <img src="/images/whats-new/user-settings.png" alt="user settings" className="object-contain w-full h-64" />
+            </div>
+            <div className="h-8">
+              <span className="block text-center">User Settings</span>
+            </div>
+          </div>
+        </div>
+        <div className='flex gap-x-4'>
+          <div className="flex flex-col w-full">
+            <div className="flex-1">
+                <img src="/images/whats-new/filter-settings.png" alt="filter settings" className="object-contain w-full h-64" />
+            </div>
+            <div className="h-8">
+                <span className="block text-center">Filter Settings</span>
+            </div>
+          </div>
+          <div className="flex flex-col">
+            <div className="flex-1">
+              <img src="/images/whats-new/call-records.png" alt="call records" className="object-contain w-full h-64" />
+            </div>
+            <div className="h-8">
+              <span className="block text-center">Call Records</span>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -473,9 +552,11 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
   </li>
   <li>
     Time of days of type 'Week Time' can now observe global, partner, and account level calendar constraints
-  </li>
-  <li>
-    This allows admins to configure custom holiday or other calendar schedules for the time of day to reference while determining routing.
+    <ul>
+      <li>
+        This allows admins to configure custom holiday or other calendar schedules for the time of day to reference while determining routing.
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -494,18 +575,22 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
 <ul>
   <li>
     User event tracking for common user application interactions for admins and report admins.
-  </li>
-  <li>
-    Located at Reports -> User Logs 
+    <ul>
+      <li>
+        Located at Reports -> User Logs 
+      </li>
+    </ul>
   </li>
   <li>
     10DLC automations
-  </li>
-  <li>
-    Brand registration
-  </li>
-  <li>
-    Automated campaign creation and number provisioning
+    <ul>
+      <li>
+        Brand registration
+      </li>
+      <li>
+        Automated campaign creation and number provisioning
+      </li>
+    </ul>
   </li>
   <li>
     Toll free port ordering
@@ -532,9 +617,11 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
 <ul>
   <li>
     New SMS logs feature for admins and reports admins to view SMS history for account extensions. 
-  </li>
-  <li>
-    Located at Reports -> SMS Logs
+    <ul>
+      <li>
+        Located at Reports -> SMS Logs
+      </li>
+    </ul>
   </li>
   <li>
     New speech detection feature for virtual receptionist option selection
@@ -579,6 +666,10 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
 <ul>
   <li>
     New option to pause / resume recording of a call from the connected call widget
+    <div className="flex flex-col items-center">
+      <img src="/images/whats-new/pause-resume-softphone-feature.png" alt="pause resume" />
+      <p className="text-center">Pause / Resume recording softphone feature</p>
+    </div>
   </li>
 </ul>
 
@@ -604,9 +695,11 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
   </li>
   <li>
     Addressed an issue where listen/coach features could bridge unintended audio while trying to execute the feature on a call that is not yet connected.
-  </li>
-  <li>
-    Listen / Coach feature will only be available for a confirmed connected call
+    <ul>
+      <li>
+        Listen / Coach feature will only be available for a confirmed connected call
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -619,18 +712,20 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
   </li>
   <li>
     enhancements to voice campaigns
-  </li>
-  <li>
-    voice campaigns now support voicemail detection
-  </li>
-  <li>
-    calling hours for which a campaign is allowed to dial may now be configured
-  </li>
-  <li>
-    campaigns may be marked paused or be deleted while running, resulting in suspension of processing calls
-  </li>
-  <li>
-    campaign processing will now observe the start and end date, allowing the campaign to span multiple days within the defined calling hours settings
+    <ul>
+      <li>
+        voice campaigns now support voicemail detection
+      </li>
+      <li>
+        calling hours for which a campaign is allowed to dial may now be configured
+      </li>
+      <li>
+        campaigns may be marked paused or be deleted while running, resulting in suspension of processing calls
+      </li>
+      <li>
+        campaign processing will now observe the start and end date, allowing the campaign to span multiple days within the defined calling hours settings
+      </li>
+    </ul>
   </li>
 </ul>
 <span className="font-bold">Fixed</span>
@@ -784,16 +879,18 @@ The VOXO Team is always working to bring you new and exciting features to Omnia.
 <ul>
   <li>
     Plantronics headset integration - allows basic answer / hangup call controls from headset buttons
+    <ul>
+    <li>
+        User can enable setting from profile preferences
+    </li>
+    <li>
+        The Plantronics hub must be installed and running. You can download it [here](https://www.poly.com/us/en/support/downloads-apps/hub-desktop).
+    </li>
+    <li>
+        Headsets must be paired via USB adapter
+    </li>
+    </ul>
   </li>
-<li>
-    User can enable setting from profile preferences
-</li>
-<li>
-    The Plantronics hub must be installed and running. You can download it here.
-</li>
-<li>
-    Headsets must be paired via USB adapter
-</li>
 </ul>
 <span className="font-bold">Fixed</span>
 <ul>

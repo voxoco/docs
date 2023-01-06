@@ -9,9 +9,8 @@ import { useIsInsideMobileNavigation } from '@/components/MobileNavigation'
 import { useSectionStore } from '@/components/SectionProvider'
 import { Tag } from '@/components/Tag'
 import { remToPx } from '@/lib/remToPx'
-import { useEffect } from 'react'
 
-export function useInitialValue(value, condition = true) {
+function useInitialValue(value, condition = true) {
   let initialValue = useRef(value).current
   return condition ? initialValue : value
 }
@@ -30,24 +29,16 @@ function TopLevelNavItem({ href, children }) {
 }
 
 function NavLink({ href, tag, active, isAnchorLink = false, children }) {
-  let isInsideMobileNavigation = useIsInsideMobileNavigation()
-  let [router, sections] = useInitialValue(
-    [useRouter(), useSectionStore((s) => s.sections)],
-    isInsideMobileNavigation
-  )
-
   return (
     <Link
       href={href}
       aria-current={active ? 'page' : undefined}
       className={clsx(
-        'flex justify-between gap-2 rounded-md py-1 px-3 text-sm transition',
-        isAnchorLink && href === router.pathname
-          ? 'bg-red-200 font-bold text-red-500'
-          : '',
-        active || href === router.pathname
-          ? 'bg-red-50 font-bold text-red-500 dark:bg-red-200 dark:text-red-500'
-          : 'text-zinc-600 hover:bg-gray-200 dark:text-zinc-400 dark:hover:text-white'
+        'flex justify-between gap-2 py-1 pr-3 text-sm transition',
+        isAnchorLink ? 'pl-7' : 'pl-4',
+        active
+          ? 'text-zinc-900 dark:text-white'
+          : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
       )}
     >
       <span className="truncate">{children}</span>
@@ -78,12 +69,11 @@ function VisibleSectionHighlight({ group, pathname }) {
   )
   let itemHeight = remToPx(2)
   let height = isPresent
-    ? Math.max(1, visibleSections.length) * itemHeight + 4
+    ? Math.max(1, visibleSections.length) * itemHeight
     : itemHeight
   let top =
     group.links.findIndex((link) => link.href === pathname) * itemHeight +
-    firstVisibleSectionIndex * itemHeight +
-    12
+    firstVisibleSectionIndex * itemHeight
 
   return (
     <motion.div
@@ -106,7 +96,7 @@ function ActivePageMarker({ group, pathname }) {
   return (
     <motion.div
       layout
-      className="absolute left-2 h-6"
+      className="absolute left-2 h-6 w-px bg-emerald-500"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 0.2 } }}
       exit={{ opacity: 0 }}
@@ -124,16 +114,6 @@ function NavigationGroup({ group, className }) {
     [useRouter(), useSectionStore((s) => s.sections)],
     isInsideMobileNavigation
   )
-  const isAPIDocs = useSectionStore((s) => s.isAPIDocs)
-  const setIsAPIDocs = useSectionStore((s) => s.setIsAPIDocs)
-
-  const isAPIDocsPath =
-    router.pathname.split('/')[1] === 'voxo-public' &&
-    router.pathname.split('/')[2] === 'v'
-
-  useEffect(() => {
-    setIsAPIDocs(isAPIDocsPath)
-  })
 
   let isActiveGroup =
     group.links.findIndex((link) => link.href === router.pathname) !== -1
@@ -142,26 +122,34 @@ function NavigationGroup({ group, className }) {
     <li className={clsx('relative mt-6', className)}>
       <motion.h2
         layout="position"
-        className="px-3 text-xs font-semibold text-zinc-900 dark:text-white"
+        className="text-xs font-semibold text-zinc-900 dark:text-white"
       >
         {group.title}
       </motion.h2>
-
-      <div className="relative mt-3">
-        {/* {isActiveGroup && sections.length > 0 && (
-          <VisibleSectionHighlight group={group} pathname={router.pathname} />
-        )} */}
-        <ul role="list">
+      <div className="relative mt-3 pl-2">
+        <AnimatePresence initial={!isInsideMobileNavigation}>
+          {isActiveGroup && (
+            <VisibleSectionHighlight group={group} pathname={router.pathname} />
+          )}
+        </AnimatePresence>
+        <motion.div
+          layout
+          className="absolute inset-y-0 left-2 w-px bg-zinc-900/10 dark:bg-white/5"
+        />
+        <AnimatePresence initial={false}>
+          {isActiveGroup && (
+            <ActivePageMarker group={group} pathname={router.pathname} />
+          )}
+        </AnimatePresence>
+        <ul role="list" className="border-l border-transparent">
           {group.links.map((link) => (
             <motion.li key={link.href} layout="position" className="relative">
               <NavLink href={link.href} active={link.href === router.pathname}>
                 {link.title}
               </NavLink>
-
-              {isAPIDocs ? (
-                <AnimatePresence mode="popLayout" initial={false}>
+              <AnimatePresence mode="popLayout" initial={false}>
+                {link.href === router.pathname && sections.length > 0 && (
                   <motion.ul
-                    className="relative pl-6"
                     role="list"
                     initial={{ opacity: 0 }}
                     animate={{
@@ -173,22 +161,20 @@ function NavigationGroup({ group, className }) {
                       transition: { duration: 0.15 },
                     }}
                   >
-                    {link.children &&
-                      link.children.length > 0 &&
-                      link.children.map((item, idx) => (
-                        <li key={idx} className="my-1">
-                          <NavLink href={item.href} isAnchorLink>
-                            {item.title}
-                          </NavLink>
-                          <motion.div
-                            layout
-                            className="absolute inset-y-0 left-4 w-px bg-gray-200 dark:bg-white/5"
-                          />
-                        </li>
-                      ))}
+                    {sections.map((section) => (
+                      <li key={section.id}>
+                        <NavLink
+                          href={`${link.href}#${section.id}`}
+                          tag={section.tag}
+                          isAnchorLink
+                        >
+                          {section.title}
+                        </NavLink>
+                      </li>
+                    ))}
                   </motion.ul>
-                </AnimatePresence>
-              ) : null}
+                )}
+              </AnimatePresence>
             </motion.li>
           ))}
         </ul>
@@ -197,8 +183,9 @@ function NavigationGroup({ group, className }) {
   )
 }
 
-export const supportDocsNav = [
+export const navigation = [
   {
+    title: 'API Docs',
     links: [{ title: 'API Docs', href: '/voxo-public' }],
   },
   {
@@ -300,49 +287,25 @@ export const supportDocsNav = [
   },
 ]
 
-export const apiDocsNav = [
-  {
-    links: [{ title: 'Introduction', href: '/voxo-public/v/api-docs-1' }],
-  },
-  {
-    title: 'REFERENCE',
-    links: [
-      {
-        title: 'API Endpoint',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
-        children: [
-          {
-            title: '🔑 Authentication',
-            href: '/voxo-public/v/api-docs-1/reference/api-reference/authentication',
-          },
-          {
-            title: 'Account',
-            href: '/voxo-public/v/api-docs-1/reference/api-reference/account',
-          },
-          {
-            title: 'Account Branches',
-            href: '/voxo-public/v/api-docs-1/reference/api-reference/branches',
-          },
-        ],
-      },
-    ],
-  },
-]
-
 export function Navigation(props) {
-  const isAPIDocs = useSectionStore((s) => s.isAPIDocs)
-
-  const navItems = isAPIDocs ? apiDocsNav : supportDocsNav
   return (
     <nav {...props}>
       <ul role="list">
-        {navItems.map((group, groupIndex) => (
+        <TopLevelNavItem href="/">API</TopLevelNavItem>
+        <TopLevelNavItem href="#">Documentation</TopLevelNavItem>
+        <TopLevelNavItem href="#">Support</TopLevelNavItem>
+        {navigation.map((group, groupIndex) => (
           <NavigationGroup
-            key={groupIndex}
+            key={group.title}
             group={group}
             className={groupIndex === 0 && 'md:mt-0'}
           />
         ))}
+        <li className="sticky bottom-0 z-10 mt-6 min-[416px]:hidden">
+          <Button href="#" variant="filled" className="w-full">
+            Sign in
+          </Button>
+        </li>
       </ul>
     </nav>
   )

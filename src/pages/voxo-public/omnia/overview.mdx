@@ -1,174 +1,99 @@
-export const description =
-  'In this guide, we will look at how to register and consume webhooks to integrate your app with Protocol.'
-
 # Overview
 
-In this guide, we will look at how to register and consume webhooks to integrate your app with Protocol. With webhooks, your app can know when something happens in Protocol, such as someone sending a message or adding a contact. {{ className: 'lead' }}
+Omnia Walk-Through
 
-## Registering webhooks
-
-To register a new webhook, you need to have a URL in your app that Protocol can call. You can configure a new webhook from the Protocol dashboard under [API settings](#). Give your webhook a name, pick the [events](#event-types) you want to listen for, and add your URL.
-
-Now, whenever something of interest happens in your app, a webhook is fired off by Protocol. In the next section, we'll look at how to consume webhooks.
-
-## Consuming webhooks
-
-When your app receives a webhook request from Protocol, check the `type` attribute to see what event caused it. The first part of the event type will tell you the payload type, e.g., a conversation, message, etc.
-
-```json {{ title: 'Example webhook payload' }}
-{
-  "id": "a056V7R7NmNRjl70",
-  "type": "conversation.updated",
-  "payload": {
-    "id": "WAz8eIbvDR60rouK"
-    // ...
-  }
-}
-```
-
-In the example above, a conversation was `updated`, and the payload type is a `conversation`.
-
-<div className="not-prose">
-  <Button
-    href="#event-types"
-    variant="text"
-    arrow="right"
-    children="See all event types"
-  />
+<div className="flex justify-center">
+  <iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/mTDlpq5HxcE"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
 </div>
 
----
+Below are help videos that walk you through using the Omnia application.
+Time Stamps:
 
-## Event types
-
-<Row>
-  <Col>
-
-    <Properties>
-      <Property name="contact.created">
-        A new contact was created.
-      </Property>
-      <Property name="contact.updated">
-        An existing contact was updated.
-      </Property>
-      <Property name="contact.deleted">
-        A contact was successfully deleted.
-      </Property>
-      <Property name="conversation.created">
-        A new conversation was created.
-      </Property>
-      <Property name="conversation.updated">
-        An existing conversation was updated.
-      </Property>
-      <Property name="conversation.deleted">
-        A conversation was successfully deleted.
-      </Property>
-      <Property name="message.created">
-        A new message was created.
-      </Property>
-      <Property name="message.updated">
-        An existing message was updated.
-      </Property>
-      <Property name="message.deleted">
-        A message was successfully deleted.
-      </Property>
-      <Property name="group.created">
-        A new group was created.
-      </Property>
-      <Property name="group.updated">
-        An existing group was updated.
-      </Property>
-      <Property name="group.deleted">
-        A group was successfully deleted.
-      </Property>
-      <Property name="attachment.created">
-        A new attachment was created.
-      </Property>
-      <Property name="attachment.updated">
-        An existing attachment was updated.
-      </Property>
-      <Property name="attachment.deleted">
-        An attachment was successfully deleted.
-      </Property>
-    </Properties>
-
-  </Col>
-  <Col sticky>
-
-    ```json {{ 'title': 'Example payload' }}
-    {
-      "id": "a056V7R7NmNRjl70",
-      "type": "message.updated",
-      "payload": {
-        "id": "SIuAFUNKdSYHZF2w",
-        "conversation_id": "xgQQXg3hrtjh7AvZ",
-        "contact": {
-          "id": "WAz8eIbvDR60rouK",
-          "username": "KevinMcCallister",
-          "phone_number": "1-800-759-3000",
-          "avatar_url": "https://assets.protocol.chat/avatars/kevin.jpg",
-          "last_active_at": 705103200,
-          "created_at": 692233200
-        },
-        "message": "I’m traveling with my dad. He’s at a meeting. I hate meetings.",
-        "reactions": [],
-        "attachments": [],
-        "read_at": 705103200,
-        "created_at": 692233200,
-        "updated_at": 692233200
-      }
-    }
-    ```
-
-  </Col>
-</Row>
-
----
-
-## Security
-
-To know for sure that a webhook was, in fact, sent by Protocol instead of a malicious actor, you can verify the request signature. Each webhook request contains a header named `x-protocol-signature`, and you can verify this signature by using your secret webhook key. The signature is an HMAC hash of the request payload hashed using your secret key. Here is an example of how to verify the signature in your app:
-
-<CodeGroup title="Verifying a request">
-
-```js
-const signature = req.headers['x-protocol-signature']
-const hash = crypto.createHmac('sha256', secret).update(payload).digest('hex')
-
-if (hash === signature) {
-  // Request is verified
-} else {
-  // Request could not be verified
-}
-```
-
-```python
-from flask import request
-import hashlib
-import hmac
-
-signature = request.headers.get("x-protocol-signature")
-hash = hmac.new(bytes(secret, "ascii"), bytes(payload, "ascii"), hashlib.sha256)
-
-if hash.hexdigest() == signature:
-    # Request is verified
-else:
-    # Request could not be verified
-```
-
-```php
-$signature = $request['headers']['x-protocol-signature'];
-$hash = hash_hmac('sha256', $payload, $secret);
-
-if (hash_equals($hash, $signature)) {
-  // Request is verified
-} else {
-  // Request could not be verified
-}
-```
-
-</CodeGroup>
-
-If your generated signature matches the `x-protocol-signature` header, you can be sure that the request was truly coming from Protocol. It's essential to keep your secret webhook key safe — otherwise, you can no longer be sure that a given webhook was sent by Protocol. Don't commit your secret webhook key to GitHub!
-
-
+<ul>
+  <li>[0:00](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=0s) Intro</li>
+  <li>
+    [0:50](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=50s) How to make a call
+  </li>
+  <li>
+    [1:32](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=92s) Controlling active
+    call Transfer | Hold | Mute
+  </li>
+  <li>
+    [2:38](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=158s) Blind Transfer |
+    Attended Transfer | Conference Call
+  </li>
+  <li>[6:44](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=404s) Support</li>
+  <li>
+    [7:04](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=424s) Building your
+    personal phonebook
+  </li>
+  <li>
+    [7:51](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=471s) Importing CSV
+    files to your contacts
+  </li>
+  <li>
+    [8:58](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=538s) Searching custom
+    contacts
+  </li>
+  <li>
+    [9:48](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=588s) Call Center
+    Software
+  </li>
+  <li>
+    [9:51](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=591s) Call Queues
+  </li>
+  <li>
+    [10:07](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=607s) Logging into the
+    queue
+  </li>
+  <li>
+    [11:19](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=679s) Pausing in the
+    queue
+  </li>
+  <li>
+    [11:43](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=703s) Logging in
+    Logging out agents
+  </li>
+  <li>
+    [13:09](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=789s) Listen In |
+    Coach
+  </li>
+  <li>
+    [15:28](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=928s) Change Avatar
+  </li>
+  <li>
+    [15:46](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=946s) Light Mode |
+    Dark Mode
+  </li>
+  <li>
+    [15:57](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=957s) Do Not Disturb
+  </li>
+  <li>
+    [16:19](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=979s) My Activities
+    (Call History)
+  </li>
+  <li>
+    [17:12](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=1032s) Voicemail
+  </li>
+  <li>[17:35](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=1055s) Faxing</li>
+  <li>
+    [18:18](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=1098s) Send A Fax
+  </li>
+  <li>
+    [19:22](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=1162s) Omnia Operator
+    Panel
+  </li>
+  <li>
+    [20:26](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=1226s) Active Call
+    Table | Listen In | Coach (Admin)
+  </li>
+  <li>[20:10](https://www.youtube.com/watch?v=mTDlpq5HxcE&t=1210s) Support</li>
+</ul>

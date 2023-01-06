@@ -1,4 +1,340 @@
-# Queue Manager Dashboard 
+# Queue Manager Dashboard
 
-The recommended way to interact with the Protocol API is by using one of our official SDKs. Today, Protocol offers fine-tuned JavaScript, Ruby, PHP, Python, and Go libraries to make your life easier and give you the best experience when consuming the API. {{ className: 'lead' }}
+Overview and functional documentation for multi-queue live stats dashboard
 
+Overview
+
+This feature allows you to create custom drag and drop live stat dashboards for queues in your accounts. This feature can be found in Omnia at User Panel -> Call Queues -> Live Stats.
+
+Each layout can include up to 15 queues at a time. By default, all stats include the totals for all selected queues in the dashboard. Each widget can be filtered to single or multiple queues.
+
+<div className="flex flex-col items-center">
+  <img src="/images/queue-statistics/queue_1.png" alt="queue statistics 1" />
+  <span>Sample Dashboard Screenshot</span>
+</div>
+
+## Widget Types and Glossary
+
+### Table Widgets
+
+<ul>
+  <li>
+    <span className="font-bold">Queues Table</span>
+  </li>
+  <ul>
+    <li>
+      This is a table view for all queues selected in the current layout. It
+      displays stats for each queue and is searchable.
+    </li>
+    <li>
+      Sort functionality is available and column filtering allows customizing
+      the table to show only the stats you are interested in.
+    </li>
+  </ul>
+</ul>
+<ul>
+  <li>
+    <span className="font-bold">Agents By Queue Table</span>
+  </li>
+  <ul>
+    <li>
+      This is a table view for all agents across all queues in the current
+      layout. It displays user stats, as well as logged in/out and
+      pause/unpaused information about the agent.
+    </li>
+    <li>Allows logging agents in / out and pausing / unpausing</li>
+    <li>
+      Sort functionality is available and column filtering allows the table
+      stats to be customized to your needs.
+    </li>
+  </ul>
+</ul>
+<ul>
+  <li>
+    <span className="font-bold">Agent Totals</span>
+  </li>
+  <ul>
+    <li>
+      This is a table view for all agents similar to the agents by queue table.
+      The exception is the data is not broken down queue by queue for each agent
+      that might be a member of multiple queues.
+    </li>
+    <li>
+      Allows logging agents in / out and pausing / unpausing in ALL queues that
+      they are a member of.
+    </li>
+    <li>
+      Sort functionality is available and column filtering allows the table
+      stats to be customized to your needs.
+    </li>
+  </ul>
+</ul>
+<ul>
+  <li>
+    <span className="font-bold">Calls Waiting List</span>
+  </li>
+  <ul>
+    <li>
+      This is a table view that shows the caller information and wait time for
+      all calls currently waiting in queue.
+    </li>
+  </ul>
+</ul>
+<ul>
+  <li>
+    <span className="font-bold">Active Call List</span>
+  </li>
+  <ul>
+    <li>
+      This is a table view that shows the caller information and duration for
+      all calls currently connected to agents.
+    </li>
+  </ul>
+</ul>
+
+### Stat Widgets
+
+<ul>
+  <li>
+    <span className="font-bold">Abandoned Calls</span>
+  </li>
+  <ul>
+    <li>
+      This widget shows the total count of abandoned calls as well as the
+      overall abandon rate and the average wait time before an abandon occurs.
+    </li>
+    <li>
+      An abandoned call is a call in which the caller hangs up and leaves the
+      queue before having an opportunity to connect with an agent.
+    </li>
+  </ul>
+</ul>
+<ul>
+  <li>
+    <span className="font-bold">Active Calls</span>
+  </li>
+  <ul>
+    <li>
+      This widget shows the total count of active calls in a queue. Active calls
+      are connected queue calls. This count does not include any current calls
+      an agent might be participating in outside of the queue.
+    </li>
+  </ul>
+</ul>
+<ul>
+  <li>
+    <span className="font-bold">Agent Outbound</span>
+  </li>
+  <ul>
+    <li>
+      This widget shows the total outbound call counts for agents servicing the
+      queue. Additionally, it provides a breakdown of the total in terms of
+      answer and no answer counts.
+    </li>
+  </ul>
+</ul>
+<ul>
+  <li>
+    <span className="font-bold">Average Answer Time</span>
+  </li>
+  <ul>
+    <li>
+      This widget displays the average answer time across all selected queues.
+      This is the average amount of time a caller waits before an agent connects
+      with them.
+    </li>
+  </ul>
+</ul>
+<ul>
+  <li>
+    <span className="font-bold">Complete Callbacks</span>
+  </li>
+  <ul>
+    <li>
+      This widget shows the total amount of callbacks completed for the selected
+      queues. This is further broken down into successful callbacks and
+      callbacks that timed out.
+    </li>
+  </ul>
+</ul>
+<ul>
+  <li>
+    <span className="font-bold">Exits</span>
+  </li>
+  <ul>
+    <li>
+      This widget shows the total amount of times callers exiting the queue by
+      pressing a key or reaching the queue timeout setting. The total is broken
+      down by timeout and key counts
+    </li>
+  </ul>
+</ul>
+<ul>
+  <li>
+    <span className="font-bold">Inbound Answered</span>
+  </li>
+  <ul>
+    <li>
+      This displays the inbound complete counts for the selected queues. This
+      metric represents only queue calls that successfully entered the queue and
+      connected to an agent. Calls transferred out of the queue are included in
+      this count.
+    </li>
+  </ul>
+</ul>
+<ul>
+  <li>
+    <span className="font-bold">Queued Callbacks</span>
+  </li>
+  <ul>
+    <li>
+      This provides a count of calls that are waiting for callbacks for the
+      selected queues.
+    </li>
+  </ul>
+</ul>
+<ul>
+  <li>
+    <span className="font-bold">Total Inbound</span>
+  </li>
+  <ul>
+    <li>
+      This provides a count of the total inbound traffic to a queue, which
+      includes Inbound Answered, Exits, and Abandon counts.
+    </li>
+  </ul>
+</ul>
+<ul>
+  <li>
+    <span className="font-bold">Transfers</span>
+  </li>
+  <ul>
+    <li>
+      The total number of calls completed as a result of blind and attended
+      transfers out of the queue.
+    </li>
+  </ul>
+</ul>
+<ul>
+  <li>
+    <span className="font-bold">Waiting Calls</span>
+  </li>
+  <ul>
+    <li>
+      The number of calls currently in the queue line waiting to connect to an
+      agent.
+    </li>
+    <li>
+      This also provides the longest wait times for calls currently in queue.
+    </li>
+  </ul>
+</ul>
+
+## How-To Guide
+
+### Creating A New Layout
+
+<ul>
+  <li>
+    In the toolbar, click the settings button and select 'Create layout'.
+    <img
+      src="/images/queue-manager-dashboard/new-layout-1.webp"
+      alt="new layout 1"
+    />
+  </li>
+  <li>
+    Enter the name and select the queues you wish to be included.
+    <img
+      src="/images/queue-manager-dashboard/new-layout-2.webp"
+      alt="new layout 2"
+    />
+  </li>
+  <li>
+    After submitting, your layout will be created, and you can start adding
+    widgets.
+    <img
+      src="/images/queue-manager-dashboard/new-layout-3.webp"
+      alt="new layout 3"
+    />
+  </li>
+</ul>
+
+### Editing A Layout
+
+<ul>
+  <li>In the toolbar, click the settings button and select 'Edit layout'</li>
+    <img
+      src="/images/queue-manager-dashboard/edit-layout-1.webp"
+      alt="edit layout 1"
+    />
+  <li>Make your desired changes and submit</li>
+    <img
+      src="/images/queue-manager-dashboard/edit-layout-2.webp"
+      alt="edit layout 2"
+    />
+</ul>
+
+### Removing A Layout
+
+<ul>
+  <li>
+    From the toolbar, click the settings button and select remove layout. This
+    operation is not reversible!
+    <img
+      src="/images/queue-manager-dashboard/remove-layout-1.webp"
+      alt="remove layout"
+    />
+  </li>
+</ul>
+
+### Duplicate A Layout
+
+<ul>
+  <li>
+    From the toolbar, click the settings button, and select duplicate layout.
+    <img
+      src="/images/queue-manager-dashboard/duplicate-layout-1.webp"
+      alt="duplicate layout"
+    />
+  </li>
+</ul>
+
+### Building a Dashboard Grid
+
+<ul>
+  <li>
+    From the tool bar, click the 'Add Widget' button to see a list of available
+    widgets. You may add as many widgets and you like. They can be resized and
+    drag and dropped in any order that you please.
+    <img
+      src="/images/queue-manager-dashboard/build-layout-1.webp"
+      alt="build layout"
+    />
+  </li>
+</ul>
+
+### Stat Widget Filtering
+
+<ul>
+  <li>
+    Each stat widget displays the total counts for all queues by default. You
+    can filter which queue totals you would like to see by using the checkboxes
+    in the table.
+    <img
+      src="/images/queue-manager-dashboard/widget-filtering.webp"
+      alt="stat widget filtering"
+    />
+  </li>
+</ul>
+
+### Table Widget Column Filtering
+
+<ul>
+  <li>
+    Click the filter button to select and deselect the columns of your choice.
+    <img
+      src="/images/queue-manager-dashboard/column-filtering.webp"
+      alt="table widget column filtering"
+    />
+  </li>
+</ul>
