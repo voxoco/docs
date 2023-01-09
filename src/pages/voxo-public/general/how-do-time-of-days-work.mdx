@@ -1,0 +1,31 @@
+# How do Time of Day's work?
+
+Short article explaining the common use case of Time of Days (TOD)
+
+A 'Time of Day' or 'TOD' for short , is a feature in VOXO that is used to route calls based on a time condition and can be found at [app.voxo.co/time-of-days](https://app.voxo.co/time-of-days). The most common use case for this feature is to route calls to an after hours service or voicemail when a caller calls in outside of your business' hours. In this article I will show how this can be setup and implemented in your business' call route.
+
+Once at [app.voxo.co/time-of-days](https://app.voxo.co/time-of-days) , you can get started by clicking 'Add New' to create a new Time of Day condition. This will then prompt you to provide a 'Name' and TOD 'Type'.  In this example, I have named my TOD 'Business Hours' and have selected the 'Weektime' condition type. Now that my type has been selected, I can choose an optional weektime preset or create my own custom weektime.  I have selected the Monday - Friday preset and then specified my business' hours. 
+
+<div className="flex flex-col items-center">
+    <img src="/images/general/time-of-day-work/image 1.webp" alt="tod general" />
+    <span>TOD General</span>
+</div>
+
+TOD General
+Now that we have specified our business' hours of operation , we need to navigate to the 'Routing' tab to specify where calls need to be directed within or outside this time frame.  In this example, I am sending calls to a group of users during business hours , and routing calls to a voicemail box outside of business hours. Once your destinations have been set, you can complete your setup by clicking the 'Save' button in your top right hand corner. 
+
+<div className="flex flex-col items-center">
+    <img src="/images/general/time-of-day-work/image 2.webp" alt="tod routing" />
+    <span>TOD Routing</span>
+</div>
+
+TOD Routing
+Lastly, now that we have a basic TOD created , we can implement this time condition by assigning it as a destination to a phone number.  Being that this TOD is a preliminary filter it will need to be the first destination in a call's routing - pictured below 
+
+<div className="flex flex-col items-center">
+    <img src="/images/general/time-of-day-work/image 2.webp" alt="DID assignment" />
+    <span>DID Assignment</span>
+</div>
+
+DID Assignment
+Now that this TOD has been assigned , we have completed the setup of our call routing.  Any caller dialing the above number will successfully route to a group of agents between the hours of 8:00am and 5:00pm and to a voicemail box outside of this time frame. 

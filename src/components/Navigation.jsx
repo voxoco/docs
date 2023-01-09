@@ -189,9 +189,9 @@ export const navigation = [
     links: [{ title: 'API Docs', href: '/voxo-public' }],
   },
   {
-    title: 'RELEASE NOTE',
+    title: 'RELEASE NOTES',
     links: [
-      { title: "🎉 What's New", href: '/voxo-public/release-note/whats-new' },
+      { title: "🎉 What's New", href: '/voxo-public/release-notes/whats-new' },
     ],
   },
   {
@@ -233,68 +233,239 @@ export const navigation = [
     links: [
       {
         title: 'How to Connect Yealink Phone to Wifi',
-        href: '/how-to-connect-yealink-phone-to-wifi',
+        href: '/voxo-public/general/how-to-connect-yealink-phone-to-wifi',
       },
       {
         title: 'How to Call Into a Conference Room',
-        href: '/how-to-call-into-a-conference-room',
+        href: '/voxo-public/general/how-to-call-into-a-conference-room',
       },
       {
         title: 'Headset Issue: Cannot Hear / Be Heard',
-        href: '/headset-issue-cannot-hear-be-heard',
+        href: '/voxo-public/general/headset-issue-cannot-hear-be-heard',
       },
       {
         title: 'Updating Yealink Firmware',
-        href: '/updating-yealink-firmware',
+        href: '/voxo-public/general/updating-yealink-firmware',
       },
-      { title: 'SMS 10DLC Update', href: '/sms-10dlc-update' },
+      {
+        title: 'SMS 10DLC Update',
+        href: '/voxo-public/general/sms-10dlc-update',
+      },
       {
         title: 'How to Allow Notifications',
-        href: '/how-to-allow-notifications',
+        href: '/voxo-public/general/how-to-allow-notifications',
       },
-      { title: 'Firewall IP whitelist', href: '/firewall-ip-whitelist' },
-      { title: 'Mobile App DoNotDisturb', href: '/mobile-app-donotdisturb' },
+      {
+        title: 'Firewall IP whitelist',
+        href: '/voxo-public/general/firewall-ip-whitelist',
+      },
+      {
+        title: 'Mobile App DoNotDisturb',
+        href: '/voxo-public/general/mobile-app-donotdisturb',
+      },
       {
         title: 'Downloading VOXO to Desktop',
-        href: '/downloading-voxo-to-desktop',
+        href: '/voxo-public/general/downloading-voxo-to-desktop',
       },
-      { title: 'Send a fax via email', href: '/send-a-fax-via-email' },
-      { title: 'How To: Set Up Voicemail', href: '/how-to-set-up-voicemail' },
+      {
+        title: 'Send a fax via email',
+        href: '/voxo-public/general/send-a-fax-via-email',
+      },
+      {
+        title: 'How To: Set Up Voicemail',
+        href: '/voxo-public/general/how-to-set-up-voicemail',
+      },
       {
         title: 'Invite a user to VOXO Mobile',
-        href: '/invite-a-user-to-voxo-mobile',
+        href: '/voxo-public/general/invite-a-user-to-voxo-mobile',
       },
       {
         title: 'How To: Conference Call (VOXO Meet)',
-        href: '/how-to-conference-call-voxo-meet',
+        href: '/voxo-public/general/how-to-conference-call-voxo-meet',
       },
-      { title: 'How To: Transfer a Call', href: '/how-to-transfer-a-call' },
-      { title: 'Add a Speed Dial Contact', href: '/add-a-speed-dial-contact' },
+      {
+        title: 'How To: Transfer a Call',
+        href: '/voxo-public/general/how-to-transfer-a-call',
+      },
+      {
+        title: 'Add a Speed Dial Contact',
+        href: '/voxo-public/general/add-a-speed-dial-contact',
+      },
       {
         title: 'How To: Factory Reset (Polycom 400 series)',
-        href: '/how-to-factory-reset-polycom-400-series',
+        href: '/voxo-public/general/how-to-factory-reset-polycom-400-series',
       },
       {
         title: "How do Time of Day's work?",
-        href: '/how-do-time-of-days-work',
+        href: '/voxo-public/general/how-do-time-of-days-work',
       },
       {
         title: 'How to: Factory reset (Yealink series)',
-        href: '/how-to-factory-reset-yealink-series',
+        href: '/voxo-public/general/how-to-factory-reset-yealink-series',
       },
-      { title: 'Pause and DND in OMNIA', href: '/pause-and-dnd-in-omnia' },
+      {
+        title: 'Pause and DND in OMNIA',
+        href: '/voxo-public/general/pause-and-dnd-in-omnia',
+      },
+      {
+        title: 'Custom Holiday Time of Day',
+        href: '/voxo-public/general/custom-holiday-time-of-day',
+      },
+    ],
+  },
+]
+
+export const apiNav = [
+  {
+    title: 'Introduction',
+    links: [
+      {
+        title: 'Introduction',
+        href: '/voxo-public/v/api-docs-1',
+      },
+    ],
+  },
+  {
+    title: 'Reference',
+    links: [
+      {
+        title: '🔑 Authentication',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/authentication',
+      },
+      {
+        title: 'Accounts',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Account Branches',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Call Blocking',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Call Groups',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Call Queues',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Call Queue Manager',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Call Recordings',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Call Reports (CDR)',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Conference Rooms',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Custom Destinations',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Devices',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'E911 Locations',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Extensions',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Feature Codes',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Virtual Receptionists',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Mail To Fax Users',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Media Files',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Music On Hold',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Number Porting Orders',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Paging Groups',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Parking Lots',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Phonebooks',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Phone Numbers (DID)',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Short Numbers',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Time of Days',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Users',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Voicemails',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'VOXO MEET',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
+      {
+        title: 'Webhooks',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+      },
     ],
   },
 ]
 
 export function Navigation(props) {
+  const router = useRouter()
+
+  const isApiDocs = router.pathname.includes('/v/api-docs-1')
+
+  const selectedNavs = isApiDocs ? apiNav : navigation
+
   return (
     <nav {...props}>
       <ul role="list">
         <TopLevelNavItem href="/">API</TopLevelNavItem>
         <TopLevelNavItem href="#">Documentation</TopLevelNavItem>
         <TopLevelNavItem href="#">Support</TopLevelNavItem>
-        {navigation.map((group, groupIndex) => (
+        {selectedNavs.map((group, groupIndex) => (
           <NavigationGroup
             key={group.title}
             group={group}

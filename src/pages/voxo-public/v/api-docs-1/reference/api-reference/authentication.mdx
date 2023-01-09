@@ -1,3 +1,119 @@
-# Authentication 
+# Authentication
 
-Use the Protocol API to access contacts, conversations, group messages, and more and seamlessly integrate your product into the workflows of dozens of devoted Protocol users. {{ className: 'lead' }}
+In order to make API requests, you will first need to request a token
+
+## Make API Requests {{ tag: 'POST', label: 'https://api.voxo.co/authentication' }}
+
+<Row>
+  <Col>
+
+    This request returns an access token along with the authenticated user
+
+    ### Parameters
+
+     <strong>Header</strong>
+
+    <Properties>
+      <Property name="Content-Type*" type="string" />
+      <Property name="Accept" type="string" />
+    </Properties>
+
+
+    <strong>Body</strong>
+
+    <Properties>
+      <Property name="strategy*" type="string" />
+      <Property name="email*" type="string" />
+      <Property name="password*" type="string" />
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    ```json {{ title: 'Response' }}
+    {
+        "accessToken": "XXXXXXXXXXXXX",
+        "authentication": {
+            "strategy": "local"
+    },
+        "user": {
+            "id": 0,
+            "tenantId": 0,
+            "receiveQueueReports": 0,
+            "email": "test@test.com",
+            "emailField": null,
+            "avatarPath": null,
+            "avatarFileName": null,
+            "userRole": 1,
+            "us_useldap": "",
+            "resetToken": null,
+            "online": 0,
+            "lastOnline": "2020-09-28 15:46:02",
+            "enableCallNotifications": 1,
+            "enableChatNotifications": 0,
+            "integrationId": null,
+            "timezone": null,
+            "conversations": [
+            0
+            ],
+            "faxEnabled": false,
+            "faxNumber": null,
+            "myExtension": {
+            "id": 0,
+            "name": "Tony Fax",
+            "tenantId": 0,
+            "tenantCode": "demo",
+            "number": "XXX",
+            "sipFriendId": 0,
+            "status": "NOT_INUSE",
+            "hostServer": "",
+            "peerName": "XXX",
+            "peerSecret": "XXXX",
+            "dnd": "",
+            "callerId": "XXX",
+            "voicemailId": 0,
+            "omniaPhonebookId": null,
+            "devices": [
+                null
+            ],
+            "branch": "Hattiesburg",
+            "branchId": 0,
+            "queueIds": [
+                0,
+                0
+            ]
+            },
+            "adminQueues": [],
+            "tenantIds": [],
+            "name": "Tony Fax",
+            "extNum": "XXXX"
+        }
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+```bash {{ title: 'cURL' }}
+curl --location --request POST 'https://api.voxo.co/authentication' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"strategy": "local",
+	"email": "test@test.com",
+	"password": "XXXX"
+}'
+```
+
+The response from this API will contain a field called `accessToken`
+
+<img src="/images/api-docs-1/auth/image 1.webp" alt="access token" />
+
+All subsequent API calls should the following header
+
+```
+Authorization: Bearer {accessToken}
+```
+
+Replace `{accessToken}` with value from the response

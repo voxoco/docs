@@ -1,0 +1,69 @@
+# Custom Holiday Time of Day
+
+This document explains how to set up your own conditional routing based on a Holiday Calendar.
+
+<ol>
+  <li>
+    Be sure that you are on the admin side of OMNIA (app.voxo.co) and click on
+    phone system
+  </li>
+  <li>
+    Then Click on Time of Days and Add New in the upper right hand corner 
+    
+    <Note>
+    There
+    is a U.S. Holiday Time of Day already preset in the Use Global type with the
+    following dates and repeats all the way through 2028.
+    <img src="/images/general/custom-holiday-time-of-day/image 1.webp" alt="us holiday" />
+    </Note>
+  </li>
+  <li>
+    Once in the Time of Day creation window, select time of day type: calendar
+    and select you date ranges. Also be sure to choose the proper time zone and
+    name the TOD accordingly.
+
+    <img src="/images/general/custom-holiday-time-of-day/image 2.webp" alt="choose time zone" />
+
+  </li>
+  <li>
+    Once the dates are set and correct, choose how you want this to be routed by
+    clicking on the routing tab towards the top left. For instance, if the
+    condition matches a date range you specified then you can route the call to
+    go to an after hours message because the date you specified is considered a
+    company holiday, or route the call however you desire. Please not you can
+    add as many date ranges as you'd like.
+  </li>
+  <li>
+    If the condition does not match, you can route this to go to another Time of
+    Day for business hours operations or however you desire. For instance, if it
+    is not a holiday and you resume normal business operations and have another
+    time of day set that checks the hours of the day, route this to the business
+    operations time of day. This way if it is not a date range you specify as a
+    holiday, business call routing will resume as normal.
+
+    <img src="/images/general/custom-holiday-time-of-day/image 3.webp" alt="condition" />
+
+  </li>
+  <li>
+    Once routing is set to your liking, apply this Time of Day to the phone
+    numbers you desire to apply them to. One example of this is applying it to
+    your main number. This is done by clicking on phone numbers on the left hand
+    side and then clicking on the phone number you desire to set this for and
+    click routing at the top. Once in the number routing you can choose the
+    destination type as time of day and the destination as the Time of Day you
+    just created.
+
+    <img src="/images/general/custom-holiday-time-of-day/image 4.webp" alt="update" />
+
+  </li>
+  <li>
+    Once this is set and saved, incoming calls will first check for the date
+    ranges you selected and route calls based off of this calendar routing.
+  </li>
+</ol>
+
+<Note>
+  If you don't want to change any date ranges but have an unexpected holiday or
+  company event you can enable a manual override within the time of day. For
+  more information on this please see Manual Override documentation.
+</Note>

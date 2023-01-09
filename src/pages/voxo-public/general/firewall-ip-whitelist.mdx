@@ -1,0 +1,93 @@
+# Firewall IP whitelist
+
+IP address whitelist
+
+It is recommended that you add <strong><em>ALL</em></strong> of VOXO's following IP address ranges and ports on your firewall for real-time traffic. This is important if you have Numbers and devices in different regions and for resiliency purposes (e.g. if North America Atlanta gateways are down, then North America Chicago gateways will be used). VOXO does not guarantee which region the media will egress from since it can depend on which PSTN-SIP Gateway delivers the call to which VOXO region.
+
+### ATL
+
+```
+131.153.132.0/27
+```
+
+### ORD
+
+```
+204.93.199.32/27
+```
+
+### us-east1
+
+```
+35.196.54.85
+34.148.222.24
+34.73.78.180
+```
+
+### us-east4
+
+```
+35.186.160.145
+34.150.150.6
+34.86.247.46
+```
+### us-central1
+
+```
+35.222.110.103
+34.68.84.223
+35.184.145.167
+```
+
+### us-south1
+
+```
+34.174.151.12
+34.174.6.120
+34.174.181.61
+```
+
+### us-west1
+
+```
+35.203.170.238
+34.168.9.91
+34.82.42.98
+```
+
+### us-west2
+
+```
+34.94.212.85
+34.102.68.194
+35.236.36.140
+```
+
+### DNS
+
+```
+portal.voxo.co
+app.voxo.co
+api.voxo.co
+rps.yealink.com
+```
+
+### PORTS
+
+```
+443 (TCP)
+5060 (UDP)
+10,000 - 60,000 (UDP)
+```
+
+### STUN Servers
+
+```
+stun.l.google.com:19302
+stun1.l.google.com:19302
+stun2.l.google.com:19302
+stun3.l.google.com:19302
+stun4.l.google.com:19302
+```
+
+For further information to help you configure your infrastructure with your VOXO service, initiate a chat or email [support@voxo.co](support@voxo.co).
