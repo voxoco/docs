@@ -1,0 +1,134 @@
+# Users
+
+---
+
+## Get User By Id {{ tag: 'GET', label: 'https://api.voxo.co/users/{recordId}' }}
+
+<Row>
+  <Col>
+    <strong>Fetch user by Id</strong>
+
+    ### Parameters
+
+     <strong>Path</strong>
+
+    <Properties>
+       <Property name="recordId*" type="Integer">
+            1234
+       </Property>
+    </Properties>
+
+    <strong>Header</strong>
+
+    <Properties>
+      <Property name="Authorization*" type="String">
+        Bearer `{AccessToken}`
+      </Property>
+      <Property name="Content-Type*" type="String">
+        application/json
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    ```json {{ title: 'Response' }}
+    {
+        "id": 1392,
+        "tenantId": 37,
+        "receiveQueueReports": 0,
+        "email": "jh@hu.com",
+        "emailField": null,
+        "avatarPath": null,
+        "avatarFileName": null,
+        "userRole": 5,
+        "us_useldap": "",
+        "resetToken": null,
+        "online": 0,
+        "lastOnline": null,
+        "enableCallNotifications": 1,
+        "enableChatNotifications": 0,
+        "integrationId": null,
+        "timezone": null,
+        "adminQueues": [],
+        "tenantIds": [],
+        "name": "flka",
+        "extNum": "90809"
+    }
+    ```
+  </Col>
+</Row>
+
+
+```bash {{ title: 'cURL' }}
+curl --location -g \
+--request GET 'https://api.voxo.com/users/1234' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {accessToken}'
+```
+
+---
+
+## Get All Users {{ tag: 'GET', label: 'https://api.voxo.co/users/?tenantId={tenantId}' }}
+
+<Row>
+  <Col>
+    <strong>Fetch all users your user has access</strong>
+
+    ### Parameters
+
+     <strong>Query</strong>
+
+    <Properties>
+       <Property name="tenantId*" type="Integer" />
+    </Properties>
+
+    <strong>Header</strong>
+
+    <Properties>
+      <Property name="Authorization*" type="String">
+        Bearer `{AccessToken}`
+      </Property>
+      <Property name="Content-Type*" type="String">
+        application/json
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    ```json {{ title: 'Response' }}
+    [
+        {
+            "id": 1392,
+            "tenantId": 37,
+            "receiveQueueReports": 0,
+            "email": "jh@hu.com",
+            "emailField": null,
+            "avatarPath": null,
+            "avatarFileName": null,
+            "userRole": 5,
+            "us_useldap": "",
+            "resetToken": null,
+            "online": 0,
+            "lastOnline": null,
+            "enableCallNotifications": 1,
+            "enableChatNotifications": 0,
+            "integrationId": null,
+            "timezone": null,
+            "adminQueues": [],
+            "tenantIds": [],
+            "name": "flka",
+            "extNum": "90809"
+        }
+    ]
+    ```
+  </Col>
+</Row>
+
+
+```bash {{ title: 'cURL' }}
+curl --location -g \
+--request GET 'https://api.voxo.com/users/?tenantId=37' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {accessToken}'
+```
+

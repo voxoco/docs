@@ -1,23 +1,22 @@
-# Account Branches 
+# Conference Rooms
 
 ---
 
-## Get Account Branches by Id {{ tag: 'POST', label: 'https://api.voxo.co/branches/{branchId}' }}
+## Get Conference Room By Id {{ tag: 'GET', label: 'https://api.voxo.co/conference-bridges/{recordId}' }}
 
 <Row>
   <Col>
-    Retreive a single branch with specified account id
+    Retrieve all conference rooms for authorized tenant accounts
 
     ### Parameters
 
      <strong>Path</strong>
 
     <Properties>
-      <Property name="branchId*" type="Integer" >
-        1234
-      </Property>
+       <Property name="recordedId*" type="Integer" >
+            1234
+       </Property>
     </Properties>
-
 
     <strong>Header</strong>
 
@@ -34,39 +33,40 @@
   <Col sticky>
     ```json {{ title: 'Response' }}
     {
-        "id": 758,
+        "id": 39,
         "tenantId": 432,
-        "name": "Executive"
+        "name": "General",
+        "number": "1606"
     }
     ```
-
   </Col>
 </Row>
 
+
 ```bash {{ title: 'cURL' }}
-curl --location -g --request GET 'https://api.voxo.com/branches/123' \
+curl --location -g \
+--request GET 'https://api.voxo.com/conference-bridges/1234' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer {accessToken}'
 ```
 
---- 
+---
 
-## Get All Account Branches {{ tag: 'POST', label: 'https://api.voxo.co/branches?tenantId={tenantId}' }}
+## Get All Conference Rooms {{ tag: 'GET', label: 'https://api.voxo.co/conference-bridges?tenantId={tenantId}' }}
 
 <Row>
   <Col>
-    Retreive all account branches for a specified account id
+    Retrieve all conference rooms for authorized tenant accounts
 
     ### Parameters
 
-     <strong>Query</strong>
+     <strong>Path</strong>
 
     <Properties>
-      <Property name="tenantId*" type="Integer" >
-        1234
-      </Property>
+       <Property name="tenantId*" type="Integer" >
+            1234
+       </Property>
     </Properties>
-
 
     <strong>Header</strong>
 
@@ -82,20 +82,22 @@ curl --location -g --request GET 'https://api.voxo.com/branches/123' \
   </Col>
   <Col sticky>
     ```json {{ title: 'Response' }}
-    [
-        {
-            "id": 758,
-            "tenantId": 432,
-            "name": "Executive"
-        }
-    ]
+        [
+            {
+                "id": 39,
+                "tenantId": 432,
+                "name": "General",
+                "number": "1606"
+            }
+        ]
     ```
-
   </Col>
 </Row>
 
+
 ```bash {{ title: 'cURL' }}
-curl --location -g --request GET 'https://api.voxo.com/branches?tenantId=432' \
+curl --location -g \
+--request GET 'https://api.voxo.com/conference-bridges?tenantId=432' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer {accessToken}'
 ```

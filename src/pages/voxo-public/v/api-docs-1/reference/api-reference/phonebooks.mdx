@@ -1,0 +1,176 @@
+# Phonebooks
+
+---
+
+## Get Phonebook By Id {{ tag: 'GET', label: 'https://api.voxo.co/phonebooks/{recordId}' }}
+
+<Row>
+  <Col>
+    <strong>Retrieve phone book by Id</strong>
+
+    ### Parameters
+
+     <strong>Path</strong>
+
+    <Properties>
+       <Property name="recordId*" type="Integer">
+            1234
+       </Property>
+    </Properties>
+
+    <strong>Header</strong>
+
+    <Properties>
+      <Property name="Authorization*" type="String">
+        Bearer `{AccessToken}`
+      </Property>
+      <Property name="Content-Type*" type="String">
+        application/json
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    ```json {{ title: 'Response' }}
+    {
+        "id": 2,
+        "name": "OMNIA-1004",
+        "includeExt": "no",
+        "tenantId": 37
+    }
+    ```
+  </Col>
+</Row>
+
+
+```bash {{ title: 'cURL' }}
+curl --location -g \
+--request GET 'https://api.voxo.com/phonebooks/1234' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {accessToken}'
+```
+
+---
+
+## Get All Phonebooks {{ tag: 'GET', label: 'https://api.voxo.co/phonebooks?tenantId={tenantId}' }}
+
+<Row>
+  <Col>
+    <strong>Retrieve phone book list for authorized accounts</strong>
+
+    ### Parameters
+
+     <strong>Query</strong>
+
+    <Properties>
+       <Property name="tenantId*" type="Integer" >
+            12345
+       </Property>
+    </Properties>
+
+    <strong>Header</strong>
+
+    <Properties>
+      <Property name="Authorization*" type="String">
+        Bearer `{AccessToken}`
+      </Property>
+      <Property name="Content-Type*" type="String">
+        application/json
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    ```json {{ title: 'Response' }}
+    [
+        {
+            "id": 2,
+            "name": "OMNIA-1004",
+            "includeExt": "no",
+            "tenantId": 37
+        },
+        {
+            "id": 95,
+            "name": "OMNIA-1007",
+            "includeExt": "no",
+            "tenantId": 37
+        },
+        {
+            "id": 183,
+            "name": "0004f2c6a3cb",
+            "includeExt": "no",
+            "tenantId": 37
+        },
+        {
+            "id": 781,
+            "name": "0004f2cb02e5",
+            "includeExt": "no",
+            "tenantId": 37
+        },
+        {
+            "id": 939,
+            "name": "Default",
+            "includeExt": "yes",
+            "tenantId": 37
+        },
+        {
+            "id": 973,
+            "name": "0004f28c07ea",
+            "includeExt": "no",
+            "tenantId": 37
+        },
+        {
+            "id": 991,
+            "name": "test",
+            "includeExt": "no",
+            "tenantId": 37
+        },
+        {
+            "id": 1349,
+            "name": "64167f0df998",
+            "includeExt": "no",
+            "tenantId": 37
+        },
+        {
+            "id": 1353,
+            "name": "0004f27eb969",
+            "includeExt": "no",
+            "tenantId": 37
+        },
+        {
+            "id": 1579,
+            "name": "OMNIA-1001",
+            "includeExt": "no",
+            "tenantId": 37
+        },
+        {
+            "id": 1587,
+            "name": "billy",
+            "includeExt": "no",
+            "tenantId": 37
+        },
+        {
+            "id": 1588,
+            "name": "fred",
+            "includeExt": "no",
+            "tenantId": 37
+        },
+        {
+            "id": 1595,
+            "name": "OMNIA-5193",
+            "includeExt": "no",
+            "tenantId": 37
+        }
+    ]
+    ```
+  </Col>
+</Row>
+
+
+```bash {{ title: 'cURL' }}
+curl --location -g \
+--request GET 'https://api.voxo.com/phonebooks?tenantId=37' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {accessToken}'
+```
+

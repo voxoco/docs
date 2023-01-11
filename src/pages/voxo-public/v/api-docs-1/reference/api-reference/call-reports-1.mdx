@@ -1,0 +1,163 @@
+# Call Reports (CDR)
+
+---
+
+## Get Call Reports {{ tag: 'GET', label: 'https://api.voxo.co/call-reports' }}
+
+<Row>
+  <Col>
+    Return the call detail records for an account for a specified date range. The max range allowed between start and end is 31 days.
+
+    This endpoint is valid for account admin, reports admin, and partner admin roles user and requires an access token. See [Authentication](https://docs.voxo.co/voxo-public/v/api-docs-1/reference/api-reference/authentication)Authentication for details on obtaining an access token.
+
+    <div>
+        <strong>Partner admin accounts are not required to pass a billingCode or tenantId param. Data for this request will be limited to a 24 hour period.</strong>
+    </div>
+
+    ### Parameters
+
+     <strong>Query</strong>
+
+    <Properties>
+       <Property name="tenantId*" type="Integer" >
+            Id of the account for which to query records. Not required for partner admin users if billingCode is provided. See notes!
+       </Property>
+       <Property name="billingCode" >
+            Required if tenantId not provided. Partner admin users only. See notes!
+       </Property>
+       <Property name="start*" >
+            start date - YYYY-MM-DD HH:MM:SS
+       </Property>
+       <Property name="end*" >
+            end date - YYYY-MM-DD HH:MM:SS
+       </Property>
+       <Property name="timezone" >
+            Timezone of the requested start and end dates. Defaults to America/Chicago if not included.
+       </Property>
+    </Properties>
+
+    <strong>Header</strong>
+
+    <Properties>
+      <Property name="Authorization*" type="String">
+        Bearer `{AccessToken}`
+      </Property>
+      <Property name="Content-Type*">
+        application/json
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    ```json {{ title: 'Response' }}
+    [
+        {
+            "id": "2d275d62-706c-42d2-a4d4-e4ef53d83974",
+            "time": "10/10/22 23:07:20",
+            "callerIdNumber": "5555555555",
+            "callerIdName": "BILL CLINTON",
+            "dialedNum": "5555555555",
+            "direction": "IN",
+            "disposition": "ANSWERED",
+            "duration": 4,
+            "percentJitter": 0,
+            "packetLoss": 0,
+            "qos": 0,
+            "uniqueId": "atl-ast2-1665457640.1430167",
+            "prevUniqueId": "",
+            "whoAnswered": "",
+            "recorded": 0,
+            "queueCall": 0,
+            "ocn": "8911",
+            "ani": "5555555555",
+            "lata": "826",
+            "city": "KINGSTON",
+            "rateCenter": "KINGSTON",
+            "state": "JM",
+            "jurisdiction": "INTERSTATE",
+            "local": 0,
+            "lec": "JAMAICA TELEPHONE CO.",
+            "lecType": "CLEC",
+            "spid": null,
+            "isTollFree": null,
+            "nextUniqueId": "",
+            "isInternational": null,
+            "presented": 1,
+            "mos": 0,
+            "callOutcome": "",
+            "afterAnswerDuration": 4,
+            "outgoingCidNum": null,
+            "billingId": null,
+            "partnerId": null,
+            "geolocation": null
+        },
+        {
+            "id": "ae8a5f62-7bd3-46a0-84d6-a3d46b35c886",
+            "time": "10/10/22 19:49:16",
+            "callerIdNumber": "5555555555",
+            "callerIdName": "FRED DURST",
+            "dialedNum": "5555555555",
+            "direction": "IN",
+            "disposition": "NO ANSWER",
+            "duration": 3,
+            "percentJitter": 0,
+            "packetLoss": 0,
+            "qos": 1,
+            "uniqueId": "atl-ast2-1665445756.1422469",
+            "prevUniqueId": "",
+            "whoAnswered": "",
+            "recorded": 0,
+            "queueCall": 0,
+            "ocn": null,
+            "ani": null,
+            "lata": null,
+            "city": null,
+            "rateCenter": null,
+            "state": null,
+            "jurisdiction": null,
+            "local": null,
+            "lec": null,
+            "lecType": null,
+            "spid": null,
+            "isTollFree": null,
+            "nextUniqueId": "",
+            "isInternational": null,
+            "presented": 0,
+            "mos": 4.4,
+            "callOutcome": "",
+            "afterAnswerDuration": 0,
+            "outgoingCidNum": null,
+            "billingId": null,
+            "partnerId": null,
+            "geolocation": null
+        },
+    ]
+    ```
+  </Col>
+</Row>
+
+Bearer
+
+application/json
+
+
+```bash {{ title: 'cURL' }}
+// Providing a Account Id (tenantId)
+curl --location -g \
+--request GET 'api.voxo.co/call-reports?tenantId=37&start=2022-10-10 00:00:00&end=2022-12-11 00:00:00&timezone=America/New_York' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer accessToken'
+
+// Providing A Billing Code
+curl --location -g \
+--request GET 'api.voxo.co/call-reports?billingCode=XXXX&start=2022-10-10 00:00:00&end=2022-12-11 00:00:00&timezone=Europe/Dublin' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer accessToken'
+
+
+// 24 Hour Range Request (All Partner CDR)
+curl --location -g \
+--request GET 'api.voxo.co/call-reports?start=2022-10-10 00:00:00&end=2022-12-11 00:00:00&timezone=Europe/Dublin' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer accessToken'
+```

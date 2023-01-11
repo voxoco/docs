@@ -1,0 +1,124 @@
+
+# Devices
+
+---
+
+## Get Device By Id {{ tag: 'GET', label: 'https://api.voxo.co/devices/{recordId}' }}
+
+<Row>
+  <Col>
+    Retrieve single device by Id
+
+    ### Parameters
+
+     <strong>Path</strong>
+
+    <Properties>
+       <Property name="recordId*" type="Integer" >
+            1234
+       </Property>
+    </Properties>
+
+    <strong>Header</strong>
+
+    <Properties>
+      <Property name="Authorization*" type="String">
+        Bearer `{AccessToken}`
+      </Property>
+      <Property name="Content-Type*" type="String">
+        application/json
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    ```json {{ title: 'Response' }}
+    {
+        "id": 34,
+        "tenantId": 432,
+        "name": "2043",
+        "mac": "00:00:00:00:00:00",
+        "phLine1ExId": 160,
+        "phPmId": 22,
+        "deviceModel": "Polycom",
+        "phonebookIds": [
+            2,
+            253,
+            905
+        ],
+        "tenantName": "The White House",
+        "tenantCode": "the"
+    }
+    ```
+  </Col>
+</Row>
+
+
+```bash {{ title: 'cURL' }}
+curl --location -g \
+--request GET 'https://api.voxo.com/devices/1234' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {accessToken}'
+```
+
+---
+
+## Get All Devices {{ tag: 'GET', label: 'https://api.voxo.co/devices/?tenantId={tenantId}' }}
+
+<Row>
+  <Col>
+    Retrieve devices registered to an authorized tenant account
+
+    ### Parameters
+
+     <strong>Query</strong>
+
+    <Properties>
+       <Property name="tenantId*" type="Integer" >
+            1234
+       </Property>
+    </Properties>
+
+    <strong>Header</strong>
+
+    <Properties>
+      <Property name="Authorization*" type="String">
+        Bearer `{AccessToken}`
+      </Property>
+      <Property name="Content-Type*" type="String">
+        application/json
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    ```json {{ title: 'Response' }}
+    [
+        {
+            "id": 34,
+            "tenantId": 432,
+            "name": "2043",
+            "mac": "00:00:00:00:00:00",
+            "phLine1ExId": 160,
+            "phPmId": 22,
+            "deviceModel": "Polycom",
+            "phonebookIds": [
+                2,
+                253,
+                905
+            ],
+            "tenantName": "The White House",
+            "tenantCode": "the"
+        }
+    ]
+    ```
+  </Col>
+</Row>
+
+
+```bash {{ title: 'cURL' }}
+curl --location -g \
+--request GET 'https://api.voxo.com/devices/?tenantId=432' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {accessToken}'
+```

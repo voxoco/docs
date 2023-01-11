@@ -1,0 +1,49 @@
+# VOXO MEET
+
+---
+
+## Voxo Meet Credentials {{ tag: 'GET', label: 'https://api.voxo.co/voxo-meet-creds?ext={extNum}&tenantId={tenantId}' }}
+
+<Row>
+  <Col>
+    <strong>Receive VOXO web and dial in meet credentials</strong>
+
+    ### Parameters
+
+     <strong>Path</strong>
+
+    <Properties>
+       <Property name="recordId*" type="Integer">
+            1234
+       </Property>
+    </Properties>
+
+    <strong>Header</strong>
+
+    <Properties>
+      <Property name="Authorization*" type="String">
+        Bearer `{AccessToken}`
+      </Property>
+      <Property name="Content-Type*" type="String">
+        application/json
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    ```json {{ title: 'Response' }}
+    {
+        "meetURL": "https://meet.voxo.co/shangadang",
+        "dialIn": "1.601.602.5068 PIN: 3876287805#"
+    }
+    ```
+  </Col>
+</Row>
+
+
+```bash {{ title: 'cURL' }}
+curl --location -g \
+--request GET 'https://api.voxo.com/voxo-meet-creds?ext=1001&tenantId=37' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {accessToken}'
+```

@@ -334,119 +334,119 @@ export const apiNav = [
       },
       {
         title: 'Accounts',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/accounts',
       },
       {
         title: 'Account Branches',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/branches',
       },
       {
         title: 'Call Blocking',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/call-blocking',
       },
       {
         title: 'Call Groups',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/huntlists',
       },
       {
         title: 'Call Queues',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/queues',
       },
       {
         title: 'Call Queue Manager',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/queue-managers',
       },
       {
         title: 'Call Recordings',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/call-reports',
       },
       {
         title: 'Call Reports (CDR)',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/call-reports-1',
       },
       {
         title: 'Conference Rooms',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/conference-bridges',
       },
       {
         title: 'Custom Destinations',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/customs',
       },
       {
         title: 'Devices',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/devices',
       },
       {
         title: 'E911 Locations',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/locations',
       },
       {
         title: 'Extensions',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/extensions',
       },
       {
         title: 'Feature Codes',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/features',
       },
       {
         title: 'Virtual Receptionists',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/ivrs',
       },
       {
         title: 'Mail To Fax Users',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/mail-to-faxes',
       },
       {
         title: 'Media Files',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/mediafiles',
       },
       {
         title: 'Music On Hold',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/musiconholds',
       },
       {
         title: 'Number Porting Orders',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/port-in-orders',
       },
       {
         title: 'Paging Groups',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/paging-groups',
       },
       {
         title: 'Parking Lots',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/parkinglots',
       },
       {
         title: 'Phonebooks',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/phonebooks',
       },
       {
         title: 'Phone Numbers (DID)',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/dids',
       },
       {
         title: 'Short Numbers',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/short-numbers',
       },
       {
         title: 'Time of Days',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/conditions',
       },
       {
         title: 'Users',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/users',
       },
       {
         title: 'Voicemails',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/voicemails',
       },
       {
         title: 'VOXO MEET',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/voxo-meet-creds',
       },
       {
         title: 'Webhooks',
-        href: '/voxo-public/v/api-docs-1/reference/api-reference',
+        href: '/voxo-public/v/api-docs-1/reference/api-reference/webhooks',
       },
     ],
   },
@@ -462,9 +462,9 @@ export function Navigation(props) {
   return (
     <nav {...props}>
       <ul role="list">
-        <TopLevelNavItem href="/">API</TopLevelNavItem>
-        <TopLevelNavItem href="#">Documentation</TopLevelNavItem>
-        <TopLevelNavItem href="#">Support</TopLevelNavItem>
+        <TopLevelNavItem href="/voxo-public/v/api-docs-1">API</TopLevelNavItem>
+        <TopLevelNavItem href="/voxo-public">Documentation</TopLevelNavItem>
+        <TopLevelNavItem href="/voxo-public">Support</TopLevelNavItem>
         {selectedNavs.map((group, groupIndex) => (
           <NavigationGroup
             key={group.title}

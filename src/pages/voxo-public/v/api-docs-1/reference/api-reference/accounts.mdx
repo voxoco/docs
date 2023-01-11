@@ -1,0 +1,159 @@
+# Accounts
+
+---
+
+## Get Account By Id {{ tag: 'GET', label: 'https://api.voxo.co/tenants/{tenantid}' }}
+
+<Row>
+  <Col>
+
+    Retrieve tenant account by id
+
+    ### Parameters
+
+     <strong>Path</strong>
+
+    <Properties>
+      <Property name="tenantId*" type="integer" >1234</Property>
+    </Properties>
+
+
+    <strong>Header</strong>
+
+    <Properties>
+      <Property name="Authorization*" type="string" >
+        Bearer `{accessToken}`
+      </Property>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    ```json {{ title: 'Response' }}
+    {
+        "id": 432,
+        "name": "The White House",
+        "timeZone": "America/Chicago",
+        "tenantCode": "the",
+        "alertEmail": "NULL",
+        "paymentType": "Post Paid",
+        "disabled": "0",
+        "maxChannels": -1,
+        "allowAnyCallerIdForEmerg": "on",
+        "te_cl_id": 0,
+        "rpId": null,
+        "te_billingcode": "NULL",
+        "recordingStorage": "",
+        "recordingHost": "",
+        "recordingUser": "",
+        "recordingPassword": "",
+        "recordingDir": "",
+        "te_defaultrrid": -1,
+        "provisioningDir": "",
+        "billDate": "2021-07-10",
+        "parkingLot": {
+            "id": 0,
+            "name": "the",
+            "start": 71,
+            "end": 74,
+            "hosted": "",
+            "tenantId": 432
+        },
+        "settings": {
+            "ADDITIONALDESTINATIONPEER": "caller",
+            "CALLWAITING": "yes",
+            "DEFAULTCALLERIDCF": "ORIGINAL",
+            "DEFAULTTIMEOUTCF": "30",
+            "DIALBYNAMEALWAYSPLAY": "no",
+            "DIALBYNAMEUSENAMES": "all",
+            "DIALBYNAMEUSEVMGREETING": "yes",
+            "DIALTIMEOUT": "180",
+            "EXTDIALTIMEOUT": "15",
+            "FAKERINGING": "on",
+            "FAXOUTPREFIX": "2329",
+            "INTERNALRING": "Bellcore-dr2",
+            "MAXCALLDURATION": "28800",
+            "ONINTERNALCALLBUSY": "askforreservation",
+            "PAGEINUSE": "CHECK",
+            "PARKTIMEOUT": "120",
+            "QUEUERING": "Bellcore-dr4",
+            "RECORDINGBEEP": "on",
+            "SMSSTORE": "yes",
+            "TRANSFERRING": "Bellcore-dr1",
+            "VMAUTORECOVER": "no",
+            "VMSAMEPASSWORD": "no",
+            "WEBCALLS": "no",
+            "WORKINGHOURS": "0"
+        },
+        "integrations": [],
+        "extensionsCount": 0,
+        "didsCount": 0,
+        "usersCount": 0,
+        "callWaiting": "yes",
+        "incomingRingsCount": "15",
+        "parkinglotTimeout": "120",
+        "enablePassword": "no",
+        "parkinglot": 4,
+        "webhooks": []
+    }
+    ```
+
+  </Col>
+</Row>
+
+
+```bash {{ title: 'cURL' }}
+curl --location -g --request GET 'https://api.voxo.com/tenants/432' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {accessToken}'
+```
+
+## Get All Accounts {{ tag: 'GET', label: 'https://api.voxo.co/tenants' }}
+
+<Row>
+  <Col>
+
+    Retrieve all tenant accounts
+
+    ### Parameters
+
+     <strong>Header</strong>
+
+    <Properties>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+      <Property name="Authorization*" type="string" >Bearer `{accessToken}`</Property>
+    </Properties>
+  </Col>
+  <Col sticky>
+    ```json {{ title: 'Response' }}
+    [
+        {
+            "id": 409,
+            "name": "amon amarth",
+            "timeZone": "America/Los_Angeles",
+            "tenantCode": "amo"
+        },
+        {
+            "id": 379,
+            "name": "Box-Jenkins",
+            "timeZone": "America/Chicago",
+            "tenantCode": "box"
+        },
+        {
+            "id": 432,
+            "name": "The White House",
+            "timeZone": "America/Chicago",
+            "tenantCode": "the"
+        }
+    ]
+    ```
+
+  </Col>
+</Row>
+
+
+```bash {{ title: 'cURL' }}
+curl --location -g --request GET 'https://api.voxo.com/tenants' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {accessToken}'
+```

@@ -1,23 +1,23 @@
-# Account Branches 
+
+# Mail To Fax Users
 
 ---
 
-## Get Account Branches by Id {{ tag: 'POST', label: 'https://api.voxo.co/branches/{branchId}' }}
+## Get Mail To Fax User By Id {{ tag: 'GET', label: 'https://api.voxo.co/mail-to-faxes/{recordId}' }}
 
 <Row>
   <Col>
-    Retreive a single branch with specified account id
+    <strong>Retrieve single User with Mail to Fax Privileges by Id</strong>
 
     ### Parameters
 
      <strong>Path</strong>
 
     <Properties>
-      <Property name="branchId*" type="Integer" >
-        1234
-      </Property>
+       <Property name="recordId*" type="Integer" >
+            1234
+       </Property>
     </Properties>
-
 
     <strong>Header</strong>
 
@@ -34,39 +34,41 @@
   <Col sticky>
     ```json {{ title: 'Response' }}
     {
-        "id": 758,
+        "id": 7,
         "tenantId": 432,
-        "name": "Executive"
+        "name": "Freddy",
+        "email": "freddy@freddy.com",
+        "cidnum": "1111111111"
     }
     ```
-
   </Col>
 </Row>
 
+
 ```bash {{ title: 'cURL' }}
-curl --location -g --request GET 'https://api.voxo.com/branches/123' \
+curl --location -g \
+--request GET 'https://api.voxo.com/mail-to-faxes/1234' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer {accessToken}'
 ```
 
---- 
+---
 
-## Get All Account Branches {{ tag: 'POST', label: 'https://api.voxo.co/branches?tenantId={tenantId}' }}
+## Get All Mail To Fax Users {{ tag: 'GET', label: 'https://api.voxo.co/mail-to-faxes?tenantId={tenantId}' }}
 
 <Row>
   <Col>
-    Retreive all account branches for a specified account id
+    <strong>Retrieve Users with Mail to Fax Privileges. Parameters Query</strong>
 
     ### Parameters
 
      <strong>Query</strong>
 
     <Properties>
-      <Property name="tenantId*" type="Integer" >
-        1234
-      </Property>
+       <Property name="tenantId*" type="Integer" >
+            1234
+       </Property>
     </Properties>
-
 
     <strong>Header</strong>
 
@@ -84,18 +86,22 @@ curl --location -g --request GET 'https://api.voxo.com/branches/123' \
     ```json {{ title: 'Response' }}
     [
         {
-            "id": 758,
+            "id": 7,
             "tenantId": 432,
-            "name": "Executive"
+            "name": "Freddy",
+            "email": "freddy@freddy.com",
+            "cidnum": "1111111111"
         }
     ]
     ```
-
   </Col>
 </Row>
 
+
 ```bash {{ title: 'cURL' }}
-curl --location -g --request GET 'https://api.voxo.com/branches?tenantId=432' \
+curl --location -g \
+--request GET 'https://api.voxo.com/mail-to-faxes?tenantId=432' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer {accessToken}'
 ```
+

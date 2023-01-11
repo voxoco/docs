@@ -1,23 +1,20 @@
-# Account Branches 
+# Time of Days
 
 ---
 
-## Get Account Branches by Id {{ tag: 'POST', label: 'https://api.voxo.co/branches/{branchId}' }}
+## Get Time of Day By Id {{ tag: 'GET', label: 'https://api.voxo.co/conditions{recordId}' }}
 
 <Row>
   <Col>
-    Retreive a single branch with specified account id
+    <strong>Get single time of days record by Id</strong>
 
     ### Parameters
 
      <strong>Path</strong>
 
     <Properties>
-      <Property name="branchId*" type="Integer" >
-        1234
-      </Property>
+       <Property name="recordId*" />
     </Properties>
-
 
     <strong>Header</strong>
 
@@ -34,39 +31,40 @@
   <Col sticky>
     ```json {{ title: 'Response' }}
     {
-        "id": 758,
+        "id": 309,
         "tenantId": 432,
-        "name": "Executive"
+        "name": "test",
+        "type": "WEEKTIME",
+        "timezone": "America/Chicago",
+        "param1": ""
     }
     ```
-
   </Col>
 </Row>
 
+
 ```bash {{ title: 'cURL' }}
-curl --location -g --request GET 'https://api.voxo.com/branches/123' \
+curl --location -g \
+--request GET 'https://api.voxo.com/conditions/1234' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer {accessToken}'
 ```
 
---- 
+---
 
-## Get All Account Branches {{ tag: 'POST', label: 'https://api.voxo.co/branches?tenantId={tenantId}' }}
+## Get All Time of Days {{ tag: 'GET', label: 'https://api.voxo.co/conditions?tenantId={tenantId}' }}
 
 <Row>
   <Col>
-    Retreive all account branches for a specified account id
+    <strong>Get all time of days for accounts you are authorized for</strong>
 
     ### Parameters
 
      <strong>Query</strong>
 
     <Properties>
-      <Property name="tenantId*" type="Integer" >
-        1234
-      </Property>
+       <Property name="tenantId*" type="Integer" />
     </Properties>
-
 
     <strong>Header</strong>
 
@@ -84,18 +82,23 @@ curl --location -g --request GET 'https://api.voxo.com/branches/123' \
     ```json {{ title: 'Response' }}
     [
         {
-            "id": 758,
+            "id": 309,
             "tenantId": 432,
-            "name": "Executive"
+            "name": "test",
+            "type": "WEEKTIME",
+            "timezone": "America/Chicago",
+            "param1": ""
         }
     ]
     ```
-
   </Col>
 </Row>
 
+
 ```bash {{ title: 'cURL' }}
-curl --location -g --request GET 'https://api.voxo.com/branches?tenantId=432' \
+curl --location -g \
+--request GET 'https://api.voxo.com/conditions?tenantId=432' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer {accessToken}'
 ```
+

@@ -1,19 +1,19 @@
-# Account Branches 
+# Call Queues
 
 ---
 
-## Get Account Branches by Id {{ tag: 'POST', label: 'https://api.voxo.co/branches/{branchId}' }}
+## Call Queues {{ tag: 'GET', label: 'https://api.voxo.co/queues/{recordId}' }}
 
 <Row>
   <Col>
-    Retreive a single branch with specified account id
+    Retreive call queue by Id 
 
     ### Parameters
 
      <strong>Path</strong>
 
     <Properties>
-      <Property name="branchId*" type="Integer" >
+      <Property name="recordId*" type="Integer" >
         1234
       </Property>
     </Properties>
@@ -33,29 +33,34 @@
   </Col>
   <Col sticky>
     ```json {{ title: 'Response' }}
-    {
-        "id": 758,
-        "tenantId": 432,
-        "name": "Executive"
-    }
+        {
+            "id": 298,
+            "tenantId": 37,
+            "name": "Test Queue",
+            "number": "",
+            "hostServer": "atl-ast2",
+            "recording": "no",
+            "ringStrategy": "RINGALL"
+        }
     ```
-
   </Col>
 </Row>
 
+
 ```bash {{ title: 'cURL' }}
-curl --location -g --request GET 'https://api.voxo.com/branches/123' \
+curl --location -g \
+--request GET 'https://api.voxo.com/queues/1234' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer {accessToken}'
 ```
 
---- 
+---
 
-## Get All Account Branches {{ tag: 'POST', label: 'https://api.voxo.co/branches?tenantId={tenantId}' }}
+## Get All Call Queues {{ tag: 'GET', label: 'https://api.voxo.co/queues?tenantId={tenantId}' }}
 
 <Row>
   <Col>
-    Retreive all account branches for a specified account id
+    Retreive queues for specific account 
 
     ### Parameters
 
@@ -82,20 +87,25 @@ curl --location -g --request GET 'https://api.voxo.com/branches/123' \
   </Col>
   <Col sticky>
     ```json {{ title: 'Response' }}
-    [
-        {
-            "id": 758,
-            "tenantId": 432,
-            "name": "Executive"
-        }
-    ]
+        [
+            {
+                "id": 298,
+                "tenantId": 37,
+                "name": "Test Queue",
+                "number": "",
+                "hostServer": "atl-ast2",
+                "recording": "no",
+                "ringStrategy": "RINGALL"
+            }
+        ]
     ```
-
   </Col>
 </Row>
 
+
 ```bash {{ title: 'cURL' }}
-curl --location -g --request GET 'https://api.voxo.com/branches?tenantId=432' \
+curl --location -g \
+--request GET 'https://api.voxo.com/queues/?tenantId=37' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer {accessToken}'
 ```

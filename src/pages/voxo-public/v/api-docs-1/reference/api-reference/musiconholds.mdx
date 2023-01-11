@@ -1,23 +1,25 @@
-# Account Branches 
+
+# Music On Hold
 
 ---
 
-## Get Account Branches by Id {{ tag: 'POST', label: 'https://api.voxo.co/branches/{branchId}' }}
+## Get Music On Hold By Id {{ tag: 'GET', label: 'undefined/musiconholds/{recordId} baseUrl=' }}
 
 <Row>
   <Col>
-    Retreive a single branch with specified account id
+    <strong>Get media file information by Id</strong>
+
+    Retrieving a media file by id will return a url to download the file.
 
     ### Parameters
 
      <strong>Path</strong>
 
     <Properties>
-      <Property name="branchId*" type="Integer" >
-        1234
-      </Property>
+       <Property name="recordId*" type="Integer" >
+            1234
+       </Property>
     </Properties>
-
 
     <strong>Header</strong>
 
@@ -34,39 +36,39 @@
   <Col sticky>
     ```json {{ title: 'Response' }}
     {
-        "id": 758,
+        "id": 33,
         "tenantId": 432,
-        "name": "Executive"
+        "name": "Test"
     }
     ```
-
   </Col>
 </Row>
 
+
 ```bash {{ title: 'cURL' }}
-curl --location -g --request GET 'https://api.voxo.com/branches/123' \
+curl --location -g \
+--request GET 'https://api.voxo.com/musiconholds/1234' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer {accessToken}'
 ```
 
---- 
+---
 
-## Get All Account Branches {{ tag: 'POST', label: 'https://api.voxo.co/branches?tenantId={tenantId}' }}
+## Get All Music On Holds {{ tag: 'GET', label: 'https://api.voxo.co/musiconholds?tenantId={tenantId}' }}
 
 <Row>
   <Col>
-    Retreive all account branches for a specified account id
+    <strong>Retrieve music on hold records for a specific account.</strong>
 
     ### Parameters
 
      <strong>Query</strong>
 
     <Properties>
-      <Property name="tenantId*" type="Integer" >
-        1234
-      </Property>
+       <Property name="tenantId*" type="Integer" >
+            1234
+       </Property>
     </Properties>
-
 
     <strong>Header</strong>
 
@@ -84,18 +86,20 @@ curl --location -g --request GET 'https://api.voxo.com/branches/123' \
     ```json {{ title: 'Response' }}
     [
         {
-            "id": 758,
+            "id": 33,
             "tenantId": 432,
-            "name": "Executive"
+            "name": "Test"
         }
     ]
     ```
-
   </Col>
 </Row>
 
+
 ```bash {{ title: 'cURL' }}
-curl --location -g --request GET 'https://api.voxo.com/branches?tenantId=432' \
+curl --location -g \
+--request GET 'https://api.voxo.com/musiconholds?tenantId=432' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer {accessToken}'
 ```
+

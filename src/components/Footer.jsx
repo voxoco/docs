@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { Transition } from '@headlessui/react'
 
 import { Button } from '@/components/Button'
-import { navigation } from '@/components/Navigation'
+import { apiNav, navigation } from '@/components/Navigation'
 
 function CheckIcon(props) {
   return (
@@ -125,7 +125,9 @@ function PageLink({ label, page, previous = false }) {
 
 function PageNavigation() {
   let router = useRouter()
-  let allPages = navigation.flatMap((group) => group.links)
+  const isApiDocs = router.pathname.includes('/v/api-docs-1')
+  const selectedNavs = isApiDocs ? apiNav : navigation
+  let allPages = selectedNavs.flatMap((group) => group.links)
   let currentPageIndex = allPages.findIndex(
     (page) => page.href === router.pathname
   )

@@ -1,0 +1,166 @@
+
+# Number Porting Orders
+
+---
+
+## Get Port In Order By Id {{ tag: 'GET', label: 'https://api.voxo.co/port-in-orders/{orderId}' }}
+
+<Row>
+  <Col>
+    <strong>Retrieve a single port order by id</strong>
+
+    Retrieving a media file by id will return a url to download the file.
+
+    ### Parameters
+
+     <strong>Path</strong>
+
+    <Properties>
+       <Property name="orderId*" type="Integer" />
+    </Properties>
+
+    <strong>Header</strong>
+
+    <Properties>
+      <Property name="Authorization*" type="String">
+        Bearer `{AccessToken}`
+      </Property>
+      <Property name="Content-Type*" type="String">
+        application/json
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    ```json {{ title: 'Response' }}
+    {
+        "orderId": 1349286,
+        "customerOrderReference": "demo-687",
+        "orderStatus": "Closed",
+        "desiredDueDate": "2020-07-13T00:00:00.000+00:00",
+        "tnGroups": [
+            {
+            "telephoneNumber": "6012491040",
+            "tnStatus": "Complete",
+            "streetNum": "900",
+            "streetPreDir": "",
+            "streetName": "Cherry Street",
+            "streetType": "",
+            "locationType": "",
+            "locationNumber": "",
+            "city": "Summit",
+            "state": "MS",
+            "postalCode": "39666",
+            "tnGroup": "Group ID 323147 - AT&T Wireline (BellSouth)/1",
+            "name": "TT",
+            "trunkGroup": "RCFRILRC123_1045",
+            "accountNum": "123456",
+            "atn": "6012491040",
+            "accountPin": "9999",
+            "authName": "Freddie",
+            "authDate": "2020-07-09T05:00:00.000+00:00"
+            }
+        ]
+    }
+    ```
+  </Col>
+</Row>
+
+
+```bash {{ title: 'cURL' }}
+curl --location -g \
+--request GET 'https://api.voxo.com/port-in-orders/1234' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {accessToken}'
+```
+
+---
+
+## All Port In Orders {{ tag: 'GET', label: 'https://api.voxo.co/port-in-orders?orderRef={tenantId}' }}
+
+<Row>
+  <Col>
+    <strong>Retrieve all port orders for a specific account</strong>
+
+    ### Parameters
+
+     <strong>Query</strong>
+
+    <Properties>
+       <Property name="orderRef*" type="Integer" >
+            tenantId
+       </Property>
+    </Properties>
+
+    <strong>Header</strong>
+
+    <Properties>
+      <Property name="Authorization*" type="String">
+        Bearer `{AccessToken}`
+      </Property>
+      <Property name="Content-Type*" type="String">
+        application/json
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    ```json {{ title: 'Response' }}
+    [
+        {
+            "orderId": 1349294,
+            "orderStatus": "Closed",
+            "customerOrderReference": "demo-687",
+            "desiredDueDate": "2020-07-13T00:00:00.000+00:00",
+            "tnQuantity": 1,
+            "createdDate": "2020-07-10T00:00:00.000+00:00",
+            "createdUser": "api_user",
+            "focTnQuantity": 0,
+            "rejectedTnQuantity": 0,
+            "activatedTnQuantity": 1,
+            "focList": {
+                "focItem": [
+                    {
+                        "tnQuantity": 1,
+                        "focTnQuantity": 0,
+                        "rejectedTnQuantity": 0,
+                        "activatedTnQuantity": 1
+                    }
+                ]
+            }
+        },
+        {
+            "orderId": 1349286,
+            "orderStatus": "Closed",
+            "customerOrderReference": "demo-687",
+            "desiredDueDate": "2020-07-13T00:00:00.000+00:00",
+            "tnQuantity": 1,
+            "createdDate": "2020-07-10T00:00:00.000+00:00",
+            "createdUser": "api_user",
+            "focTnQuantity": 0,
+            "rejectedTnQuantity": 0,
+            "activatedTnQuantity": 1,
+            "focList": {
+                "focItem": [
+                    {
+                        "tnQuantity": 1,
+                        "focTnQuantity": 0,
+                        "rejectedTnQuantity": 0,
+                        "activatedTnQuantity": 1
+                    }
+                ]
+            }
+        }
+    ]
+    ```
+  </Col>
+</Row>
+
+
+```bash {{ title: 'cURL' }}
+curl --location -g \
+--request GET 'https://api.voxo.com/port-in-orders?orderRef=demo' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {accessToken}'
+```
+

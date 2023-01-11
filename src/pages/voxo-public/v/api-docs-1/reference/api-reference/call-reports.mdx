@@ -1,0 +1,193 @@
+
+# Call Recordings
+
+---
+
+## Get Call Recordings Records {{ tag: 'GET', label: 'https://api.voxo.co/call-reports' }}
+
+<Row>
+  <Col>
+    Retreive call queue by Id 
+
+    ### Parameters
+
+     <strong>Query</strong>
+
+    <Properties>
+      <Property name="recordType*" />
+      <Property name="start*" />
+      <Property name="end*" />
+      <Property name="tenantId*" type="Integer" />
+    </Properties>
+
+
+    <strong>Header</strong>
+
+    <Properties>
+      <Property name="Authorization*" type="String">
+        Bearer `{AccessToken}`
+      </Property>
+      <Property name="Content-Type">
+        application/json
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    ```json {{ title: 'Response' }}
+        [
+            {
+                "id": "2d275d62-706c-42d2-a4d4-e4ef53d83974",
+                "time": "10/10/22 23:07:20",
+                "callerIdNumber": "5555555555",
+                "callerIdName": "BILL CLINTON",
+                "dialedNum": "5555555555",
+                "direction": "IN",
+                "disposition": "ANSWERED",
+                "duration": 4,
+                "percentJitter": 0,
+                "packetLoss": 0,
+                "qos": 0,
+                "uniqueId": "atl-ast2-1665457640.1430167",
+                "prevUniqueId": "",
+                "whoAnswered": "",
+                "recorded": 1,
+                "queueCall": 0,
+                "ocn": "8911",
+                "ani": "5555555555",
+                "lata": "826",
+                "city": "KINGSTON",
+                "rateCenter": "KINGSTON",
+                "state": "JM",
+                "jurisdiction": "INTERSTATE",
+                "local": 0,
+                "lec": "JAMAICA TELEPHONE CO.",
+                "lecType": "CLEC",
+                "spid": null,
+                "isTollFree": null,
+                "nextUniqueId": "",
+                "isInternational": null,
+                "presented": 1,
+                "mos": 0,
+                "callOutcome": "",
+                "afterAnswerDuration": 4,
+                "outgoingCidNum": null,
+                "billingId": null,
+                "partnerId": null,
+                "geolocation": null
+            },
+            {
+                "id": "ae8a5f62-7bd3-46a0-84d6-a3d46b35c886",
+                "time": "10/10/22 19:49:16",
+                "callerIdNumber": "5555555555",
+                "callerIdName": "FRED DURST",
+                "dialedNum": "5555555555",
+                "direction": "IN",
+                "disposition": "NO ANSWER",
+                "duration": 3,
+                "percentJitter": 0,
+                "packetLoss": 0,
+                "qos": 1,
+                "uniqueId": "atl-ast2-1665445756.1422469",
+                "prevUniqueId": "",
+                "whoAnswered": "",
+                "recorded": 1,
+                "queueCall": 0,
+                "ocn": null,
+                "ani": null,
+                "lata": null,
+                "city": null,
+                "rateCenter": null,
+                "state": null,
+                "jurisdiction": null,
+                "local": null,
+                "lec": null,
+                "lecType": null,
+                "spid": null,
+                "isTollFree": null,
+                "nextUniqueId": "",
+                "isInternational": null,
+                "presented": 0,
+                "mos": 4.4,
+                "callOutcome": "",
+                "afterAnswerDuration": 0,
+                "outgoingCidNum": null,
+                "billingId": null,
+                "partnerId": null,
+                "geolocation": null
+            },
+        ]
+    ```
+  </Col>
+</Row>
+
+Bearer
+
+application/json
+
+
+```bash {{ title: 'cURL' }}
+curl --location -g \
+--request GET 'https://api.voxo.com/call-reports?recordType=recordings&start=2021-08-13 00:00:00&end=2021-08-14 00:00:00&tenantId=37' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {accessToken}'
+```
+
+---
+
+## Get Call Recording Audio {{ tag: 'GET', label: 'https://api.voxo.co/call-recordings/{recording_unique_id}' }}
+
+<Row>
+  <Col>
+    Returns URL to Call Recording
+
+    Allow fetching of temporary URL to call recording
+
+    ### Parameters
+
+     <strong>Path</strong>
+
+    <Properties>
+      <Property name="uniqueId*" >
+        atl-ast2-XXXX.XXX
+      </Property>
+    </Properties>
+
+    <strong>Query</strong>
+
+    <Properties>
+      <Property name="tenantId*" type="Integer">
+        12345
+      </Property>
+      <Property name="start*" />
+    </Properties>
+
+
+    <strong>Header</strong>
+
+    <Properties>
+      <Property name="Authorization*" type="String">
+        Bearer `{AccessToken}`
+      </Property>
+      <Property name="Content-Type">
+        application/json
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    ```json {{ title: 'Response' }}
+        {
+        "uri": "https://global-recordings.s3.amazonaws.com/demo/2021/08/13/19/atl-ast2-XXXXXX.mp3?AWSAccessKeyId=AKIAJ6AZSMGK4FVBK4BQ&Expires=1629121111&Signature=9o2P1B0rm%2BqmRRTqJXEuAv6%2BUt0%3D"
+        }
+    ```
+  </Col>
+</Row>
+
+
+```bash {{ title: 'cURL' }}
+curl --location -g \
+--request GET 'https://api.voxo.co/call-recordings/atl-ast2-1628901419.8373?tenantId=14234545341&start=2021-08-13%2019:36:59' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {accessToken}'
+```
