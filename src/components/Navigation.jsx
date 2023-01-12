@@ -105,7 +105,7 @@ function ActivePageMarker({ group, pathname }) {
   )
 }
 
-function NavigationGroup({ group, className }) {
+function NavigationGroup({ group, className, ...props }) {
   // If this is the mobile navigation then we always render the initial
   // state, so that the state does not change during the close animation.
   // The state will still update when we re-open (re-render) the navigation.
@@ -119,7 +119,7 @@ function NavigationGroup({ group, className }) {
     group.links.findIndex((link) => link.href === router.pathname) !== -1
 
   return (
-    <li className={clsx('relative mt-6', className)}>
+    <li className={clsx('relative mt-6', className)} {...props}>
       <motion.h2
         layout="position"
         className="text-xs font-semibold text-zinc-900 dark:text-white"
@@ -313,9 +313,6 @@ export const navigation = [
       },
     ],
   },
-]
-
-export const apiNav = [
   {
     title: 'Introduction',
     links: [
@@ -326,7 +323,7 @@ export const apiNav = [
     ],
   },
   {
-    title: 'Reference',
+    title: 'API Reference',
     links: [
       {
         title: '🔑 Authentication',
@@ -453,25 +450,22 @@ export const apiNav = [
 ]
 
 export function Navigation(props) {
-  const router = useRouter()
-
-  const isApiDocs = router.pathname.includes('/v/api-docs-1')
-
-  const selectedNavs = isApiDocs ? apiNav : navigation
-
   return (
     <nav {...props}>
       <ul role="list">
-        <TopLevelNavItem href="/voxo-public/v/api-docs-1">API</TopLevelNavItem>
+        <TopLevelNavItem href="/voxo-public/v/api-docs-1#Introduction">API</TopLevelNavItem>
         <TopLevelNavItem href="/voxo-public">Documentation</TopLevelNavItem>
         <TopLevelNavItem href="/voxo-public">Support</TopLevelNavItem>
-        {selectedNavs.map((group, groupIndex) => (
-          <NavigationGroup
-            key={group.title}
-            group={group}
-            className={groupIndex === 0 && 'md:mt-0'}
-          />
-        ))}
+        {navigation.map((group, groupIndex) => {
+          return (
+            <NavigationGroup
+              id={`${group.title}`}
+              key={group.title}
+              group={group}
+              className={groupIndex === 0 && 'md:mt-0'}
+            />
+          )
+        })}
         <li className="sticky bottom-0 z-10 mt-6 min-[416px]:hidden">
           <Button href="#" variant="filled" className="w-full">
             Sign in
