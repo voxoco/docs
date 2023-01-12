@@ -185,10 +185,6 @@ function NavigationGroup({ group, className, ...props }) {
 
 export const navigation = [
   {
-    title: 'API Docs',
-    links: [{ title: 'API Docs', href: '/voxo-public' }],
-  },
-  {
     title: 'RELEASE NOTES',
     links: [
       { title: "🎉 What's New", href: '/voxo-public/release-notes/whats-new' },
@@ -314,17 +310,12 @@ export const navigation = [
     ],
   },
   {
-    title: 'Introduction',
+    title: 'API Docs',
     links: [
       {
         title: 'Introduction',
         href: '/voxo-public/v/api-docs-1',
       },
-    ],
-  },
-  {
-    title: 'API Reference',
-    links: [
       {
         title: '🔑 Authentication',
         href: '/voxo-public/v/api-docs-1/reference/api-reference/authentication',
@@ -453,13 +444,15 @@ export function Navigation(props) {
   return (
     <nav {...props}>
       <ul role="list">
-        <TopLevelNavItem href="/voxo-public/v/api-docs-1#Introduction">API</TopLevelNavItem>
+        <TopLevelNavItem href="/voxo-public/v/api-docs-1#apidocs">
+          API
+        </TopLevelNavItem>
         <TopLevelNavItem href="/voxo-public">Documentation</TopLevelNavItem>
         <TopLevelNavItem href="/voxo-public">Support</TopLevelNavItem>
         {navigation.map((group, groupIndex) => {
           return (
             <NavigationGroup
-              id={`${group.title}`}
+              id={`${group.title.split(' ').join('').toLowerCase()}`}
               key={group.title}
               group={group}
               className={groupIndex === 0 && 'md:mt-0'}
