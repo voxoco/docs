@@ -76,8 +76,8 @@ export const Header = forwardRef(function Header({ className }, ref) {
       <div className="flex items-center gap-5">
         <nav className="hidden md:block">
           <ul role="list" className="flex items-center gap-8">
+            <TopLevelNavItem href="/voxo-public/omnia/overview">Omnia</TopLevelNavItem>
             <TopLevelNavItem href="/voxo-public/v/api-docs-1#apidocs">API</TopLevelNavItem>
-            <TopLevelNavItem href="/voxo-public">Documentation</TopLevelNavItem>
             <TopLevelNavItem href="/voxo-public">Support</TopLevelNavItem>
           </ul>
         </nav>
@@ -87,7 +87,7 @@ export const Header = forwardRef(function Header({ className }, ref) {
           <ModeToggle />
         </div>
         <div className="hidden min-[416px]:contents">
-          <Button href="#">Sign in</Button>
+          <Button target="_blank" href="https://app.voxo.co">Sign in</Button>
         </div>
       </div>
     </motion.div>
