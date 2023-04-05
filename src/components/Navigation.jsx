@@ -438,6 +438,15 @@ export const navigation = [
       },
     ],
   },
+  {
+    title: 'API Docs V2',
+    links: [
+      {
+        title: 'Introduction',
+        href: '/voxo-public/v/api-docs-2',
+      },
+    ],
+  },
 ]
 
 export function Navigation(props) {
