@@ -1,0 +1,293 @@
+# Webhooks 
+
+---
+
+## List Webhooks {{ tag: 'GET', label: 'https://api.voxo.co/webhooks?tenantId={tenantId}' }}
+
+<Row>
+  <Col>
+
+    <strong>List Webhooks</strong> 
+
+    ### Parameters
+
+    <Properties>
+      <Property name="tenantId*" type="integer" >1234</Property>
+    </Properties>
+
+
+    <strong>Header</strong>
+
+    <Properties>
+      <Property name="Authorization*" type="string" >
+        Bearer `{accessToken}`
+      </Property>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/webhooks?tenantId={tenantId}">
+
+    ```bash {{ title: 'cURL' }}
+    curl --location -g --request GET 'https://api.voxo.com/webhooks?tenantId={tenantId}' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {accessToken}'
+    ```
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    [
+        {
+        "id": 214,
+        "tenantId": 37,
+        "type": "STARTCALL",
+        "url": "https://hooks.zapier.com/hooks/catch/10781230/32s1lwb/"
+        },
+        {
+            "id": 232,
+            "tenantId": 37,
+            "type": "INBOUNDSMS",
+            "url": "https://hooks.zapier.com/hooks/standard/5249370/422cefe1c5524e7190f050cf97799dd9/"
+        }, 
+        ...
+    ],
+    ```
+  </Col>
+</Row>
+
+--- 
+
+## List Webhooks Types {{ tag: 'GET', label: 'https://api.voxo.co/webhooks/listTypes' }}
+
+<Row>
+  <Col>
+
+    <strong>List Webhooks Types</strong>
+
+    ### Parameters
+
+    <strong>Header</strong>
+
+    <Properties>
+      <Property name="Authorization*" type="string" >
+        Bearer `{accessToken}`
+      </Property>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/webhooks/listTypes">
+
+    ```bash {{ title: 'cURL' }}
+    curl --location -g --request GET 'https://api.voxo.com/webhooks/listTypes' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {accessToken}'
+    ```
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    [
+        {
+            "type": "SALESFORCECRM",
+            "description": "Webhook for salesforce call outcome"
+        },
+        {
+            "type": "ENDCALL",
+            "description": "Webhook for end of call"
+        },
+        {
+            "type": "MEDIAFLY",
+            "description": "Media Fly"
+        },
+        {
+            "type": "INBOUNDSMS",
+            "description": "Webhook for inbound SMS"
+        },
+        ...
+    ],
+    ```
+  </Col>
+</Row>
+
+---
+
+## Get A Webhook By ID {{ tag: 'GET', label: 'https://api.voxo.co/webhooks/:id' }}
+
+<Row>
+  <Col>
+
+    <strong>Get a webhook by ID</strong>
+
+    ### Parameters
+
+    <strong>Header</strong>
+
+    <Properties>
+      <Property name="Authorization*" type="string" >
+        Bearer `{accessToken}`
+      </Property>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/webhooks/:id">
+
+    ```bash {{ title: 'cURL' }}
+    curl --location -g --request GET 'https://api.voxo.com/webhooks/:id' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {accessToken}'
+    ```
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+        "id": 214,
+        "tenantId": 37,
+        "type": "STARTCALL",
+        "url": "https://hooks.zapier.com/hooks/catch/10781230/32s1lwb/"
+    },
+    ```
+  </Col>
+</Row>
+
+---
+
+## Create A Webhook {{ tag: 'POST', label: 'https://api.voxo.co/webhooks' }}
+
+<Row>
+  <Col>
+
+    <strong>Create a webhook</strong>
+
+    ### Header
+
+    <Properties>
+      <Property name="Authorization*" type="string" >
+        Bearer `{accessToken}`
+      </Property>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="POST" label="/webhooks">
+    ```bash {{ title: 'cURL' }}
+    curl --location -g --request POST 'https://api.voxo.com/webhooks' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {accessToken}'
+    ```
+    ```json {{ title: 'JSON' }}
+    {
+        "tenantId": 37,
+        "type": "SMS",
+        "url": "https://voxo.co"
+    }
+    ```
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+        "id": 234,
+        "tenantId": 37,
+        "type": "STARTCALL",
+        "url": "https://voxo.co"
+    },
+    ```
+  </Col>
+</Row>
+
+---
+
+## Remove A Webhook {{ tag: 'POST', label: 'https://api.voxo.co/webhooks/remove' }}
+
+<Row>
+  <Col>
+
+    <strong>Remove a webhook</strong>
+
+    ### Header
+
+    <Properties>
+      <Property name="Authorization*" type="string" >
+        Bearer `{accessToken}`
+      </Property>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="POST" label="/webhooks/remove">
+    ```bash {{ title: 'cURL' }}
+    curl --location -g --request POST 'https://api.voxo.com/webhooks/remove' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {accessToken}'
+    ```
+    ```json {{ title: 'JSON' }}
+    {
+        "webhookId": 234
+    }
+    ```
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+        "id": 234,
+        "tenantId": 37,
+        "type": "STARTCALL",
+        "url": "https://voxo.co"
+    },
+    ```
+  </Col>
+</Row>
+
+---
+
+## Update A Webhook {{ tag: 'POST', label: 'https://api.voxo.co/webhooks/update' }}
+
+<Row>
+  <Col>
+
+    <strong>Update a webhook</strong>
+
+    ### Header
+
+    <Properties>
+      <Property name="Authorization*" type="string" >
+        Bearer `{accessToken}`
+      </Property>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="POST" label="/webhooks/update">
+    ```bash {{ title: 'cURL' }}
+    curl --location -g --request POST 'https://api.voxo.com/webhooks/update' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {accessToken}'
+    ```
+    ```json {{ title: 'JSON' }}
+    {
+    "webhookId": 232,
+    "type": "INBOUNDSMS"
+    }
+    ```
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+        "id": 232,
+        "tenantId": 37,
+        "type": "INBOUNDSMS",
+        "url": "https://hooks.zapier.com/hooks/standard/5249370/422cefe1c5524e7190f050cf97799dd9/"
+    }
+    ```
+  </Col>
+</Row>
+

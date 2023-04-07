@@ -1,0 +1,564 @@
+# Campaigns
+
+---
+
+## List Campaigns {{ tag: 'GET', label: 'https://api.voxo.co/call-campaigns?tenantId={tenantId}' }}
+
+<Row>
+  <Col>
+
+    <strong>List all campaigns</strong>
+
+    ### Parameters
+
+    <Properties>
+      <Property name="tenantId*" type="integer" >1234</Property>
+    </Properties>
+
+
+    ### Header
+
+    <Properties>
+      <Property name="Authorization*" type="string" >
+        Bearer `{accessToken}`
+      </Property>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/call-campaigns?tenantId={tenantId}">
+
+    ```bash {{ title: 'cURL' }}
+    curl --location -g --request GET 'https://api.voxo.com/call-campaigns?tenantId={tenantId}' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {accessToken}'
+    ```
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    [
+      {
+        "id": 149,
+        "tenantId": 875,
+        "name": "fdafd",
+        "type": "SCHEDULED",
+        "dateStart": "2022-02-16",
+        "dateEnd": "2022-02-17",
+        "callerId": "6013151002",
+        "callDelay": 5000,
+        "state": "PAUSED",
+        "lastrun": "2022-02-16 14:33:45",
+        "dialtimeout": 0,
+        "tech": "SMS",
+        "message": "ghe",
+        "timeStart": "00:00",
+        "timeEnd": "00:00",
+        "timezone": "America/Chicago",
+        "callFrequency": 10,
+        "callHoursStart": null,
+        "callHoursEnd": null,
+        "recording": "no"
+      }, 
+      ...
+    ],
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Get Campaign By ID {{ tag: 'GET', label: 'https://api.voxo.co/call-campaigns/:campaignId' }}
+
+<Row>
+  <Col>
+    <strong>Retrieve campaign details by ID</strong>
+
+    ### Header
+
+    <Properties>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+      <Property name="Authorization*" type="string" >Bearer `{accessToken}`</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/call-campaigns/:campaignId">
+
+    ```bash {{ title: 'cURL' }}
+    curl --location -g --request GET 'https://api.voxo.com/call-campaigns/:campaignId' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {accessToken}'
+    ```
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+        "id": 149,
+        "tenantId": 875,
+        "name": "fdafd",
+        "type": "SCHEDULED",
+        "dateStart": "2022-02-16",
+        "dateEnd": "2022-02-17",
+        "callerId": "6013151002",
+        "callDelay": 5000,
+        "state": "PAUSED",
+        "lastrun": "2022-02-16 14:33:45",
+        "dialtimeout": 0,
+        "tech": "SMS",
+        "message": "ghe",
+        "timeStart": "00:00",
+        "timeEnd": "00:00",
+        "timezone": "America/Chicago",
+        "callFrequency": 10,
+        "callHoursStart": null,
+        "callHoursEnd": null,
+        "recording": "no",
+        "numbers": [],
+        "destinations": [],
+        "enableVMDetect": false,
+        "matchDestinations": [],
+        "notMatchDestinations": []
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Add Numbers to Campaign {{ tag: 'POST', label: 'https://api.voxo.co/call-campaigns/addNumbers' }}
+
+<Row>
+  <Col>
+
+    <strong>Add Numbers to a Campaign</strong>
+
+    ### Header
+
+    <Properties>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+      <Property name="Authorization*" type="string" >Bearer `{accessToken}`</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="POST" label="/call-campaigns/addNumbers">
+    ```bash {{ title: 'cURL' }}
+    curl --location -g --request POST 'https://api.voxo.com/call-campaigns/addNumbers' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {accessToken}'
+    ```
+    ```json {{ title: 'JSON' }}
+    {
+    "campaignId": 149,
+    "numbers": [
+        {
+            "number": "6015555567",
+            "description": "A new number"
+        },
+        {
+            "number": "6015515455",
+            "description": "Another number"
+        }
+      ]
+    }
+    ```
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "status": "success",
+      "message": "Numbers successfully added to campaign",
+      "campaignId": 149,
+      "campaign": "fdafd",
+      "numbers": [
+          {
+              "number": "6015555567",
+              "description": "A new number"
+          },
+          {
+              "number": "6015515455",
+              "description": "Another number"
+          }
+      ]
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Remove Number From Campaign {{ tag: 'POST', label: 'https://api.voxo.co/call-campaigns/removeNumbers' }}
+
+<Row>
+  <Col>
+    <strong>Remove Number from a Campaign</strong>
+
+    ### Header
+
+    <Properties>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+      <Property name="Authorization*" type="string" >Bearer `{accessToken}`</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="POST" label="/call-campaigns/removeNumbers">
+      ```bash {{ title: 'cURL' }}
+      curl --location -g --request POST 'https://api.voxo.com/call-campaigns/removeNumbers' \
+      --header 'Content-Type: application/json' \
+      --header 'Authorization: Bearer {accessToken}'
+      ```
+      ```json {{ title: 'JSON' }}
+      {
+          "campaignId": 149,
+          "numbers": [
+              "6015515455",
+              "6015555567"
+          ],
+          "purge": false
+      }
+      ```
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+        "status": "success",
+        "message": "Numbers successfully removed from campaign: 149",
+        "campaignId": 149,
+        "campaign": "fdafd",
+        "numbers": [
+            "6015515455",
+            "6015555567"
+        ]
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Set Campaign Ready {{ tag: 'POST', label: 'https://api.voxo.co/call-campaigns/schedule' }}
+
+<Row>
+  <Col>
+    <strong>Set Campaign Ready</strong>
+
+    ### Header
+
+    <Properties>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+      <Property name="Authorization*" type="string" >Bearer `{accessToken}`</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="POST" label="/call-campaigns/schedule">
+      ```bash {{ title: 'cURL' }}
+      curl --location -g --request POST 'https://api.voxo.com/call-campaigns/schedule' \
+      --header 'Content-Type: application/json' \
+      --header 'Authorization: Bearer {accessToken}'
+      ```
+      ```json {{ title: 'JSON' }}
+        {
+            "campaignId": 727
+        }
+      ```
+    </CodeGroup>
+    ```json {{ title: 'Response' }}
+      {
+          "status": "success",
+          "message": "Campaign is now ready",
+          "campaignId": 149,
+          "campaign": "fdafd"
+      }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Pause Campaign {{ tag: 'POST', label: 'https://api.voxo.co/call-campaigns/pause' }}
+
+<Row>
+  <Col>
+    <strong>Pause a Campaign</strong>
+
+    ### Header
+
+    <Properties>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+      <Property name="Authorization*" type="string" >Bearer `{accessToken}`</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="POST" label="/call-campaigns/pause">
+      ```bash {{ title: 'cURL' }}
+      curl --location -g --request POST 'https://api.voxo.com/call-campaigns/pause' \
+      --header 'Content-Type: application/json' \
+      --header 'Authorization: Bearer {accessToken}'
+      ```
+      ```json {{ title: 'JSON' }}
+        {
+            "campaignId": 149 
+        }
+      ```
+    </CodeGroup>
+    ```json {{ title: 'Response' }}
+    {
+        "status": "success",
+        "message": "Campaign is now paused",
+        "campaignId": 149,
+        "campaign": "fdafd"
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Remove A Campaign {{ tag: 'POST', label: 'https://api.voxo.co/call-campaigns/remove' }}
+
+<Row>
+  <Col>
+    <strong>Remove a Campaign</strong>
+
+    ### Header
+
+    <Properties>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+      <Property name="Authorization*" type="string" >Bearer `{accessToken}`</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="POST" label="/call-campaigns/remove">
+      ```bash {{ title: 'cURL' }}
+      curl --location -g --request POST 'https://api.voxo.com/call-campaigns/remove' \
+      --header 'Content-Type: application/json' \
+      --header 'Authorization: Bearer {accessToken}'
+      ```
+      ```json {{ title: 'JSON' }}
+        {
+            "campaignId": 149 
+        }
+      ```
+    </CodeGroup>
+    ```json {{ title: 'Response' }}
+    {
+        "id": 149,
+        "tenantId": 875,
+        "name": "fdafd",
+        "type": "SCHEDULED",
+        "dateStart": "2022-02-16",
+        "dateEnd": "2022-02-17",
+        "callerId": "6013151002",
+        "callDelay": 5000,
+        "state": "PAUSED",
+        "lastrun": "2022-02-16 14:33:45",
+        "dialtimeout": 0,
+        "tech": "SMS",
+        "message": "ghe",
+        "timeStart": "00:00",
+        "timeEnd": "00:00",
+        "timezone": "America/Chicago",
+        "callFrequency": 10,
+        "callHoursStart": null,
+        "callHoursEnd": null,
+        "recording": "no"
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Create A Campaign {{ tag: 'POST', label: 'https://api.voxo.co/call-campaigns' }}
+
+<Row>
+  <Col>
+    <strong>Create new Campaign</strong>
+
+    ### Header
+
+    <Properties>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+      <Property name="Authorization*" type="string" >Bearer `{accessToken}`</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="POST" label="/call-campaigns">
+      ```bash {{ title: 'cURL' }}
+      curl --location -g --request POST 'https://api.voxo.com/call-campaigns' \
+      --header 'Content-Type: application/json' \
+      --header 'Authorization: Bearer {accessToken}'
+      ```
+      ```json {{ title: 'JSON' }}
+      {
+          "tenantId": 37,
+          "name": "The Simpsons",
+          "tech": "VOICE",
+          "state": "READY",
+          "dateStart": "2023-04-21",
+          "timeStart": "00:00",
+          "dateEnd": "2023-05-20",
+          "timeEnd": "00:00",
+          "callerId": "9853848109",
+          "recording": "yes",
+          "message": "Hello, how are you",
+          "timezone": "America/Chicago",
+          "numbers": [
+              {
+                  "number": "9849834023",
+                  "description": "Friend"
+              }
+          ],
+          "callFrequency": 10,
+          "destinations": [
+              {
+                  "id": 1319,
+                  "type": "EXT"
+              }
+          ],
+          "enableVMDetect": false,
+          "matchDestinations": [
+              {
+                  "id": 1319,
+                  "type": "EXT",
+                  "order": 1
+              }
+          ],
+          "notMatchDestinations": [
+              {
+                  "id": 1319,
+                  "type": "EXT",
+                  "order": 1
+              }
+          ],
+          "callHoursStart": "21:45",
+          "callHoursEnd": "23:10"
+      }
+      ```
+    </CodeGroup>
+    ```json {{ title: 'Response' }}
+    {
+        "id": 725,
+        "tenantId": 37,
+        "name": "The Simpsons",
+        "type": "SCHEDULED",
+        "dateStart": "2023-04-21",
+        "dateEnd": "2023-05-20",
+        "coId": 0,
+        "maxChannels": 3,
+        "maxAttempts": 3,
+        "callerId": "9853848109",
+        "callDelay": 5000,
+        "state": "READY",
+        "lastrun": "2023-04-06 09:29:36",
+        "dialtimeout": 0,
+        "hosted": "",
+        "tech": "VOICE",
+        "message": "Hello, how are you",
+        "recording": "yes",
+        "crId": 0,
+        "quId": 0,
+        "minFreeAgents": 0,
+        "timeStart": "00:00",
+        "timeEnd": "00:00",
+        "timezone": "America/Chicago",
+        "callFrequency": 10,
+        "callHoursStart": "21:45",
+        "callHoursEnd": "23:10"
+    }
+    ```
+  </Col>
+</Row>
+
+---
+
+## Update A Campaign {{ tag: 'POST', label: 'https://api.voxo.co/call-campaigns/update' }}
+
+<Row>
+  <Col>
+    <strong>Update existing Campaign</strong>
+
+    ### Header
+
+    <Properties>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+      <Property name="Authorization*" type="string" >Bearer `{accessToken}`</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="POST" label="/call-campaigns/update">
+      ```bash {{ title: 'cURL' }}
+      curl --location -g --request POST 'https://api.voxo.com/call-campaigns/update' \
+      --header 'Content-Type: application/json' \
+      --header 'Authorization: Bearer {accessToken}'
+      ```
+      ```json {{ title: 'JSON' }}
+        {
+          "tenantId": 37,
+          "campaignId": 717,
+          "name": "The Simpsons Edited Sparse Again",
+          "state": "PAUSED",
+          "numbers": [
+              {
+                  "number": "6015515455",
+                  "description": "Friend",
+                  "disposition": ""
+              }
+          ],
+              "matchDestinations": [
+              {
+                  "id": 1319,
+                  "type": "EXT",
+                  "order": 1
+              }
+          ],
+          "notMatchDestinations": [
+              {
+                  "id": 1319,
+                  "type": "EXT",
+                  "order": 1
+              }
+          ],
+          "enableVMDetect": true
+      }
+      ```
+    </CodeGroup>
+    ```json {{ title: 'Response' }}
+    {
+        "campaignId": 717,
+        "tenantId": 37,
+        "name": "The Simpsons Edited Sparse Again",
+        "state": "PAUSED",
+        "dateStart": "2022-11-14",
+        "dateEnd": "2022-11-14",
+        "callerId": "2513843007",
+        "tech": "VOICE",
+        "message": "",
+        "recording": "no",
+        "timeStart": "00:00",
+        "timeEnd": "00:00",
+        "timezone": "America/Chicago",
+        "callFrequency": 23,
+        "callHoursStart": "00:00",
+        "callHoursEnd": "00:45"
+    }
+    ```
+  </Col>
+</Row>

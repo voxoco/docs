@@ -445,6 +445,18 @@ export const navigation = [
         title: 'Introduction',
         href: '/voxo-public/v/api-docs-2',
       },
+      {
+        title: 'Campaigns',
+        href: '/voxo-public/v/api-docs-2/reference/api-reference/campaigns',
+      },
+      {
+        title: 'Destinations',
+        href: '/voxo-public/v/api-docs-2/reference/api-reference/destinations',
+      },
+      {
+        title: 'Webhooks',
+        href: '/voxo-public/v/api-docs-2/reference/api-reference/webhooks',
+      },
     ],
   },
 ]
