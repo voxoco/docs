@@ -2,7 +2,7 @@
 
 ---
 
-## List Destination Types {{ tag: 'GET', label: 'https://api.voxo.co/destinations/listTypes' }}
+## List Destination Types {{ tag: 'GET', label: 'https://kube-api.voxo.co/v2/destinations/listTypes' }}
 
 <Row>
   <Col>
@@ -24,7 +24,7 @@
     <CodeGroup title="Request" tag="GET" label="/destinations/listTypes">
 
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request GET 'https://api.voxo.com/destinations/listTypes' \
+    curl --location -g --request GET 'https://kube-api.voxo.co/v2m/destinations/listTypes' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```

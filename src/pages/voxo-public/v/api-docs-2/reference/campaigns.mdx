@@ -2,7 +2,7 @@
 
 ---
 
-## List Campaigns {{ tag: 'GET', label: 'https://api.voxo.co/call-campaigns?tenantId={tenantId}' }}
+## List Campaigns {{ tag: 'GET', label: 'https://kube-api.voxo.co/v2/call-campaigns?tenantId={tenantId}' }}
 
 <Row>
   <Col>
@@ -31,7 +31,7 @@
     <CodeGroup title="Request" tag="GET" label="/call-campaigns?tenantId={tenantId}">
 
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request GET 'https://api.voxo.com/call-campaigns?tenantId={tenantId}' \
+    curl --location -g --request GET 'https://kube-api.voxo.co/v2/call-campaigns?tenantId={tenantId}' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```
@@ -70,7 +70,7 @@
 
 ---
 
-## Get Campaign By ID {{ tag: 'GET', label: 'https://api.voxo.co/call-campaigns/:campaignId' }}
+## Get Campaign By ID {{ tag: 'GET', label: 'https://kube-api.voxo.co/v2/call-campaigns/:campaignId' }}
 
 <Row>
   <Col>
@@ -89,7 +89,7 @@
     <CodeGroup title="Request" tag="GET" label="/call-campaigns/:campaignId">
 
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request GET 'https://api.voxo.com/call-campaigns/:campaignId' \
+    curl --location -g --request GET 'https://kube-api.voxo.co/v2/call-campaigns/:campaignId' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```
@@ -130,7 +130,7 @@
 
 ---
 
-## Add Numbers to Campaign {{ tag: 'POST', label: 'https://api.voxo.co/call-campaigns/addNumbers' }}
+## Add Numbers to Campaign {{ tag: 'POST', label: 'https://kube-api.voxo.co/v2/call-campaigns/addNumbers' }}
 
 <Row>
   <Col>
@@ -149,7 +149,7 @@
 
     <CodeGroup title="Request" tag="POST" label="/call-campaigns/addNumbers">
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request POST 'https://api.voxo.com/call-campaigns/addNumbers' \
+    curl --location -g --request POST 'https://kube-api.voxo.co/v2/call-campaigns/addNumbers' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```
@@ -194,7 +194,7 @@
 
 ---
 
-## Remove Number From Campaign {{ tag: 'POST', label: 'https://api.voxo.co/call-campaigns/removeNumbers' }}
+## Remove Number From Campaign {{ tag: 'POST', label: 'https://kube-api.voxo.co/v2/call-campaigns/removeNumbers' }}
 
 <Row>
   <Col>
@@ -211,7 +211,7 @@
   <Col sticky>
     <CodeGroup title="Request" tag="POST" label="/call-campaigns/removeNumbers">
       ```bash {{ title: 'cURL' }}
-      curl --location -g --request POST 'https://api.voxo.com/call-campaigns/removeNumbers' \
+      curl --location -g --request POST 'https://kube-api.voxo.co/v2/call-campaigns/removeNumbers' \
       --header 'Content-Type: application/json' \
       --header 'Authorization: Bearer {accessToken}'
       ```
@@ -245,7 +245,7 @@
 
 ---
 
-## Set Campaign Ready {{ tag: 'POST', label: 'https://api.voxo.co/call-campaigns/schedule' }}
+## Set Campaign Ready {{ tag: 'POST', label: 'https://kube-api.voxo.co/v2/call-campaigns/schedule' }}
 
 <Row>
   <Col>
@@ -262,7 +262,7 @@
   <Col sticky>
     <CodeGroup title="Request" tag="POST" label="/call-campaigns/schedule">
       ```bash {{ title: 'cURL' }}
-      curl --location -g --request POST 'https://api.voxo.com/call-campaigns/schedule' \
+      curl --location -g --request POST 'https://kube-api.voxo.co/v2/call-campaigns/schedule' \
       --header 'Content-Type: application/json' \
       --header 'Authorization: Bearer {accessToken}'
       ```
@@ -286,7 +286,7 @@
 
 ---
 
-## Pause Campaign {{ tag: 'POST', label: 'https://api.voxo.co/call-campaigns/pause' }}
+## Pause Campaign {{ tag: 'POST', label: 'https://kube-api.voxo.co/v2/call-campaigns/pause' }}
 
 <Row>
   <Col>
@@ -303,7 +303,7 @@
   <Col sticky>
     <CodeGroup title="Request" tag="POST" label="/call-campaigns/pause">
       ```bash {{ title: 'cURL' }}
-      curl --location -g --request POST 'https://api.voxo.com/call-campaigns/pause' \
+      curl --location -g --request POST 'https://kube-api.voxo.co/v2/call-campaigns/pause' \
       --header 'Content-Type: application/json' \
       --header 'Authorization: Bearer {accessToken}'
       ```
@@ -327,7 +327,7 @@
 
 ---
 
-## Remove A Campaign {{ tag: 'POST', label: 'https://api.voxo.co/call-campaigns/remove' }}
+## Remove A Campaign {{ tag: 'POST', label: 'https://kube-api.voxo.co/v2/call-campaigns/remove' }}
 
 <Row>
   <Col>
@@ -344,7 +344,7 @@
   <Col sticky>
     <CodeGroup title="Request" tag="POST" label="/call-campaigns/remove">
       ```bash {{ title: 'cURL' }}
-      curl --location -g --request POST 'https://api.voxo.com/call-campaigns/remove' \
+      curl --location -g --request POST 'https://kube-api.voxo.co/v2/call-campaigns/remove' \
       --header 'Content-Type: application/json' \
       --header 'Authorization: Bearer {accessToken}'
       ```
@@ -384,7 +384,7 @@
 
 ---
 
-## Create A Campaign {{ tag: 'POST', label: 'https://api.voxo.co/call-campaigns' }}
+## Create A Campaign {{ tag: 'POST', label: 'https://kube-api.voxo.co/v2/call-campaigns' }}
 
 <Row>
   <Col>
@@ -401,7 +401,7 @@
   <Col sticky>
     <CodeGroup title="Request" tag="POST" label="/call-campaigns">
       ```bash {{ title: 'cURL' }}
-      curl --location -g --request POST 'https://api.voxo.com/call-campaigns' \
+      curl --location -g --request POST 'https://kube-api.voxo.co/v2/call-campaigns' \
       --header 'Content-Type: application/json' \
       --header 'Authorization: Bearer {accessToken}'
       ```
@@ -488,7 +488,7 @@
 
 ---
 
-## Update A Campaign {{ tag: 'POST', label: 'https://api.voxo.co/call-campaigns/update' }}
+## Update A Campaign {{ tag: 'POST', label: 'https://kube-api.voxo.co/v2/call-campaigns/update' }}
 
 <Row>
   <Col>
@@ -505,7 +505,7 @@
   <Col sticky>
     <CodeGroup title="Request" tag="POST" label="/call-campaigns/update">
       ```bash {{ title: 'cURL' }}
-      curl --location -g --request POST 'https://api.voxo.com/call-campaigns/update' \
+      curl --location -g --request POST 'https://kube-api.voxo.co/v2/call-campaigns/update' \
       --header 'Content-Type: application/json' \
       --header 'Authorization: Bearer {accessToken}'
       ```

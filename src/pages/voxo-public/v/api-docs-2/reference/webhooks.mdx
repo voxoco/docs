@@ -2,7 +2,7 @@
 
 ---
 
-## List Webhooks {{ tag: 'GET', label: 'https://api.voxo.co/webhooks?tenantId={tenantId}' }}
+## List Webhooks {{ tag: 'GET', label: 'https://kube-api.voxo.co/v2/webhooks?tenantId={tenantId}' }}
 
 <Row>
   <Col>
@@ -31,7 +31,7 @@
     <CodeGroup title="Request" tag="GET" label="/webhooks?tenantId={tenantId}">
 
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request GET 'https://api.voxo.com/webhooks?tenantId={tenantId}' \
+    curl --location -g --request GET 'https://kube-api.voxo.co/v2m/webhooks?tenantId={tenantId}' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```
@@ -40,16 +40,16 @@
     ```json {{ title: 'Response' }}
     [
         {
-        "id": 214,
-        "tenantId": 37,
-        "type": "STARTCALL",
-        "url": "https://hooks.zapier.com/hooks/catch/10781230/32s1lwb/"
+            "id": 214,
+            "tenantId": 37,
+            "type": "STARTCALL",
+            "url": "https://dummy-url.com/hooks/type/..."
         },
         {
             "id": 232,
             "tenantId": 37,
             "type": "INBOUNDSMS",
-            "url": "https://hooks.zapier.com/hooks/standard/5249370/422cefe1c5524e7190f050cf97799dd9/"
+            "url": "https://dummy-url.com/hooks/type/..."
         }, 
         ...
     ],
@@ -59,7 +59,7 @@
 
 --- 
 
-## List Webhooks Types {{ tag: 'GET', label: 'https://api.voxo.co/webhooks/listTypes' }}
+## List Webhooks Types {{ tag: 'GET', label: 'https://kube-api.voxo.co/v2/webhooks/listTypes' }}
 
 <Row>
   <Col>
@@ -83,7 +83,7 @@
     <CodeGroup title="Request" tag="GET" label="/webhooks/listTypes">
 
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request GET 'https://api.voxo.com/webhooks/listTypes' \
+    curl --location -g --request GET 'https://kube-api.voxo.co/v2m/webhooks/listTypes' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```
@@ -115,7 +115,7 @@
 
 ---
 
-## Get A Webhook By ID {{ tag: 'GET', label: 'https://api.voxo.co/webhooks/:id' }}
+## Get A Webhook By ID {{ tag: 'GET', label: 'https://kube-api.voxo.co/v2/webhooks/:id' }}
 
 <Row>
   <Col>
@@ -139,7 +139,7 @@
     <CodeGroup title="Request" tag="GET" label="/webhooks/:id">
 
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request GET 'https://api.voxo.com/webhooks/:id' \
+    curl --location -g --request GET 'https://kube-api.voxo.co/v2m/webhooks/:id' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```
@@ -150,7 +150,7 @@
         "id": 214,
         "tenantId": 37,
         "type": "STARTCALL",
-        "url": "https://hooks.zapier.com/hooks/catch/10781230/32s1lwb/"
+        "url": "https://dummy-url.com/hooks/type/..."
     },
     ```
   </Col>
@@ -158,7 +158,7 @@
 
 ---
 
-## Create A Webhook {{ tag: 'POST', label: 'https://api.voxo.co/webhooks' }}
+## Create A Webhook {{ tag: 'POST', label: 'https://kube-api.voxo.co/v2/webhooks' }}
 
 <Row>
   <Col>
@@ -178,7 +178,7 @@
   <Col sticky>
     <CodeGroup title="Request" tag="POST" label="/webhooks">
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request POST 'https://api.voxo.com/webhooks' \
+    curl --location -g --request POST 'https://kube-api.voxo.co/v2m/webhooks' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```
@@ -204,7 +204,7 @@
 
 ---
 
-## Remove A Webhook {{ tag: 'POST', label: 'https://api.voxo.co/webhooks/remove' }}
+## Remove A Webhook {{ tag: 'POST', label: 'https://kube-api.voxo.co/v2/webhooks/remove' }}
 
 <Row>
   <Col>
@@ -224,7 +224,7 @@
   <Col sticky>
     <CodeGroup title="Request" tag="POST" label="/webhooks/remove">
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request POST 'https://api.voxo.com/webhooks/remove' \
+    curl --location -g --request POST 'https://kube-api.voxo.co/v2m/webhooks/remove' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```
@@ -248,7 +248,7 @@
 
 ---
 
-## Update A Webhook {{ tag: 'POST', label: 'https://api.voxo.co/webhooks/update' }}
+## Update A Webhook {{ tag: 'POST', label: 'https://kube-api.voxo.co/v2/webhooks/update' }}
 
 <Row>
   <Col>
@@ -268,7 +268,7 @@
   <Col sticky>
     <CodeGroup title="Request" tag="POST" label="/webhooks/update">
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request POST 'https://api.voxo.com/webhooks/update' \
+    curl --location -g --request POST 'https://kube-api.voxo.co/v2m/webhooks/update' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```
@@ -285,7 +285,7 @@
         "id": 232,
         "tenantId": 37,
         "type": "INBOUNDSMS",
-        "url": "https://hooks.zapier.com/hooks/standard/5249370/422cefe1c5524e7190f050cf97799dd9/"
+        "url": "https://dummy-url.com/hooks/type/..."
     }
     ```
   </Col>
