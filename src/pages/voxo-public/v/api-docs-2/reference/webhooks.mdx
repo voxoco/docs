@@ -40,14 +40,14 @@
     ```json {{ title: 'Response' }}
     [
         {
-            "id": 214,
-            "tenantId": 37,
+            "id": 112,
+            "tenantId": 875,
             "type": "STARTCALL",
             "url": "https://dummy-url.com/hooks/type/..."
         },
         {
-            "id": 232,
-            "tenantId": 37,
+            "id": 113,
+            "tenantId": 875,
             "type": "INBOUNDSMS",
             "url": "https://dummy-url.com/hooks/type/..."
         }, 
@@ -92,21 +92,21 @@
     ```json {{ title: 'Response' }}
     [
         {
-            "type": "SALESFORCECRM",
-            "description": "Webhook for salesforce call outcome"
-        },
+          "type": "STARTCALL",
+          "description": "Webhook for when a call starts"
+        }
         {
             "type": "ENDCALL",
             "description": "Webhook for end of call"
         },
         {
-            "type": "MEDIAFLY",
-            "description": "Media Fly"
-        },
-        {
             "type": "INBOUNDSMS",
             "description": "Webhook for inbound SMS"
         },
+        {
+          "type": "NEWVOICEMAIL",
+          "description": "Webhook for when a new voicemail arrives"
+        }
         ...
     ],
     ```
@@ -165,6 +165,14 @@
 
     <strong>Create a webhook</strong>
 
+    ### Post Parameters
+
+    <Properties>
+      <Property name="tenantId*" type="number">Account id</Property>
+      <Property name="type*" type="number">Type of webhook. See webhooks list types endpoint.</Property>
+      <Property name="url*" type="number">The endpoint to send the webhook POST request</Property>
+    </Properties>
+
     ### Header
 
     <Properties>
@@ -178,14 +186,14 @@
   <Col sticky>
     <CodeGroup title="Request" tag="POST" label="/webhooks">
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request POST 'https://kube-api.voxo.co/v2m/webhooks' \
+    curl --location -g --request POST 'https://kube-api.voxo.co/v2/webhooks' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```
     ```json {{ title: 'JSON' }}
     {
-        "tenantId": 37,
-        "type": "SMS",
+        "tenantId": 1234,
+        "type": "STARTCALL",
         "url": "https://voxo.co"
     }
     ```
@@ -194,7 +202,7 @@
     ```json {{ title: 'Response' }}
     {
         "id": 234,
-        "tenantId": 37,
+        "tenantId": 1234,
         "type": "STARTCALL",
         "url": "https://voxo.co"
     },
@@ -254,6 +262,15 @@
   <Col>
 
     <strong>Update a webhook</strong>
+    <p>Support sparse updating of webhook properties</p>
+
+    ### Post Parameters
+
+    <Properties>
+      <Property name="webhookId*" type="number">Record id of webhook to be updated</Property>
+      <Property name="type" type="number">Type of webhook. See webhooks list types endpoint.</Property>
+      <Property name="url" type="number">The endpoint to send the webhook POST request</Property>
+    </Properties>
 
     ### Header
 
@@ -274,8 +291,8 @@
     ```
     ```json {{ title: 'JSON' }}
     {
-    "webhookId": 232,
-    "type": "INBOUNDSMS"
+      "webhookId": 232,
+      "type": "INBOUNDSMS"
     }
     ```
     </CodeGroup>

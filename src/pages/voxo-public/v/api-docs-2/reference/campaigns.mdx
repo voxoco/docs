@@ -1,18 +1,16 @@
-# Campaigns
-
----
+import {Property} from "@/components/mdx";
 
 ## List Campaigns {{ tag: 'GET', label: 'https://kube-api.voxo.co/v2/call-campaigns?tenantId={tenantId}' }}
 
 <Row>
   <Col>
 
-    <strong>List all campaigns</strong>
+    <strong>List all campaigns for the provided account id</strong>
 
     ### Parameters
 
     <Properties>
-      <Property name="tenantId*" type="integer" >1234</Property>
+      <Property name="tenantId*" type="integer">1234</Property>
     </Properties>
 
 
@@ -40,8 +38,8 @@
     ```json {{ title: 'Response' }}
     [
       {
-        "id": 149,
-        "tenantId": 875,
+        "id": 11111111111,
+        "tenantId": 1234,
         "name": "fdafd",
         "type": "SCHEDULED",
         "dateStart": "2022-02-16",
@@ -74,7 +72,7 @@
 
 <Row>
   <Col>
-    <strong>Retrieve campaign details by ID</strong>
+    <strong>Retrieve the campaign details for the provided campaign id</strong>
 
     ### Header
 
@@ -97,8 +95,8 @@
 
     ```json {{ title: 'Response' }}
     {
-        "id": 149,
-        "tenantId": 875,
+        "id": 111111,
+        "tenantId": 1234,
         "name": "fdafd",
         "type": "SCHEDULED",
         "dateStart": "2022-02-16",
@@ -135,7 +133,14 @@
 <Row>
   <Col>
 
-    <strong>Add Numbers to a Campaign</strong>
+    <strong>Add numbers to a campaign</strong>
+
+    ### Post Parameters
+
+    <Properties>
+      <Property name="campaignId*" type="number">Campaign record id</Property>
+      <Property name="numbers" type="array">Array of objects containing number and description</Property>
+    </Properties>
 
     ### Header
 
@@ -155,14 +160,14 @@
     ```
     ```json {{ title: 'JSON' }}
     {
-    "campaignId": 149,
-    "numbers": [
+      "campaignId": 11111,
+      "numbers": [
         {
             "number": "6015555567",
             "description": "A new number"
         },
         {
-            "number": "6015515455",
+            "number": "6015555568",
             "description": "Another number"
         }
       ]
@@ -174,7 +179,7 @@
     {
       "status": "success",
       "message": "Numbers successfully added to campaign",
-      "campaignId": 149,
+      "campaignId": 1111,
       "campaign": "fdafd",
       "numbers": [
           {
@@ -198,7 +203,15 @@
 
 <Row>
   <Col>
-    <strong>Remove Number from a Campaign</strong>
+    <strong>Remove or purge all numbers from a campaign</strong>
+
+    ### Post Parameters
+
+    <Properties>
+      <Property name="campaignId*" type="number">Campaign record id</Property>
+      <Property name="numbers*" type="array">Array of number strings. May pass empty array if purge is true</Property>
+      <Property name="purge" type="boolean">Pass true to purge all campaign numbers</Property>
+    </Properties>
 
     ### Header
 
@@ -249,7 +262,13 @@
 
 <Row>
   <Col>
-    <strong>Set Campaign Ready</strong>
+    <strong>Sets a campaign to the ready state</strong>
+
+    ### Post Parameters
+
+    <Properties>
+      <Property name="campaignId*" type="number">Campaign record id</Property>
+    </Properties>
 
     ### Header
 
@@ -290,7 +309,13 @@
 
 <Row>
   <Col>
-    <strong>Pause a Campaign</strong>
+    <strong>Sets a campaign to the paused state</strong>
+
+    ### Post Parameters
+
+    <Properties>
+      <Property name="campaignId*" type="number">Campaign record id</Property>
+    </Properties>
 
     ### Header
 
@@ -331,7 +356,13 @@
 
 <Row>
   <Col>
-    <strong>Remove a Campaign</strong>
+    <strong>Remove a campaign</strong>
+
+    ### Post Parameters
+
+    <Properties>
+      <Property name="campaignId*" type="number">Campaign record id</Property>
+    </Properties>
 
     ### Header
 
@@ -388,7 +419,39 @@
 
 <Row>
   <Col>
-    <strong>Create new Campaign</strong>
+    <strong>Create a new campaign</strong>
+
+    <strong>About destinations</strong>
+    <p>
+      Destinations are the routing specifiers when certain events happen. In this case when a campaign connect and,
+      if applicable, a human or voicemail is detected. See the <a href="/voxo-public/v/api-docs-2/reference/destinations">destinations documentation</a> for listing the available destination types.
+      After determining the type, you will determine the appropriate entity id to route to.
+
+      The example shows destinations that route to an extension with the id 1319.
+      <strong>Note that obtaining entity ids may need to occur using v1 apis as v2 is under development</strong>
+    </p>
+
+    <Properties>
+      <Property name="tenantId*" type="number">1234</Property>
+      <Property name="name*" type="number">Name of the campaign</Property>
+      <Property name="tech*" type="string">VOICE</Property>
+      <Property name="state" type="enum">READY or PAUSED. Default is READY</Property>
+      <Property name="dateStart*" type="date">Start date of the campaign format YYYY-MM-DD</Property>
+      <Property name="dateEnd*" type="date">End date of the campaign. Format YYYY-MM-DD</Property>
+      <Property name="timeStart*" type="time">Start time for campaign. Format is HH:mm (24 hour)</Property>
+      <Property name="timeEnd*" type="time">End time for campaign. Format is HH:mm (24 hour)</Property>
+      <Property name="callerId*" type="string">The outbound caller id for the campaign</Property>
+      <Property name="recording*" type="enum">Enable recording for call from this campaign. 'yes' or 'no'</Property>
+      <Property name="timezone*" type="string">Operating time zone for the campaign. Ex. "America/Chicago"</Property>
+      <Property name="numbers*" type="array">Array of objects including number and description of numbers to dial</Property>
+      <Property name="callFrequency*" type="number">Number of seconds to wait between dialing numbers</Property>
+      <Property name="destinations*" type="array">Destinations when a campaign call connects. This applies when enableVmDetect is false Can be empty array.</Property>
+      <Property name="enableVMDetect*" type="boolean">Attempt to detect if a voicemail or human connected</Property>
+      <Property name="matchDestinations*" type="array">If enableVMDetect is true, the destinations to follow if a voicemail is detected. Can be empty array. </Property>
+      <Property name="notMatchDestinations*" type="array">If enableVMDetect is true, the destinations to follow if a person is detected. Can be empty array.</Property>
+      <Property name="callHoursStart*" type="time">Start of campaign calling hours. Format is HH:mm (24 hour)</Property>
+      <Property name="callHoursEnd*" type="time">End of campaign calling hours. Format is HH:mm (24 hour)</Property>
+    </Properties>
 
     ### Header
 
@@ -407,7 +470,7 @@
       ```
       ```json {{ title: 'JSON' }}
       {
-          "tenantId": 37,
+          "tenantId": 875,
           "name": "The Simpsons",
           "tech": "VOICE",
           "state": "READY",
@@ -417,7 +480,6 @@
           "timeEnd": "00:00",
           "callerId": "9853848109",
           "recording": "yes",
-          "message": "Hello, how are you",
           "timezone": "America/Chicago",
           "numbers": [
               {
@@ -492,7 +554,30 @@
 
 <Row>
   <Col>
-    <strong>Update existing Campaign</strong>
+    <strong>Update an existing campaign</strong>
+    <p>This endpoint enables sparse updating for an existing campaign</p>
+
+    <Properties>
+      <Property name="campaignId*" type="number">1234</Property>
+      <Property name="name" type="number">Name of the campaign</Property>
+      <Property name="tech" type="string">VOICE</Property>
+      <Property name="state" type="enum">READY or PAUSED. Default is READY</Property>
+      <Property name="dateStart" type="date">Start date of the campaign format YYYY-MM-DD</Property>
+      <Property name="dateEnd" type="date">End date of the campaign. Format YYYY-MM-DD</Property>
+      <Property name="timeStart" type="time">Start time for campaign. Format is HH:mm (24 hour)</Property>
+      <Property name="timeEnd" type="time">End time for campaign. Format is HH:mm (24 hour)</Property>
+      <Property name="callerId" type="string">The outbound caller id for the campaign</Property>
+      <Property name="recording" type="enum">Enable recording for call from this campaign. 'yes' or 'no'</Property>
+      <Property name="timezone" type="string">Operating time zone for the campaign. Ex. "America/Chicago"</Property>
+      <Property name="numbers" type="array">Array of objects including number and description of numbers to dial</Property>
+      <Property name="callFrequency" type="number">Number of seconds to wait between dialing numbers</Property>
+      <Property name="destinations" type="array">Destinations when a campaign call connects. This applies when enableVmDetect is false Can be empty array.</Property>
+      <Property name="enableVMDetect" type="boolean">Attempt to detect if a voicemail or human connected</Property>
+      <Property name="matchDestinations" type="array">If enableVMDetect is true, the destinations to follow if a voicemail is detected. Can be empty array. </Property>
+      <Property name="notMatchDestinations" type="array">If enableVMDetect is true, the destinations to follow if a person is detected. Can be empty array.</Property>
+      <Property name="callHoursStart" type="time">Start of campaign calling hours. Format is HH:mm (24 hour)</Property>
+      <Property name="callHoursEnd" type="time">End of campaign calling hours. Format is HH:mm (24 hour)</Property>
+    </Properties>
 
     ### Header
 
@@ -511,13 +596,12 @@
       ```
       ```json {{ title: 'JSON' }}
         {
-          "tenantId": 37,
           "campaignId": 717,
           "name": "The Simpsons Edited Sparse Again",
           "state": "PAUSED",
           "numbers": [
               {
-                  "number": "6015515455",
+                  "number": "6015555555",
                   "description": "Friend",
                   "disposition": ""
               }
