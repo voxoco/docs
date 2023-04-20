@@ -450,6 +450,10 @@ export const navigation = [
         href: '/voxo-public/v/api-docs-2/reference/destinations',
       },
       {
+        title: 'Messaging (SMS / MMS)',
+        href: '/voxo-public/v/api-docs-2/reference/messaging',
+      },
+      {
         title: 'Webhooks',
         href: '/voxo-public/v/api-docs-2/reference/webhooks',
       },
