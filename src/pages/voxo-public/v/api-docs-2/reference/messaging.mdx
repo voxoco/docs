@@ -1,0 +1,69 @@
+## Send SMS {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/sendSMS' }}
+
+<Row>
+  <Col>
+
+    <strong>Send an SMS text message to one or more numbers</strong>
+    <p>
+      <strong>IMPORTANT:</strong>
+      10DLC Compliance must be considered when sending messages to multiple numbers or sending multiple programmatic requests.
+      Messages are subject to rate limits determined by your brand and messaging campaigns tier. Exceeding rate limits will
+      result in messaging failures.
+    </p>
+
+    ### Post Parameters
+
+    <Properties>
+      <Property name="tenantId*" type="number">Account id</Property>
+      <Property name="from*" type="string">
+        10DLC number from which to send the message. This number must belong to your
+        account and be provisioned in the 10DLC ecosystem
+      </Property>
+      <Property name="fromExt*" type="number">
+        User extension number to identify message sender. Recommended, but not required for account admin or partner admin roles.
+      </Property>
+      <Property name="to*" type="string[]">Array of phone numbers to send the message to</Property>
+      <Property name="text*" type="string">The message body</Property>
+    </Properties>
+
+    ### Header
+
+    <Properties>
+      <Property name="Authorization*" type="string" >
+        Bearer `{accessToken}`
+      </Property>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="POST" label="/messaging/sendSMS">
+      ```bash {{ title: 'cURL' }}
+      curl --location -g --request POST 'https://api.voxo.co/v2/messaging/sendSMS' \
+      --header 'Content-Type: application/json' \
+      --header 'Authorization: Bearer {accessToken}'
+      ```
+      ```json {{ title: 'JSON' }}
+      {
+        "tenantId": 1234,
+        "from": "6015555555",
+        "fromExt": 1001
+        "to": ["6015555556", "6015555557"],
+        "text": "Hot dad riding in on a rhino"
+      }
+      ```
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "tenantId": 1234,
+      "from": "6015555555",
+      "fromExt": 1001
+      "to": ["6015555556", "6015555557"],
+      "text": "Hot dad riding in on a rhino"
+    },
+    ```
+  </Col>
+</Row>
+
+

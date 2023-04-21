@@ -1,0 +1,226 @@
+# Introduction
+
+## Querying
+
+We use [FeatherJS](https://feathersjs.com/) as our REST and realtime API layer. All requests support a common way for querying, sorting, limiting and selecting `find` method calls as part of `params.query`. Querying also applies `update`, `patch` and `remove` method calls if the `id` is set to `null`.
+
+This allows us use more broad and generic API endpoints and allow the user to be more declarative on what data they actually want to consume or send to the API. For example, retrieving a single tenant would be `/tenants/32` where 32 is the tenant id to return.
+
+Also, when calling any endpoint, you can specify a `tenantId` as a query string param like `/dids/?tenantId=37` to get all DID's from tenant id 37.
+
+<Note>
+Important: When used via REST URLs all query values are strings
+</Note>
+
+## User Roles
+
+Our API allows access and return data based on assigned user roles.
+The following roles apply:
+
+<ul>
+    <li>
+        1 - Platform Administrator
+    </li>
+    <li>
+        3 - Tenant Administrator
+    </li>
+    <li>
+        5 - Basic User
+    </li>
+</ul>
+
+## Client & Frontend Usage
+
+When using your own front-end (React-Native or Browser) to consume the VOXO-API, it is encouraged to use the [Feathers Client](https://docs.feathersjs.com/api/client) Libraries and specifically `@feathersjs/socketio-client` to make all of your requests in a socket connection.
+
+## Server & NodeJs Usage
+
+Creating a back-end server can be simplified by using the [@feathersjs/feathers](https://github.com/feathersjs/feathers) package.
+
+## Equality
+
+All fields that do not contain special query parameters are compared directly for equality.
+
+```
+// Find all unread messages in room #2
+app.service('messages').find({
+  query: {
+    read: false,
+    roomId: 2
+  }
+});
+```
+
+```
+GET /messages?read=false&roomId=2
+```
+
+### `$limit`
+
+`$limit` will return only the number of results you specify:
+
+```
+// Retrieves the first two unread messages
+app.service('messages').find({
+  query: {
+    $limit: 2,
+    read: false
+  }
+});
+```
+
+```
+GET /messages?$limit=2&read=false
+```
+
+### `$skip`
+
+`$skip` will skip the specified number of results:
+
+```
+// Retrieves the next two unread messages
+app.service('messages').find({
+  query: {
+    $limit: 2,
+    $skip: 2,
+    read: false
+  }
+});
+```
+
+```
+GET /messages?$limit=2&$skip=2&read=false
+```
+
+### `$sort`
+
+`$sort` will sort based on the object you provide. It can contain a list of properties by which to sort mapped to the order (`1` ascending, `-1` descending).
+
+```
+// Find the 10 newest messages
+app.service('messages').find({
+  query: {
+    $limit: 10,
+    $sort: {
+      createdAt: -1
+    }
+  }
+});
+```
+
+```
+/messages?$limit=10&$sort[createdAt]=-1
+```
+
+### `$select`
+
+`$select` allows to pick which fields to include in the result. This will work for any service method.
+
+View More
+
+```
+// Only return the `text` and `userId` field in a message
+app.service('messages').find({
+  query: {
+    $select: [ 'text', 'userId' ]
+  }
+});
+
+app.service('messages').get(1, {  query: {    $select: [ 'text' ]  }});
+```
+
+```
+GET /messages?$select[]=text&$select[]=userId
+GET /messages/1?$select[]=text
+```
+
+### `$in, $nin`
+
+Find all records where the property does (`$in`) or does not (`$nin`) match any of the given values.
+
+```
+// Find all messages in room 2 or 5
+app.service('messages').find({
+  query: {
+    roomId: {
+      $in: [ 2, 5 ]
+    }
+  }
+});
+```
+
+```
+GET /messages?roomId[$in]=2&roomId[$in]=5
+```
+
+### `$lt, $lte`
+
+Find all records where the value is less (`$lt`) or less and equal (`$lte`) to a given value.
+
+View More
+
+```
+// Find all messages older than a day
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+app.service('messages').find({  query: {    createdAt: {      $lt: new Date().getTime() - DAY_MS    }  }});
+```
+
+```
+GET /messages?createdAt[$lt]=1479664146607
+```
+
+### `$gt, $gte`
+
+Find all records where the value is more (`$gt`) or more and equal (`$gte`) to a given value.
+
+View More
+
+```
+// Find all messages within the last day
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+app.service('messages').find({  query: {    createdAt: {      $gt: new Date().getTime() - DAY_MS    }  }});
+```
+
+### `$ne`
+
+Find all records that do not equal the given property value.
+
+```
+// Find all messages that are not marked as archived
+app.service('messages').find({
+  query: {
+    archived: {
+      $ne: true
+    }
+  }
+});
+```
+
+```
+GET /messages?archived[$ne]=true
+```
+
+### `$or`
+
+Find all records that match any of the given criteria.
+
+View More
+
+```
+// Find all messages that are not marked as archived
+// or any message from room 2
+app.service('messages').find({
+  query: {
+    $or: [
+      { archived: { $ne: true } },
+      { roomId: 2 }
+    ]
+  }
+});
+```
+
+```
+GET /messages?$or[0][archived][$ne]=true&$or[1][roomId]=2
+```

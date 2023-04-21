@@ -1,0 +1,56 @@
+# Destinations 
+
+---
+
+## List Destination Types {{ tag: 'GET', label: 'https://api.voxo.co/v2/destinations/listTypes' }}
+
+<Row>
+  <Col>
+
+    <strong>List Destination Types</strong>
+    <p>
+      Destinations provide routing specifics for certain conditions in the system. This endpoint provides the proper 'type'
+      keys for assigning a destination as well as indicating which service the entity id should be obtained from.
+    </p>
+
+    ### Header
+
+    <Properties>
+      <Property name="Authorization*" type="string" >
+        Bearer `{accessToken}`
+      </Property>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/destinations/listTypes">
+
+    ```bash {{ title: 'cURL' }}
+    curl --location -g --request GET 'https://api.voxo.co/v2m/destinations/listTypes' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {accessToken}'
+    ```
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    [
+        {
+        "type": "CAMPAIGN",
+        "description": "An outbound call campaign"
+        },
+        {
+            "type": "CONDITION",
+            "description": "A time of day routing condition"
+        },
+        {
+            "type": "CUSTOM",
+            "description": "A custom destination"
+        }, 
+        ...
+    ],
+    ```
+
+  </Col>
+</Row>
