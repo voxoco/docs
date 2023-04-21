@@ -442,6 +442,10 @@ export const navigation = [
     title: 'API Docs V2',
     links: [
       {
+        title: 'Calling',
+        href: '/voxo-public/v/api-docs-2/reference/calling'
+      },
+      {
         title: 'Campaigns',
         href: '/voxo-public/v/api-docs-2/reference/campaigns',
       },

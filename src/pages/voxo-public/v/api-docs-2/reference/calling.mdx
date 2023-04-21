@@ -1,0 +1,59 @@
+## Call And Play TTS Media {{ tag: 'POST', label: 'https://api.voxo.co/v2/calling/callAndPlay' }}
+
+<Row>
+  <Col>
+
+    <strong>Call a number and play transcribed text to speech audio to party</strong>
+
+    ### Post Parameters
+
+    <Properties>
+      <Property name="tenantId*" type="number">Account id</Property>
+      <Property name="from*" type="string">
+        Outbound caller id number. This number must belong to your account.
+      </Property>
+      <Property name="to*" type="string">
+        Phone number to call
+      </Property>
+      <Property name="text*" type="string">The message body</Property>
+      <Property name="webhookUrl" type="string">URL to send post request when action completes</Property>
+    </Properties>
+
+    ### Header
+
+    <Properties>
+      <Property name="Authorization*" type="string" >
+        Bearer `{accessToken}`
+      </Property>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="POST" label="/calling/callAndPlay">
+      ```bash {{ title: 'cURL' }}
+      curl --location -g --request POST 'https://api.voxo.co/v2/calling/callAndPlay' \
+      --header 'Content-Type: application/json' \
+      --header 'Authorization: Bearer {accessToken}'
+      ```
+      ```json {{ title: 'JSON' }}
+      {
+        "tenantId": 1234,
+        "from": "6015555555",
+        "to": "6015555557",
+        "text": "Been a long night. Gonna call me an Uber",
+        "webhookUrl": "https://beans.love/them"
+      }
+      ```
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "status": "Ok",
+      "message": "Successfully sent the request!",
+    },
+    ```
+  </Col>
+</Row>
+
+
