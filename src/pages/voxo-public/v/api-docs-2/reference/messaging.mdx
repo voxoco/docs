@@ -1,13 +1,15 @@
-# Messaging (SMS / MMS)
-
----
-
 ## Send SMS {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/sendSMS' }}
 
 <Row>
   <Col>
 
     <strong>Send an SMS text message to one or more numbers</strong>
+    <p>
+      <strong>IMPORTANT:</strong>
+      10DLC Compliance must be considered when sending messages to multiple numbers or sending multiple programmatic requests.
+      Messages are subject to rate limits determined by your brand and messaging campaigns tier. Exceeding rate limits will
+      result in messaging failures.
+    </p>
 
     ### Post Parameters
 
