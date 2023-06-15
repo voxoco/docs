@@ -21,10 +21,7 @@
       <Property name="tenantId*" type="number">Account id</Property>
       <Property name="from*" type="string">
         10DLC number from which to send the message. This number must belong to your
-        account and be provisioned in the 10DLC ecosystem
-      </Property>
-      <Property name="fromExt*" type="number">
-        User extension number to identify message sender. Recommended, but not required for account admin or partner admin roles.
+        account, be assigned as an extension SMS destination, and be provisioned in the 10DLC ecosystem
       </Property>
       <Property name="to*" type="string[]">Array of phone numbers to send the message to</Property>
       <Property name="text*" type="string">The message body</Property>
@@ -51,7 +48,6 @@
       {
         "tenantId": 1234,
         "from": "6015555555",
-        "fromExt": 1001
         "to": ["6015555556", "6015555557"],
         "text": "Hot dad riding in on a rhino"
       }
@@ -62,7 +58,6 @@
     {
       "tenantId": 1234,
       "from": "6015555555",
-      "fromExt": 1001
       "to": ["6015555556", "6015555557"],
       "text": "Hot dad riding in on a rhino"
     },
