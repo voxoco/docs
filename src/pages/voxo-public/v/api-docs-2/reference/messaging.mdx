@@ -109,7 +109,7 @@
         <strong>Send an MMS text message to one or more numbers</strong>
         <div>
             <strong>IMPORTANT:</strong>
-            This will not send an individual MMS to each recipient in the array. This will create a group thread with the source
+            This will <strong>not</strong> send an individual MMS to each recipient in the array. This will create a group thread with the source
             number and all of the recipients.
         </div>
 
@@ -124,7 +124,7 @@
             </Property>
             <Property name="to*" type="string[]">Array of phone numbers to send the message to</Property>
             <Property name="text" type="string">The message body</Property>
-            <Property name="mediaUrls" type="string[]">The string array of public urls</Property>
+            <Property name="mediaUrls" type="string[]">The array of public urls</Property>
         </Properties>
 
         ### Header
@@ -147,8 +147,8 @@
             ```json {{ title: 'JSON' }}
             {
                 "tenantId": 37,
-                "from": "6016021222",
-                "to": ["6019122252", "6016021009"],
+                "from": "6015555556",
+                "to": ["6015555555", "6015555557"],
                 "text": "Hello",
                 "mediaUrls": ["https://voxo-mms.s3.amazonaws.com/TTMGNJNYASY0UGJM.jpeg"]
             }
@@ -163,20 +163,20 @@
                 "tenantId": 37,
                 "createdAt": "2023-08-22T16:20:55.000Z",
                 "updatedAt": "2023-08-22T16:20:55.000Z",
-                "sourceDID": "16016021222",
-                "participants": "16016021009,16016021222,16019122252",
+                "sourceDID": "16015555556",
+                "participants": "16015555557,16015555556,16015555555",
                 "hidden": 0,
-                "name": "VOXO,16019122252",
+                "name": "VOXO,16015555555",
                 "conversationName": ""
             }
           ],
           "id": 4843,
           "postBody": {
             "tenantId": 37,
-            "from": "6016021222",
+            "from": "6015555556",
             "to": [
-            "6019122252",
-            "6016021009"
+            "6015555555",
+            "6015555557"
             ],
             "text": "Hello",
             "mediaUrls": [
@@ -223,7 +223,7 @@
         ```json {{ title: 'Response' }}
         [
           {
-            "tn": "6016021222",
+            "tn": "6015555556",
             "active": 1
           }
         ]
@@ -241,7 +241,7 @@
         <strong>Hide Conversation</strong>
         <div>
             <strong>IMPORTANT:</strong>
-            This does not delete the existing thread. The conversation is just marked as hidden in the database.
+            This does <strong>not</strong> delete the existing thread. The conversation is just marked as hidden in the database.
         </div>
 
         ### Post Parameters
@@ -289,10 +289,10 @@
 <Row>
     <Col>
 
-        <strong>Hide Conversation</strong>
+        <strong>Update Conversation Name</strong>
         <div>
             <strong>IMPORTANT:</strong>
-            This endpoint will only modify the name for your <strong>your</strong> conversation. Other participants
+            This endpoint will only modify the name for <strong>your</strong> conversation. Other participants
             will never see the name change.
         </div>
 
@@ -431,11 +431,11 @@
             "id": 3,
             "createdAt": "2023-06-29 21:51:24",
             "updatedAt": "2023-08-22 12:14:00",
-            "sourceDID": "16016021222",
-            "participants": "12513321004,12548260127,16016021009,16016021010,16016021222,16016021344",
+            "sourceDID": "16015555556",
+            "participants": "16015555557,16015555556,16015555558",
             "tenantId": 37,
             "hidden": 0,
-            "name": "VOXO,WEST TX,VOXO,VOXO,VOXO",
+            "name": "VOXO,VOXO,VOXO",
             "conversationName": "Team",
             "unreadCount": null,
             "lastMessage": "Hello Team!",
@@ -455,20 +455,14 @@
     <Col>
 
         <strong>Retrieve the messages for a conversation</strong>
-        <div>
-            This is a paginated endpoint. The page default is set to 1. The recordsPerPage default is set to 100 however both of these can be changed.
-            This endpoint will return the messages it finds per page and restrict the number to the recordsPerPage.
-            It will return the totalMessages in the conversation, the page number the user sends, and the recordsPerPage that the user sends.
-
-        </div>
 
         ### Parameters
 
         <Properties>
             <Property name="userId*" type="number">User id</Property>
             <Property name="conversationId*" type="number">Conversation id</Property>
-            <Property name="page*" type="number">Page of the list</Property>
-            <Property name="recordsPerPage*" type="number">Number of results returned per page</Property>
+            <Property name="page" type="number">Page of the list</Property>
+            <Property name="recordsPerPage" type="number">Number of results returned per page</Property>
         </Properties>
 
         ### Header
@@ -499,8 +493,8 @@
               "conversationId": 123,
               "text": "Hello",
               "mediaUrls": [],
-              "to": "16016021222",
-              "from": "16016021009",
+              "to": "16015555556",
+              "from": "16015555557",
               "direction": "inbound",
               "timestamp": "2023-07-14T17:45:44.000Z",
               "read": 0
@@ -511,8 +505,8 @@
               "conversationId": 123,
               "text": "Goodbye",
               "mediaUrls": [],
-              "to": "16016021222",
-              "from": "16016021009",
+              "to": "16015555556",
+              "from": "16015555557",
               "direction": "inbound",
               "timestamp": "2023-07-14T14:48:38.000Z",
               "read": 0
@@ -534,9 +528,6 @@
     <Col>
 
         <strong>Retrieve the conversations where the number query is present</strong>
-        <div>
-            This endpoint will return all of your conversations that include the phone number passed in the query params.
-        </div>
 
         ### Parameters
 
@@ -570,10 +561,10 @@
             "tenantId": 37,
             "createdAt": "2023-07-04T00:37:04.000Z",
             "updatedAt": "2023-07-04T00:37:09.000Z",
-            "sourceDID": "16016021222",
-            "participants": "16016021222,16016021344,16019122252",
+            "sourceDID": "16015555556",
+            "participants": "16015555556,16015555558,16015555555",
             "hidden": 1,
-            "name": "VOXO,16019122252",
+            "name": "VOXO,16015555555",
             "conversationName": "VOXO, VOXO"
           },
           {
@@ -581,11 +572,11 @@
             "tenantId": 37,
             "createdAt": "2023-07-04T00:37:09.000Z",
             "updatedAt": "2023-07-06T17:58:31.000Z",
-            "sourceDID": "16016021344",
-            "participants": "16016021222,16016021344,16019122252",
+            "sourceDID": "16015555558",
+            "participants": "16015555556,16015555558,16015555555",
             "hidden": 0,
-            "name": "VOXO,16019122252",
-            "conversationName": "VOXO, 6019122252"
+            "name": "VOXO,16015555555",
+            "conversationName": "VOXO, 6015555555"
           }
         ]
         ```
