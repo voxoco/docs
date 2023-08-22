@@ -8,12 +8,12 @@
     <Col>
 
         <strong>Send an SMS text message to one or more numbers</strong>
-        <p>
+        <div>
             <strong>IMPORTANT:</strong>
             10DLC Compliance must be considered when sending messages to multiple numbers or sending multiple programmatic requests.
             Messages are subject to rate limits determined by your brand and messaging campaigns tier. Exceeding rate limits will
             result in messaging failures.
-        </p>
+        </div>
 
         ### Post Parameters
 
@@ -107,11 +107,11 @@
     <Col>
 
         <strong>Send an MMS text message to one or more numbers</strong>
-        <p>
+        <div>
             <strong>IMPORTANT:</strong>
             This will not send an individual MMS to each recipient in the array. This will create a group thread with the source
             number and all of the recipients.
-        </p>
+        </div>
 
 
         ### Post Parameters
@@ -197,9 +197,9 @@
     <Col>
 
         <strong>Retrieve all of your numbers provisioned for SMS</strong>
-        <p>
+        <div>
             This will return all of your numbers provisioned for SMS and the status for if they are active in a campaign.
-        </p>
+        </div>
 
         ### Header
 
@@ -239,10 +239,10 @@
     <Col>
 
         <strong>Hide Conversation</strong>
-        <p>
+        <div>
             <strong>IMPORTANT:</strong>
             This does not delete the existing thread. The conversation is just marked as hidden in the database.
-        </p>
+        </div>
 
         ### Post Parameters
 
@@ -290,11 +290,11 @@
     <Col>
 
         <strong>Hide Conversation</strong>
-        <p>
+        <div>
             <strong>IMPORTANT:</strong>
             This endpoint will only modify the name for your <strong>your</strong> conversation. Other participants
             will never see the name change.
-        </p>
+        </div>
 
         ### Post Parameters
 
@@ -345,10 +345,10 @@
     <Col>
 
         <strong>Mark messages as read</strong>
-        <p>
+        <div>
             <strong>IMPORTANT:</strong>
             This will un-hide the conversation (if it is hidden) and mark all of the messages associated with the thread as read.
-        </p>
+        </div>
 
         ### Post Parameters
 
@@ -396,9 +396,9 @@
     <Col>
 
         <strong>Retrieve all of your numbers provisioned for SMS</strong>
-        <p>
+        <div>
             This will return all of your numbers provisioned for SMS and the status for if they are active in a campaign.
-        </p>
+        </div>
 
         ### Parameters
 
@@ -455,12 +455,12 @@
     <Col>
 
         <strong>Retrieve the messages for a conversation</strong>
-        <p>
+        <div>
             This is a paginated endpoint. The page default is set to 1. The recordsPerPage default is set to 100 however both of these can be changed.
             This endpoint will return the messages it finds per page and restrict the number to the recordsPerPage.
             It will return the totalMessages in the conversation, the page number the user sends, and the recordsPerPage that the user sends.
 
-        </p>
+        </div>
 
         ### Parameters
 
@@ -534,9 +534,9 @@
     <Col>
 
         <strong>Retrieve the conversations where the number query is present</strong>
-        <p>
+        <div>
             This endpoint will return all of your conversations that include the phone number passed in the query params.
-        </p>
+        </div>
 
         ### Parameters
 
