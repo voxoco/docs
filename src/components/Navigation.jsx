@@ -454,6 +454,10 @@ export const navigation = [
         href: '/voxo-public/v/api-docs-2/reference/destinations',
       },
       {
+        title: 'Devices',
+        href: '/voxo-public/v/api-docs-2/reference/devices'
+      },
+      {
         title: 'Messaging (SMS / MMS)',
         href: '/voxo-public/v/api-docs-2/reference/messaging',
       },

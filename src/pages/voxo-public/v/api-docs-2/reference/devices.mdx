@@ -1,0 +1,174 @@
+# Devices
+
+---
+
+## List Devices {{ tag: 'GET', label: 'https://api.voxo.co/v2/devices?tenantId={tenantId}' }}
+
+<Row>
+  <Col>
+
+    <strong>List all devices for the provided account id</strong>
+
+    ### Parameters
+
+    <Properties>
+      <Property name="tenantId*" type="integer">1234</Property>
+    </Properties>
+
+
+    ### Header
+
+    <Properties>
+      <Property name="Authorization*" type="string" >
+        Bearer `{accessToken}`
+      </Property>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/devices?tenantId=1234">
+
+    ```bash {{ title: 'cURL' }}
+    curl --location -g --request GET 'https://api.voxo.co/v2/devices?tenantId=1234' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {accessToken}'
+    ```
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    [
+      {
+        "id": 14137,
+        "name": "Richard Cheese",
+        "mac": "XX:XX:XX:XX:XX:XX",
+        "tenantId": 1234,
+        "phLine1ExId": 1234,
+        "extPeer": "2134-durst",
+        "phoneModelId": 69,
+        "deviceModel": "Grandstream",
+        "tenantName": "Art",
+        "tenantCode": "durst",
+        "userAgent": "Grandstream HT812 1.0.11.6"
+      },
+      ...
+    ],
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Get Device By ID {{ tag: 'GET', label: 'https://api.voxo.co/v2/devices/:deviceId' }}
+
+<Row>
+  <Col>
+    <strong>Retrieve the device details for the provided device id</strong>
+
+    ### Header
+
+    <Properties>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+      <Property name="Authorization*" type="string" >Bearer `{accessToken}`</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/devices/14137">
+
+    ```bash {{ title: 'cURL' }}
+    curl --location -g --request GET 'https://api.voxo.co/v2/devices/14137' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {accessToken}'
+    ```
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "id": 14137,
+      "name": "Richard Cheese",
+      "mac": "XX:XX:XX:XX:XX:XX",
+      "tenantId": 1234,
+      "phLine1ExId": 1234,
+      "extPeer": "2134-durst",
+      "phoneModelId": 69,
+      "deviceModel": "Grandstream",
+      "tenantName": "Art",
+      "tenantCode": "durst",
+      "userAgent": "Grandstream HT812 1.0.11.6"
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Search Devices {{ tag: 'GET', label: 'https://api.voxo.co/v2/devices/search?mac={deviceMac}&?name={deviceName}' }}
+
+<Row>
+  <Col>
+
+    <strong>Search devices across all accounts by mac and/or name</strong>
+
+    ### Parameters
+
+    <p>
+      Either name of mac search is required. MAC can be partial, but must follow the general format shown
+    </p>
+
+    <Properties>
+      <Property name="name" type="integer">ayed</Property>
+      <Property name="mac" type="string (MAC)">XX:XX:XX:XX:XX:XX</Property>
+    </Properties>
+
+
+    ### Header
+
+    <Properties>
+      <Property name="Authorization*" type="string" >
+        Bearer `{accessToken}`
+      </Property>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/devices/search?mac=5D:0C">
+
+      ```bash {{ title: 'cURL' }}
+      curl --location -g --request GET 'https://api.voxo.co/v2/devices/search?mac=5D:0C' \
+      --header 'Content-Type: application/json' \
+      --header 'Authorization: Bearer {accessToken}'
+      ```
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    [
+      {
+        "id": 14137,
+        "name": "Richard Cheese",
+        "mac": "XX:XX:XX:XX:5D:0C",
+        "tenantId": 1234,
+        "phLine1ExId": 1234,
+        "extPeer": "2134-durst",
+        "phoneModelId": 69,
+        "deviceModel": "Grandstream",
+        "tenantName": "Art",
+        "tenantCode": "durst",
+        "userAgent": "Grandstream HT812 1.0.11.6"
+      },
+    ...
+    ],
+    ```
+
+  </Col>
+</Row>
+
+---
+
+
