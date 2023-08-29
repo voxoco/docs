@@ -5,64 +5,581 @@
 ## Send SMS {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/sendSMS' }}
 
 <Row>
-  <Col>
+    <Col>
 
-    <strong>Send an SMS text message to one or more numbers</strong>
-    <p>
-      <strong>IMPORTANT:</strong>
-      10DLC Compliance must be considered when sending messages to multiple numbers or sending multiple programmatic requests.
-      Messages are subject to rate limits determined by your brand and messaging campaigns tier. Exceeding rate limits will
-      result in messaging failures.
-    </p>
+        <strong>Send an SMS text message to one or more numbers</strong>
+        <div>
+            <strong>IMPORTANT:</strong>
+            10DLC Compliance must be considered when sending messages to multiple numbers or sending multiple programmatic requests.
+            Messages are subject to rate limits determined by your brand and messaging campaigns tier. Exceeding rate limits will
+            result in messaging failures.
+        </div>
 
-    ### Post Parameters
+        ### Post Parameters
 
-    <Properties>
-      <Property name="tenantId*" type="number">Account id</Property>
-      <Property name="from*" type="string">
-        10DLC number from which to send the message. This number must belong to your
-        account, be assigned as an extension SMS destination, and be provisioned in the 10DLC ecosystem
-      </Property>
-      <Property name="to*" type="string[]">Array of phone numbers to send the message to</Property>
-      <Property name="text*" type="string">The message body</Property>
-    </Properties>
+        <Properties>
+            <Property name="tenantId*" type="number">Account id</Property>
+            <Property name="from*" type="string">
+                10DLC number from which to send the message. This number must belong to your
+                account, be assigned as an extension SMS destination, and be provisioned in the 10DLC ecosystem
+            </Property>
+            <Property name="to*" type="string[]">Array of phone numbers to send the message to</Property>
+            <Property name="text*" type="string">The message body</Property>
+        </Properties>
 
-    ### Header
+        ### Header
 
-    <Properties>
-      <Property name="Authorization*" type="string" >
-        Bearer `{accessToken}`
-      </Property>
-      <Property name="Content-Type*" type="string" >application/json</Property>
-    </Properties>
+        <Properties>
+            <Property name="Authorization*" type="string" >
+                Bearer `{accessToken}`
+            </Property>
+            <Property name="Content-Type*" type="string" >application/json</Property>
+        </Properties>
 
-  </Col>
-  <Col sticky>
-    <CodeGroup title="Request" tag="POST" label="/messaging/sendSMS">
-      ```bash {{ title: 'cURL' }}
-      curl --location -g --request POST 'https://api.voxo.co/v2/messaging/sendSMS' \
-      --header 'Content-Type: application/json' \
-      --header 'Authorization: Bearer {accessToken}'
-      ```
-      ```json {{ title: 'JSON' }}
-      {
-        "tenantId": 1234,
-        "from": "6015555555",
-        "to": ["6015555556", "6015555557"],
-        "text": "Hot dad riding in on a rhino"
-      }
-      ```
-    </CodeGroup>
+    </Col>
+    <Col sticky>
+        <CodeGroup title="Request" tag="POST" label="/messaging/sendSMS">
+            ```bash {{ title: 'cURL' }}
+            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/sendSMS' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Bearer {accessToken}'
+            ```
+            ```json {{ title: 'JSON' }}
+            {
+              "tenantId": 1234,
+              "from": "6015555555",
+              "to": ["6015555556", "6015555557"],
+              "text": "Hot dad riding in on a rhino"
+            }
+            ```
+        </CodeGroup>
 
-    ```json {{ title: 'Response' }}
-    {
-      "tenantId": 1234,
-      "from": "6015555555",
-      "to": ["6015555556", "6015555557"],
-      "text": "Hot dad riding in on a rhino"
-    },
-    ```
-  </Col>
+        ```json {{ title: 'Response' }}
+        {
+            "tenantId": 1234,
+            "from": "6015555555",
+            "to": ["6015555556", "6015555557"],
+            "text": "Hot dad riding in on a rhino"
+        },
+        ```
+    </Col>
 </Row>
 
+---
 
+## Upload Media Files  {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/uploadMediaFiles' }}
+
+<Row>
+    <Col>
+
+        <strong>Upload files to receive a media url for MMS file attachments</strong>
+
+        ### Header
+
+        <Properties>
+            <Property name="Authorization*" type="string" >
+                Bearer `{accessToken}`
+            </Property>
+            <Property name="Content-Type*" type="string" >multipart/form-data</Property>
+        </Properties>
+
+    </Col>
+    <Col sticky>
+        <CodeGroup title="Request" tag="POST" label="/messaging/uploadMediaFiles">
+            ```bash {{ title: 'cURL' }}
+            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/uploadMediaFiles' \
+            --header 'Content-Type: multipart/form-data' \
+            --header 'Authorization: Bearer {accessToken}'
+            ```
+        </CodeGroup>
+
+        ```json {{ title: 'Response' }}
+        [ "https://voxo-mms.s3.amazonaws.com/UGQ1USBXAZN1AKA3.png" ]
+        ```
+    </Col>
+</Row>
+
+---
+
+## Send MMS {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/sendMMS' }}
+
+<Row>
+    <Col>
+
+        <strong>Send an MMS text message to one or more numbers</strong>
+        <div>
+            <strong>IMPORTANT:</strong>
+            This will <strong>not</strong> send an individual MMS to each recipient in the array. This will create a group thread with the source
+            number and all of the recipients.
+        </div>
+
+
+        ### Post Parameters
+
+        <Properties>
+            <Property name="tenantId*" type="number">Account id</Property>
+            <Property name="from*" type="string">
+                10DLC number from which to send the message. This number must belong to your
+                account, be assigned as an extension SMS destination, and be provisioned in the 10DLC ecosystem
+            </Property>
+            <Property name="to*" type="string[]">Array of phone numbers to send the message to</Property>
+            <Property name="text" type="string">The message body</Property>
+            <Property name="mediaUrls" type="string[]">The array of public urls</Property>
+        </Properties>
+
+        ### Header
+
+        <Properties>
+            <Property name="Authorization*" type="string" >
+                Bearer `{accessToken}`
+            </Property>
+            <Property name="Content-Type*" type="string" >application/json</Property>
+        </Properties>
+
+    </Col>
+    <Col sticky>
+        <CodeGroup title="Request" tag="POST" label="/messaging/sendMMS">
+            ```bash {{ title: 'cURL' }}
+            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/sendMMS' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Bearer {accessToken}'
+            ```
+            ```json {{ title: 'JSON' }}
+            {
+                "tenantId": 37,
+                "from": "6015555556",
+                "to": ["6015555555", "6015555557"],
+                "text": "Hello",
+                "mediaUrls": ["https://voxo-mms.s3.amazonaws.com/TTMGNJNYASY0UGJM.jpeg"]
+            }
+            ```
+        </CodeGroup>
+
+        ```json {{ title: 'Response' }}
+        {
+          "createdConversations": [
+            {
+                "id": 945,
+                "tenantId": 37,
+                "createdAt": "2023-08-22T16:20:55.000Z",
+                "updatedAt": "2023-08-22T16:20:55.000Z",
+                "sourceDID": "16015555556",
+                "participants": "16015555557,16015555556,16015555555",
+                "hidden": 0,
+                "name": "VOXO,16015555555",
+                "conversationName": ""
+            }
+          ],
+          "id": 4843,
+          "postBody": {
+            "tenantId": 37,
+            "from": "6015555556",
+            "to": [
+            "6015555555",
+            "6015555557"
+            ],
+            "text": "Hello",
+            "mediaUrls": [
+            "https://voxo-mms.s3.amazonaws.com/TTMGNJNYASY0UGJM.jpeg"
+            ]
+          },
+          "updatedAt": "2023-08-22 11:20:59"
+        }
+        ```
+    </Col>
+</Row>
+
+---
+
+## Get SMS Provisioned Numbers {{ tag: 'GET', label: 'https://api.voxo.co/v2/messaging/getProvisionedNumbers' }}
+
+<Row>
+    <Col>
+
+        <strong>Retrieve all of your numbers provisioned for SMS</strong>
+        <div>
+            This will return all of your numbers provisioned for SMS and the status for if they are active in a campaign.
+        </div>
+
+        ### Header
+
+        <Properties>
+            <Property name="Authorization*" type="string" >
+                Bearer `{accessToken}`
+            </Property>
+            <Property name="Content-Type*" type="string" >application/json</Property>
+        </Properties>
+
+    </Col>
+    <Col sticky>
+        <CodeGroup title="Request" tag="GET" label="/messaging/getProvisionedNumbers">
+            ```bash {{ title: 'cURL' }}
+            curl --location -g --request GET 'https://api.voxo.co/v2/messaging/getProvisionedNumbers' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Bearer {accessToken}'
+            ```
+        </CodeGroup>
+
+        ```json {{ title: 'Response' }}
+        [
+          {
+            "tn": "6015555556",
+            "active": 1
+          }
+        ]
+        ```
+    </Col>
+</Row>
+
+---
+
+## Hide Conversation {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/deleteConversation' }}
+
+<Row>
+    <Col>
+
+        <div>
+            <strong>IMPORTANT:</strong>
+            This does <strong>not</strong> delete the existing thread. The conversation is just marked as hidden in the database.
+        </div>
+
+        ### Post Parameters
+
+        <Properties>
+            <Property name="conversationId*" type="number">Conversation Id</Property>
+        </Properties>
+
+        ### Header
+
+        <Properties>
+            <Property name="Authorization*" type="string" >
+                Bearer `{accessToken}`
+            </Property>
+            <Property name="Content-Type*" type="string" >application/json</Property>
+        </Properties>
+
+    </Col>
+    <Col sticky>
+        <CodeGroup title="Request" tag="POST" label="/messaging/deleteConversation">
+            ```bash {{ title: 'cURL' }}
+            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/deleteConversation' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Bearer {accessToken}'
+            ```
+            ```json {{ title: 'JSON' }}
+            {
+              "conversationId": 153
+            }
+            ```
+        </CodeGroup>
+
+        ```json {{ title: 'Response' }}
+        {
+          "conversationId": 153
+        }
+        ```
+    </Col>
+</Row>
+
+---
+
+## Update Conversation Name {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/updateConversationName' }}
+
+<Row>
+    <Col>
+
+        <div>
+            <strong>IMPORTANT:</strong>
+            This endpoint will only modify the name for <strong>your</strong> conversation. Other participants
+            will never see the name change.
+        </div>
+
+        ### Post Parameters
+
+        <Properties>
+            <Property name="conversationId*" type="number">Conversation id</Property>
+            <Property name="conversationName*" type="string">New conversation name</Property>
+        </Properties>
+
+        ### Header
+
+        <Properties>
+            <Property name="Authorization*" type="string" >
+                Bearer `{accessToken}`
+            </Property>
+            <Property name="Content-Type*" type="string" >application/json</Property>
+        </Properties>
+
+    </Col>
+    <Col sticky>
+        <CodeGroup title="Request" tag="POST" label="/messaging/updateConversationName">
+            ```bash {{ title: 'cURL' }}
+            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/updateConversationName' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Bearer {accessToken}'
+            ```
+            ```json {{ title: 'JSON' }}
+            {
+              "conversationId": 153,
+              "conversationName": "Friends"
+            }
+            ```
+        </CodeGroup>
+
+        ```json {{ title: 'Response' }}
+        {
+          "conversationId": 153,
+          "conversationName": "Friends"
+        }
+        ```
+    </Col>
+</Row>
+
+---
+
+## Mark Read {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/markRead' }}
+
+<Row>
+    <Col>
+
+        <div>
+            <strong>IMPORTANT:</strong>
+            This will mark the conversation as unhidden (if it is hidden) and mark all of the messages associated with the thread as read.
+        </div>
+
+        ### Post Parameters
+
+        <Properties>
+            <Property name="conversationId*" type="number">Conversation id</Property>
+        </Properties>
+
+        ### Header
+
+        <Properties>
+            <Property name="Authorization*" type="string" >
+                Bearer `{accessToken}`
+            </Property>
+            <Property name="Content-Type*" type="string" >application/json</Property>
+        </Properties>
+
+    </Col>
+    <Col sticky>
+        <CodeGroup title="Request" tag="POST" label="/messaging/markRead">
+            ```bash {{ title: 'cURL' }}
+            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/markRead' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Bearer {accessToken}'
+            ```
+            ```json {{ title: 'JSON' }}
+            {
+              "conversationId": 153,
+            }
+            ```
+        </CodeGroup>
+
+        ```json {{ title: 'Response' }}
+        {
+          "conversationId": 153,
+        }
+        ```
+    </Col>
+</Row>
+
+---
+
+## List conversations {{ tag: 'GET', label: 'https://api.voxo.co/v2/messaging/listConversations/{userId}' }}
+
+<Row>
+    <Col>
+
+        <strong>Retrieve text messaging conversations for a user</strong>
+        <div>
+            Returns a complete list of a user's text message threads
+        </div>
+
+        ### Parameters
+
+        <Properties>
+            <Property name="userId*" type="number">User id</Property>
+        </Properties>
+
+        ### Header
+
+        <Properties>
+            <Property name="Authorization*" type="string" >
+                Bearer `{accessToken}`
+            </Property>
+            <Property name="Content-Type*" type="string" >application/json</Property>
+        </Properties>
+
+    </Col>
+    <Col sticky>
+        <CodeGroup title="Request" tag="GET" label="/messaging/listConversations/1234">
+            ```bash {{ title: 'cURL' }}
+            curl --location -g --request GET 'https://api.voxo.co/v2/messaging/listConversations/1234' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Bearer {accessToken}'
+            ```
+        </CodeGroup>
+
+        ```json {{ title: 'Response' }}
+        [
+          {
+            "id": 3,
+            "createdAt": "2023-06-29 21:51:24",
+            "updatedAt": "2023-08-22 12:14:00",
+            "sourceDID": "16015555556",
+            "participants": "16015555557,16015555556,16015555558",
+            "tenantId": 37,
+            "hidden": 0,
+            "name": "VOXO,VOXO,VOXO",
+            "conversationName": "Team",
+            "unreadCount": null,
+            "lastMessage": "Hello Team!",
+            "lastMessageId": 4779,
+            "lastMedia": []
+          }
+        ]
+        ```
+    </Col>
+</Row>
+
+---
+
+## Get messages {{ tag: 'GET', label: 'https://api.voxo.co/v2/messaging/getMessages?userId={userId}&conversationId={conversationId}&page=1&recordsPerPage=100' }}
+
+<Row>
+    <Col>
+
+        <strong>Retrieve the messages for a conversation</strong>
+        <div>
+          <strong>Note:</strong>
+          This is a paginated endpoint
+        </div>
+
+        ### Parameters
+
+        <Properties>
+            <Property name="userId*" type="number">User id</Property>
+            <Property name="conversationId*" type="number">Conversation id</Property>
+            <Property name="page" type="number">Page of the list</Property>
+            <Property name="recordsPerPage" type="number">Number of results returned per page</Property>
+        </Properties>
+
+        ### Header
+
+        <Properties>
+            <Property name="Authorization*" type="string" >
+                Bearer `{accessToken}`
+            </Property>
+            <Property name="Content-Type*" type="string" >application/json</Property>
+        </Properties>
+
+    </Col>
+    <Col sticky>
+        <CodeGroup title="Request" tag="GET" label="/messaging/getMessages?userId=123&conversationId=123&page=1&recordsPerPage=100">
+
+            ```bash {{ title: 'cURL' }}
+            curl --location -g --request GET 'https://api.voxo.co/v2/messaging/getMessages?userId=123&conversationId=123&page=1&recordsPerPage=100' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Bearer {accessToken}'
+            ```
+        </CodeGroup>
+        ```json {{ title: 'Response' }}
+        {
+          "messages": [
+            {
+              "id": 4779,
+              "userId": 123,
+              "conversationId": 123,
+              "text": "Hello",
+              "mediaUrls": [],
+              "to": "16015555556",
+              "from": "16015555557",
+              "direction": "inbound",
+              "timestamp": "2023-07-14T17:45:44.000Z",
+              "read": 0
+            },
+            {
+              "id": 4660,
+              "userId": 123,
+              "conversationId": 123,
+              "text": "Goodbye",
+              "mediaUrls": [],
+              "to": "16015555556",
+              "from": "16015555557",
+              "direction": "inbound",
+              "timestamp": "2023-07-14T14:48:38.000Z",
+              "read": 0
+            }
+          ],
+          "totalMessages": 39,
+          "page": 1,
+          "recordsPerPage": 2
+        }
+        ```
+    </Col>
+</Row>
+
+---
+
+## Search conversations {{ tag: 'GET', label: 'https://api.voxo.co/v2/messaging/searchConversations?number={number}' }}
+
+<Row>
+    <Col>
+
+        <strong>Retrieve the conversations where the number query is present</strong>
+
+        ### Parameters
+
+        <Properties>
+            <Property name="number*" type="number">Phone number being queried</Property>
+        </Properties>
+
+        ### Header
+
+        <Properties>
+            <Property name="Authorization*" type="string" >
+                Bearer `{accessToken}`
+            </Property>
+            <Property name="Content-Type*" type="string" >application/json</Property>
+        </Properties>
+
+    </Col>
+    <Col sticky>
+        <CodeGroup title="Request" tag="GET" label="/messaging/searchConversations?number=601602">
+
+            ```bash {{ title: 'cURL' }}
+            curl --location -g --request GET 'https://api.voxo.co/v2/messaging/getMessages?userId=123&conversationId=123&page=1&recordsPerPage=100' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Bearer {accessToken}'
+            ```
+        </CodeGroup>
+        ```json {{ title: 'Response' }}
+        [
+          {
+            "id": 209,
+            "tenantId": 37,
+            "createdAt": "2023-07-04T00:37:04.000Z",
+            "updatedAt": "2023-07-04T00:37:09.000Z",
+            "sourceDID": "16015555556",
+            "participants": "16015555556,16015555558,16015555555",
+            "hidden": 1,
+            "name": "VOXO,16015555555",
+            "conversationName": "VOXO, VOXO"
+          },
+          {
+            "id": 210,
+            "tenantId": 37,
+            "createdAt": "2023-07-04T00:37:09.000Z",
+            "updatedAt": "2023-07-06T17:58:31.000Z",
+            "sourceDID": "16015555558",
+            "participants": "16015555556,16015555558,16015555555",
+            "hidden": 0,
+            "name": "VOXO,16015555555",
+            "conversationName": "VOXO, 6015555555"
+          }
+        ]
+        ```
+    </Col>
+</Row>
