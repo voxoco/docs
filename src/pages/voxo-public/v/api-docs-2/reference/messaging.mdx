@@ -2,7 +2,7 @@
 
 ---
 
-## Send SMS {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/sendSMS' }}
+## Send SMS {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/send-sms' }}
 
 <Row>
     <Col>
@@ -38,9 +38,9 @@
 
     </Col>
     <Col sticky>
-        <CodeGroup title="Request" tag="POST" label="/messaging/sendSMS">
+        <CodeGroup title="Request" tag="POST" label="/messaging/send-sms">
             ```bash {{ title: 'cURL' }}
-            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/sendSMS' \
+            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/send-sms' \
             --header 'Content-Type: application/json' \
             --header 'Authorization: Bearer {accessToken}'
             ```
@@ -67,7 +67,7 @@
 
 ---
 
-## Upload Media Files  {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/uploadMediaFiles' }}
+## Upload Media Files  {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/upload-media' }}
 
 <Row>
     <Col>
@@ -85,9 +85,9 @@
 
     </Col>
     <Col sticky>
-        <CodeGroup title="Request" tag="POST" label="/messaging/uploadMediaFiles">
+        <CodeGroup title="Request" tag="POST" label="/messaging/upload-media">
             ```bash {{ title: 'cURL' }}
-            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/uploadMediaFiles' \
+            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/upload-media' \
             --header 'Content-Type: multipart/form-data' \
             --header 'Authorization: Bearer {accessToken}'
             ```
@@ -101,7 +101,7 @@
 
 ---
 
-## Send MMS {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/sendMMS' }}
+## Send MMS {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/send-mms' }}
 
 <Row>
     <Col>
@@ -138,9 +138,9 @@
 
     </Col>
     <Col sticky>
-        <CodeGroup title="Request" tag="POST" label="/messaging/sendMMS">
+        <CodeGroup title="Request" tag="POST" label="/messaging/send-mms">
             ```bash {{ title: 'cURL' }}
-            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/sendMMS' \
+            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/send-mms' \
             --header 'Content-Type: application/json' \
             --header 'Authorization: Bearer {accessToken}'
             ```
@@ -191,7 +191,7 @@
 
 ---
 
-## Get SMS Provisioned Numbers {{ tag: 'GET', label: 'https://api.voxo.co/v2/messaging/getProvisionedNumbers' }}
+## Get SMS Provisioned Numbers {{ tag: 'GET', label: 'https://api.voxo.co/v2/messaging/get-provisioned-numbers' }}
 
 <Row>
     <Col>
@@ -212,9 +212,9 @@
 
     </Col>
     <Col sticky>
-        <CodeGroup title="Request" tag="GET" label="/messaging/getProvisionedNumbers">
+        <CodeGroup title="Request" tag="GET" label="/messaging/get-provisioned-numbers">
             ```bash {{ title: 'cURL' }}
-            curl --location -g --request GET 'https://api.voxo.co/v2/messaging/getProvisionedNumbers' \
+            curl --location -g --request GET 'https://api.voxo.co/v2/messaging/get-provisioned-numbers' \
             --header 'Content-Type: application/json' \
             --header 'Authorization: Bearer {accessToken}'
             ```
@@ -233,7 +233,7 @@
 
 ---
 
-## Hide Conversation {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/deleteConversation' }}
+## Hide Conversation {{ tag: 'DELETE', label: 'https://api.voxo.co/v2/messaging/conversations/:id' }}
 
 <Row>
     <Col>
@@ -242,12 +242,6 @@
             <strong>IMPORTANT:</strong>
             This does <strong>not</strong> delete the existing thread. The conversation is just marked as hidden in the database.
         </div>
-
-        ### Post Parameters
-
-        <Properties>
-            <Property name="conversationId*" type="number">Conversation Id</Property>
-        </Properties>
 
         ### Header
 
@@ -260,16 +254,11 @@
 
     </Col>
     <Col sticky>
-        <CodeGroup title="Request" tag="POST" label="/messaging/deleteConversation">
+        <CodeGroup title="Request" tag="DELETE" label="/messaging/conversations/:id">
             ```bash {{ title: 'cURL' }}
-            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/deleteConversation' \
+            curl --location -g --request DELETE 'https://api.voxo.co/v2/messaging/conversations/:id' \
             --header 'Content-Type: application/json' \
             --header 'Authorization: Bearer {accessToken}'
-            ```
-            ```json {{ title: 'JSON' }}
-            {
-              "conversationId": 153
-            }
             ```
         </CodeGroup>
 
@@ -283,7 +272,7 @@
 
 ---
 
-## Update Conversation Name {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/updateConversationName' }}
+## Update Conversation Name {{ tag: 'PATCH', label: 'https://api.voxo.co/v2/messaging/conversations/name/:id' }}
 
 <Row>
     <Col>
@@ -297,7 +286,6 @@
         ### Post Parameters
 
         <Properties>
-            <Property name="conversationId*" type="number">Conversation id</Property>
             <Property name="conversationName*" type="string">New conversation name</Property>
         </Properties>
 
@@ -312,15 +300,14 @@
 
     </Col>
     <Col sticky>
-        <CodeGroup title="Request" tag="POST" label="/messaging/updateConversationName">
+        <CodeGroup title="Request" tag="PATCH" label="/messaging/conversations/name/:id">
             ```bash {{ title: 'cURL' }}
-            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/updateConversationName' \
+            curl --location -g --request PATCH 'https://api.voxo.co/v2/messaging/conversations/name/:id' \
             --header 'Content-Type: application/json' \
             --header 'Authorization: Bearer {accessToken}'
             ```
             ```json {{ title: 'JSON' }}
             {
-              "conversationId": 153,
               "conversationName": "Friends"
             }
             ```
@@ -337,7 +324,7 @@
 
 ---
 
-## Mark Read {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/markRead' }}
+## Mark Read {{ tag: 'PATCH', label: 'https://api.voxo.co/v2/messaging/conversations/mark-read/:id' }}
 
 <Row>
     <Col>
@@ -346,12 +333,6 @@
             <strong>IMPORTANT:</strong>
             This will mark the conversation as unhidden (if it is hidden) and mark all of the messages associated with the thread as read.
         </div>
-
-        ### Post Parameters
-
-        <Properties>
-            <Property name="conversationId*" type="number">Conversation id</Property>
-        </Properties>
 
         ### Header
 
@@ -364,16 +345,11 @@
 
     </Col>
     <Col sticky>
-        <CodeGroup title="Request" tag="POST" label="/messaging/markRead">
+        <CodeGroup title="Request" tag="PATCH" label="/messaging/conversations/mark-read/:id">
             ```bash {{ title: 'cURL' }}
-            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/markRead' \
+            curl --location -g --request PATCH 'https://api.voxo.co/v2/messaging/conversations/mark-read/:id' \
             --header 'Content-Type: application/json' \
             --header 'Authorization: Bearer {accessToken}'
-            ```
-            ```json {{ title: 'JSON' }}
-            {
-              "conversationId": 153,
-            }
             ```
         </CodeGroup>
 
@@ -387,7 +363,7 @@
 
 ---
 
-## List conversations {{ tag: 'GET', label: 'https://api.voxo.co/v2/messaging/listConversations/{userId}' }}
+## List conversations {{ tag: 'GET', label: 'https://api.voxo.co/v2/messaging/conversations/:userId' }}
 
 <Row>
     <Col>
@@ -414,9 +390,9 @@
 
     </Col>
     <Col sticky>
-        <CodeGroup title="Request" tag="GET" label="/messaging/listConversations/1234">
+        <CodeGroup title="Request" tag="GET" label="/messaging/conversations/:userId">
             ```bash {{ title: 'cURL' }}
-            curl --location -g --request GET 'https://api.voxo.co/v2/messaging/listConversations/1234' \
+            curl --location -g --request GET 'https://api.voxo.co/v2/messaging/conversations/:userId' \
             --header 'Content-Type: application/json' \
             --header 'Authorization: Bearer {accessToken}'
             ```
@@ -446,7 +422,7 @@
 
 ---
 
-## Get messages {{ tag: 'GET', label: 'https://api.voxo.co/v2/messaging/getMessages?userId={userId}&conversationId={conversationId}&page=1&recordsPerPage=100' }}
+## Get messages {{ tag: 'GET', label: 'https://api.voxo.co/v2/messaging/messages?userId={userId}&conversationId={conversationId}&page=1&recordsPerPage=100' }}
 
 <Row>
     <Col>
@@ -477,10 +453,10 @@
 
     </Col>
     <Col sticky>
-        <CodeGroup title="Request" tag="GET" label="/messaging/getMessages?userId=123&conversationId=123&page=1&recordsPerPage=100">
+        <CodeGroup title="Request" tag="GET" label="/messaging/messages?userId=123&conversationId=123&page=1&recordsPerPage=100">
 
             ```bash {{ title: 'cURL' }}
-            curl --location -g --request GET 'https://api.voxo.co/v2/messaging/getMessages?userId=123&conversationId=123&page=1&recordsPerPage=100' \
+            curl --location -g --request GET 'https://api.voxo.co/v2/messaging/messages?userId=123&conversationId=123&page=1&recordsPerPage=100' \
             --header 'Content-Type: application/json' \
             --header 'Authorization: Bearer {accessToken}'
             ```
@@ -523,7 +499,7 @@
 
 ---
 
-## Search conversations {{ tag: 'GET', label: 'https://api.voxo.co/v2/messaging/searchConversations?number={number}' }}
+## Search your conversations {{ tag: 'GET', label: 'https://api.voxo.co/v2/messaging/conversations/search?number={number}' }}
 
 <Row>
     <Col>
@@ -547,10 +523,10 @@
 
     </Col>
     <Col sticky>
-        <CodeGroup title="Request" tag="GET" label="/messaging/searchConversations?number=601602">
+        <CodeGroup title="Request" tag="GET" label="/messaging/conversations/search?number=601602">
 
             ```bash {{ title: 'cURL' }}
-            curl --location -g --request GET 'https://api.voxo.co/v2/messaging/getMessages?userId=123&conversationId=123&page=1&recordsPerPage=100' \
+            curl --location -g --request GET 'https://api.voxo.co/v2/messaging/conversations/search?number={number}' \
             --header 'Content-Type: application/json' \
             --header 'Authorization: Bearer {accessToken}'
             ```

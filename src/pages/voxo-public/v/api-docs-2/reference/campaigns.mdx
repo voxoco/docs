@@ -70,7 +70,7 @@
 
 ---
 
-## Get Campaign By ID {{ tag: 'GET', label: 'https://api.voxo.co/v2/call-campaigns/:campaignId' }}
+## Get Campaign By ID {{ tag: 'GET', label: 'https://api.voxo.co/v2/call-campaigns/:id' }}
 
 <Row>
   <Col>
@@ -86,10 +86,10 @@
   </Col>
   <Col sticky>
 
-    <CodeGroup title="Request" tag="GET" label="/call-campaigns/:campaignId">
+    <CodeGroup title="Request" tag="GET" label="/call-campaigns/:id">
 
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request GET 'https://api.voxo.co/v2/call-campaigns/:campaignId' \
+    curl --location -g --request GET 'https://api.voxo.co/v2/call-campaigns/:id' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```
@@ -130,7 +130,7 @@
 
 ---
 
-## Add Numbers to Campaign {{ tag: 'POST', label: 'https://api.voxo.co/v2/call-campaigns/addNumbers' }}
+## Add Numbers to Campaign {{ tag: 'PATCH', label: 'https://api.voxo.co/v2/call-campaigns/add-numbers/:id' }}
 
 <Row>
   <Col>
@@ -140,7 +140,6 @@
     ### Post Parameters
 
     <Properties>
-      <Property name="campaignId*" type="number">Campaign record id</Property>
       <Property name="numbers" type="array">Array of objects containing number and description</Property>
     </Properties>
 
@@ -154,15 +153,14 @@
   </Col>
   <Col sticky>
 
-    <CodeGroup title="Request" tag="POST" label="/call-campaigns/addNumbers">
+    <CodeGroup title="Request" tag="PATCH" label="/call-campaigns/add-numbers/:id">
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request POST 'https://api.voxo.co/v2/call-campaigns/addNumbers' \
+    curl --location -g --request PATCH 'https://api.voxo.co/v2/call-campaigns/add-numbers/:id' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```
     ```json {{ title: 'JSON' }}
     {
-      "campaignId": 11111,
       "numbers": [
         {
             "number": "6015555567",
@@ -201,16 +199,15 @@
 
 ---
 
-## Remove Number From Campaign {{ tag: 'POST', label: 'https://api.voxo.co/v2/call-campaigns/removeNumbers' }}
+## Remove Number From Campaign {{ tag: 'PATCH', label: 'https://api.voxo.co/v2/call-campaigns/remove-numbers/:id' }}
 
 <Row>
   <Col>
     <strong>Remove or purge all numbers from a campaign</strong>
 
-    ### Post Parameters
+    ### Body Parameters
 
     <Properties>
-      <Property name="campaignId*" type="number">Campaign record id</Property>
       <Property name="numbers*" type="array">Array of number strings. May pass empty array if purge is true</Property>
       <Property name="purge" type="boolean">Pass true to purge all campaign numbers</Property>
     </Properties>
@@ -224,15 +221,14 @@
 
   </Col>
   <Col sticky>
-    <CodeGroup title="Request" tag="POST" label="/call-campaigns/removeNumbers">
+    <CodeGroup title="Request" tag="PATCH" label="/call-campaigns/remove-numbers/:id">
       ```bash {{ title: 'cURL' }}
-      curl --location -g --request POST 'https://api.voxo.co/v2/call-campaigns/removeNumbers' \
+      curl --location -g --request PATCH 'https://api.voxo.co/v2/call-campaigns/remove-numbers/:id' \
       --header 'Content-Type: application/json' \
       --header 'Authorization: Bearer {accessToken}'
       ```
       ```json {{ title: 'JSON' }}
       {
-          "campaignId": 149,
           "numbers": [
               "6015515455",
               "6015555567"
@@ -260,17 +256,11 @@
 
 ---
 
-## Set Campaign Ready {{ tag: 'POST', label: 'https://api.voxo.co/v2/call-campaigns/schedule' }}
+## Set Campaign Ready {{ tag: 'PATCH', label: 'https://api.voxo.co/v2/call-campaigns/schedule/:id' }}
 
 <Row>
   <Col>
     <strong>Sets a campaign to the ready state</strong>
-
-    ### Post Parameters
-
-    <Properties>
-      <Property name="campaignId*" type="number">Campaign record id</Property>
-    </Properties>
 
     ### Header
 
@@ -281,16 +271,11 @@
 
   </Col>
   <Col sticky>
-    <CodeGroup title="Request" tag="POST" label="/call-campaigns/schedule">
+    <CodeGroup title="Request" tag="PATCH" label="/call-campaigns/schedule/:id">
       ```bash {{ title: 'cURL' }}
-      curl --location -g --request POST 'https://api.voxo.co/v2/call-campaigns/schedule' \
+      curl --location -g --request PATCH 'https://api.voxo.co/v2/call-campaigns/schedule/:id' \
       --header 'Content-Type: application/json' \
       --header 'Authorization: Bearer {accessToken}'
-      ```
-      ```json {{ title: 'JSON' }}
-        {
-            "campaignId": 727
-        }
       ```
     </CodeGroup>
     ```json {{ title: 'Response' }}
@@ -307,17 +292,11 @@
 
 ---
 
-## Pause Campaign {{ tag: 'POST', label: 'https://api.voxo.co/v2/call-campaigns/pause' }}
+## Pause Campaign {{ tag: 'PATCH', label: 'https://api.voxo.co/v2/call-campaigns/pause/:id' }}
 
 <Row>
   <Col>
     <strong>Sets a campaign to the paused state</strong>
-
-    ### Post Parameters
-
-    <Properties>
-      <Property name="campaignId*" type="number">Campaign record id</Property>
-    </Properties>
 
     ### Header
 
@@ -328,16 +307,11 @@
 
   </Col>
   <Col sticky>
-    <CodeGroup title="Request" tag="POST" label="/call-campaigns/pause">
+    <CodeGroup title="Request" tag="PATCH" label="/call-campaigns/pause/:id">
       ```bash {{ title: 'cURL' }}
-      curl --location -g --request POST 'https://api.voxo.co/v2/call-campaigns/pause' \
+      curl --location -g --request PATCH 'https://api.voxo.co/v2/call-campaigns/pause/:id' \
       --header 'Content-Type: application/json' \
       --header 'Authorization: Bearer {accessToken}'
-      ```
-      ```json {{ title: 'JSON' }}
-        {
-            "campaignId": 149 
-        }
       ```
     </CodeGroup>
     ```json {{ title: 'Response' }}
@@ -354,17 +328,11 @@
 
 ---
 
-## Remove A Campaign {{ tag: 'POST', label: 'https://api.voxo.co/v2/call-campaigns/remove' }}
+## Remove A Campaign {{ tag: 'DELETE', label: 'https://api.voxo.co/v2/call-campaigns/:id' }}
 
 <Row>
   <Col>
     <strong>Remove a campaign</strong>
-
-    ### Post Parameters
-
-    <Properties>
-      <Property name="campaignId*" type="number">Campaign record id</Property>
-    </Properties>
 
     ### Header
 
@@ -375,16 +343,11 @@
 
   </Col>
   <Col sticky>
-    <CodeGroup title="Request" tag="POST" label="/call-campaigns/remove">
+    <CodeGroup title="Request" tag="DELETE" label="/call-campaigns/:id">
       ```bash {{ title: 'cURL' }}
-      curl --location -g --request POST 'https://api.voxo.co/v2/call-campaigns/remove' \
+      curl --location -g --request DELETE 'https://api.voxo.co/v2/call-campaigns/:id' \
       --header 'Content-Type: application/json' \
       --header 'Authorization: Bearer {accessToken}'
-      ```
-      ```json {{ title: 'JSON' }}
-        {
-            "campaignId": 149 
-        }
       ```
     </CodeGroup>
     ```json {{ title: 'Response' }}
@@ -552,7 +515,7 @@
 
 ---
 
-## Update A Campaign {{ tag: 'POST', label: 'https://api.voxo.co/v2/call-campaigns/update' }}
+## Update A Campaign {{ tag: 'PATCH', label: 'https://api.voxo.co/v2/call-campaigns/:id' }}
 
 <Row>
   <Col>
@@ -560,7 +523,6 @@
     <div>This endpoint enables sparse updating for an existing campaign</div>
 
     <Properties>
-      <Property name="campaignId*" type="number">1234</Property>
       <Property name="name" type="number">Name of the campaign</Property>
       <Property name="tech" type="string">VOICE</Property>
       <Property name="state" type="enum">READY or PAUSED. Default is READY</Property>
@@ -590,15 +552,14 @@
 
   </Col>
   <Col sticky>
-    <CodeGroup title="Request" tag="POST" label="/call-campaigns/update">
+    <CodeGroup title="Request" tag="PATCH" label="/call-campaigns/:id">
       ```bash {{ title: 'cURL' }}
-      curl --location -g --request POST 'https://api.voxo.co/v2/call-campaigns/update' \
+      curl --location -g --request PATCH 'https://api.voxo.co/v2/call-campaigns/:id' \
       --header 'Content-Type: application/json' \
       --header 'Authorization: Bearer {accessToken}'
       ```
       ```json {{ title: 'JSON' }}
         {
-          "campaignId": 717,
           "name": "The Simpsons Edited Sparse Again",
           "state": "PAUSED",
           "numbers": [

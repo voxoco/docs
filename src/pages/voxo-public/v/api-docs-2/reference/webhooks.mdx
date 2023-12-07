@@ -59,7 +59,7 @@
 
 --- 
 
-## List Webhooks Types {{ tag: 'GET', label: 'https://api.voxo.co/v2/webhooks/listTypes' }}
+## List Webhooks Types {{ tag: 'GET', label: 'https://api.voxo.co/v2/webhooks/list-types' }}
 
 <Row>
   <Col>
@@ -80,10 +80,10 @@
   </Col>
   <Col sticky>
 
-    <CodeGroup title="Request" tag="GET" label="/webhooks/listTypes">
+    <CodeGroup title="Request" tag="GET" label="/webhooks/list-types">
 
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request GET 'https://api.voxo.co/v2m/webhooks/listTypes' \
+    curl --location -g --request GET 'https://api.voxo.co/v2/webhooks/list-types' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```
@@ -212,7 +212,7 @@
 
 ---
 
-## Remove A Webhook {{ tag: 'POST', label: 'https://api.voxo.co/v2/webhooks/remove' }}
+## Remove A Webhook {{ tag: 'DELETE', label: 'https://api.voxo.co/v2/webhooks/:id' }}
 
 <Row>
   <Col>
@@ -230,16 +230,11 @@
 
   </Col>
   <Col sticky>
-    <CodeGroup title="Request" tag="POST" label="/webhooks/remove">
+    <CodeGroup title="Request" tag="DELETE" label="/webhooks/:id">
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request POST 'https://api.voxo.co/v2m/webhooks/remove' \
+    curl --location -g --request DELETE 'https://api.voxo.co/v2m/webhooks/remove' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
-    ```
-    ```json {{ title: 'JSON' }}
-    {
-        "webhookId": 234
-    }
     ```
     </CodeGroup>
 
@@ -256,7 +251,7 @@
 
 ---
 
-## Update A Webhook {{ tag: 'POST', label: 'https://api.voxo.co/v2/webhooks/update' }}
+## Update A Webhook {{ tag: 'PATCH', label: 'https://api.voxo.co/v2/webhooks/:id' }}
 
 <Row>
   <Col>
@@ -267,7 +262,6 @@
     ### Post Parameters
 
     <Properties>
-      <Property name="webhookId*" type="number">Record id of webhook to be updated</Property>
       <Property name="type" type="number">Type of webhook. See webhooks list types endpoint.</Property>
       <Property name="url" type="number">The endpoint to send the webhook POST request</Property>
     </Properties>
@@ -283,9 +277,9 @@
 
   </Col>
   <Col sticky>
-    <CodeGroup title="Request" tag="POST" label="/webhooks/update">
+    <CodeGroup title="Request" tag="PATCH" label="/webhooks/:id">
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request POST 'https://api.voxo.co/v2m/webhooks/update' \
+    curl --location -g --request PATCH 'https://api.voxo.co/v2m/webhooks/:id' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```
