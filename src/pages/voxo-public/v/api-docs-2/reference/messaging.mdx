@@ -363,7 +363,7 @@
 
 ---
 
-## List conversations {{ tag: 'GET', label: 'https://api.voxo.co/v2/messaging/conversations/:userId' }}
+## List conversations {{ tag: 'GET', label: 'https://api.voxo.co/v2/messaging/conversations?userId={userId}' }}
 
 <Row>
     <Col>
@@ -390,9 +390,9 @@
 
     </Col>
     <Col sticky>
-        <CodeGroup title="Request" tag="GET" label="/messaging/conversations/:userId">
+        <CodeGroup title="Request" tag="GET" label="/messaging/conversations?userId={userId}">
             ```bash {{ title: 'cURL' }}
-            curl --location -g --request GET 'https://api.voxo.co/v2/messaging/conversations/:userId' \
+            curl --location -g --request GET 'https://api.voxo.co/v2/messaging/conversations?userId={userId}' \
             --header 'Content-Type: application/json' \
             --header 'Authorization: Bearer {accessToken}'
             ```
