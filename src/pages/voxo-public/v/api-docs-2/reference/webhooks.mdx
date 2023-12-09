@@ -31,7 +31,7 @@
     <CodeGroup title="Request" tag="GET" label="/webhooks?tenantId={tenantId}">
 
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request GET 'https://api.voxo.co/v2m/webhooks?tenantId={tenantId}' \
+    curl --location -g --request GET 'https://api.voxo.co/v2/webhooks?tenantId={tenantId}' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```
@@ -139,7 +139,7 @@
     <CodeGroup title="Request" tag="GET" label="/webhooks/:id">
 
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request GET 'https://api.voxo.co/v2m/webhooks/:id' \
+    curl --location -g --request GET 'https://api.voxo.co/v2/webhooks/:id' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```
@@ -232,7 +232,7 @@
   <Col sticky>
     <CodeGroup title="Request" tag="DELETE" label="/webhooks/:id">
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request DELETE 'https://api.voxo.co/v2m/webhooks/remove' \
+    curl --location -g --request DELETE 'https://api.voxo.co/v2/webhooks/:id' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```
@@ -279,7 +279,7 @@
   <Col sticky>
     <CodeGroup title="Request" tag="PATCH" label="/webhooks/:id">
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request PATCH 'https://api.voxo.co/v2m/webhooks/:id' \
+    curl --location -g --request PATCH 'https://api.voxo.co/v2/webhooks/:id' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```

@@ -38,22 +38,26 @@
     </CodeGroup>
 
     ```json {{ title: 'Response' }}
-    [
-      {
-        "id": 14137,
-        "name": "Richard Cheese",
-        "mac": "XX:XX:XX:XX:XX:XX",
-        "tenantId": 1234,
-        "phLine1ExId": 1234,
-        "extPeer": "2134-durst",
-        "phoneModelId": 69,
-        "deviceModel": "Grandstream",
-        "tenantName": "Art",
-        "tenantCode": "durst",
-        "userAgent": "Grandstream HT812 1.0.11.6"
-      },
-      ...
-    ],
+    {
+      "records": [
+        {
+          "id": 14137,
+          "name": "Richard Cheese",
+          "mac": "XX:XX:XX:XX:XX:XX",
+          "tenantId": 1234,
+          "phLine1ExId": 1234,
+          "extPeer": "2134-durst",
+          "phoneModelId": 69,
+          "deviceModel": "Grandstream",
+          "tenantName": "Art",
+          "tenantCode": "durst",
+          "userAgent": "Grandstream HT812 1.0.11.6"
+        }
+        ...
+      ],
+      "page": 1,
+      "totalRecords": 50
+    }
     ```
 
   </Col>
