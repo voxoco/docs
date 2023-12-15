@@ -2,7 +2,7 @@
 
 ---
 
-## Send SMS {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/send-sms' }}
+## Send SMS {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/messages/send-sms' }}
 
 <Row>
     <Col>
@@ -38,9 +38,9 @@
 
     </Col>
     <Col sticky>
-        <CodeGroup title="Request" tag="POST" label="/messaging/send-sms">
+        <CodeGroup title="Request" tag="POST" label="/messaging/messaging/messages/send-sms">
             ```bash {{ title: 'cURL' }}
-            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/send-sms' \
+            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/messages/send-sms' \
             --header 'Content-Type: application/json' \
             --header 'Authorization: Bearer {accessToken}'
             ```
@@ -67,7 +67,7 @@
 
 ---
 
-## Upload Media Files  {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/upload-media' }}
+## Upload Media Files  {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/messages/upload-media' }}
 
 <Row>
     <Col>
@@ -85,9 +85,9 @@
 
     </Col>
     <Col sticky>
-        <CodeGroup title="Request" tag="POST" label="/messaging/upload-media">
+        <CodeGroup title="Request" tag="POST" label="/messaging/messages/upload-media">
             ```bash {{ title: 'cURL' }}
-            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/upload-media' \
+            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/messages/upload-media' \
             --header 'Content-Type: multipart/form-data' \
             --header 'Authorization: Bearer {accessToken}'
             ```
@@ -101,7 +101,7 @@
 
 ---
 
-## Send MMS {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/send-mms' }}
+## Send MMS {{ tag: 'POST', label: 'https://api.voxo.co/v2/messaging/messages/send-mms' }}
 
 <Row>
     <Col>
@@ -138,9 +138,9 @@
 
     </Col>
     <Col sticky>
-        <CodeGroup title="Request" tag="POST" label="/messaging/send-mms">
+        <CodeGroup title="Request" tag="POST" label="/messaging/messages/send-mms">
             ```bash {{ title: 'cURL' }}
-            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/send-mms' \
+            curl --location -g --request POST 'https://api.voxo.co/v2/messaging/messages/send-mms' \
             --header 'Content-Type: application/json' \
             --header 'Authorization: Bearer {accessToken}'
             ```
