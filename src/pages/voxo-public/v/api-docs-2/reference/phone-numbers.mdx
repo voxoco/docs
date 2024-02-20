@@ -1,0 +1,66 @@
+# Devices
+
+---
+
+## Search Phone Numbers {{ tag: 'GET', label: 'https://api.voxo.co/v2/phone-numbers/search?number={number}' }}
+
+<Row>
+  <Col>
+
+    <strong>Search phone numbers across all accounts by number</strong>
+
+    ### Parameters
+
+    <p>
+      Number query param is required and can be a partial number.
+    </p>
+
+    <Properties>
+      <Property name="number*" type="string">6015555555</Property>
+    </Properties>
+
+
+    ### Header
+
+    <Properties>
+      <Property name="Authorization*" type="string" >
+        Bearer `{accessToken}`
+      </Property>
+      <Property name="Content-Type*" type="string" >application/json</Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/phone-numbers/search?number=5555">
+
+      ```bash {{ title: 'cURL' }}
+      curl --location -g --request GET 'https://api.voxo.co/v2/phone-numbers/search?number=5555' \
+      --header 'Content-Type: application/json' \
+      --header 'Authorization: Bearer {accessToken}'
+      ```
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    [
+      {
+        "id": 0,
+        "tenantId": 0,
+        "number": "6016025555",
+        "registeredCNAM": "Kim Dracula",
+        "branchId": 0,
+        "recording": "yeschange",
+        "fax": "no",
+        "faxEmail": "",
+        "namePrefix": "AYED |"
+      },
+    ...
+    ],
+    ```
+
+  </Col>
+</Row>
+
+---
+
+

@@ -462,6 +462,10 @@ export const navigation = [
         href: '/voxo-public/v/api-docs-2/reference/messaging',
       },
       {
+        title: "Phone Numbers",
+        href: '/voxo-public/v/api-docs-2/reference/phone-numbers',
+      },
+      {
         title: 'Webhooks',
         href: '/voxo-public/v/api-docs-2/reference/webhooks',
       },
