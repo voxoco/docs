@@ -2,7 +2,7 @@
 
 ---
 
-## Search Phone Numbers {{ tag: 'GET', label: 'https://api.voxo.co/v2/phone-numbers/search?number={number}' }}
+## Search Phone Numbers {{ tag: 'GET', label: 'https://api.voxo.co/v2/phone-numbers/search?number={number}&page={page}&recordsPerPage={recordsPerPage}' }}
 
 <Row>
   <Col>
@@ -19,6 +19,14 @@
       <Property name="number*" type="string">6015555555</Property>
     </Properties>
 
+    <Properties>
+      <Property name="page" type="integer">1</Property>
+    </Properties>
+
+    <Properties>
+      <Property name="recordsPerPage" type="integer">75</Property>
+    </Properties>
+
 
     ### Header
 
@@ -32,30 +40,34 @@
   </Col>
   <Col sticky>
 
-    <CodeGroup title="Request" tag="GET" label="/phone-numbers/search?number=5555">
+    <CodeGroup title="Request" tag="GET" label="/phone-numbers/search?number=5555&page=1&recordsPerPage=75">
 
       ```bash {{ title: 'cURL' }}
-      curl --location -g --request GET 'https://api.voxo.co/v2/phone-numbers/search?number=5555' \
+      curl --location -g --request GET 'https://api.voxo.co/v2/phone-numbers/search?number=5555&page=1&recordsPerPage=75' \
       --header 'Content-Type: application/json' \
       --header 'Authorization: Bearer {accessToken}'
       ```
     </CodeGroup>
 
     ```json {{ title: 'Response' }}
-    [
       {
-        "id": 0,
-        "tenantId": 0,
-        "number": "6016025555",
-        "registeredCNAM": "Kim Dracula",
-        "branchId": 0,
-        "recording": "yeschange",
-        "fax": "no",
-        "faxEmail": "",
-        "namePrefix": "AYED |"
-      },
-    ...
-    ],
+        "records": [
+          {
+            "id": 0,
+            "tenantId": 0,
+            "number": "6016025555",
+            "registeredCNAM": "Kim Dracula",
+            "branchId": 0,
+            "recording": "yeschange",
+            "fax": "no",
+            "faxEmail": "",
+            "namePrefix": "AYED |"
+          },
+          ...
+        ],
+        "page": 1,
+        "totalRecords": 11
+      }
     ```
 
   </Col>

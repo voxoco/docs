@@ -2,7 +2,7 @@
 
 ---
 
-## List Devices {{ tag: 'GET', label: 'https://api.voxo.co/v2/devices?tenantId={tenantId}' }}
+## List Devices {{ tag: 'GET', label: 'https://api.voxo.co/v2/devices?tenantId={tenantId}&page={page}&recordsPerPage={recordsPerPage}' }}
 
 <Row>
   <Col>
@@ -13,6 +13,14 @@
 
     <Properties>
       <Property name="tenantId*" type="integer">1234</Property>
+    </Properties>
+
+    <Properties>
+      <Property name="page" type="integer">1</Property>
+    </Properties>
+
+    <Properties>
+      <Property name="recordsPerPage" type="integer">75</Property>
     </Properties>
 
 
@@ -28,10 +36,10 @@
   </Col>
   <Col sticky>
 
-    <CodeGroup title="Request" tag="GET" label="/devices?tenantId=1234">
+    <CodeGroup title="Request" tag="GET" label="/devices?tenantId=1234&page=1&recordsPerPage=75">
 
     ```bash {{ title: 'cURL' }}
-    curl --location -g --request GET 'https://api.voxo.co/v2/devices?tenantId=1234' \
+    curl --location -g --request GET 'https://api.voxo.co/v2/devices?tenantId=1234&page=1&recordsPerPage=75' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer {accessToken}'
     ```
